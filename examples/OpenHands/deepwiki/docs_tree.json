@@ -1,0 +1,553 @@
+{
+  "title": "deepwiki",
+  "description": "Documentation for deepwiki",
+  "subpages": [
+    {
+      "title": "Overview",
+      "path": "[\"subpages\", 0]",
+      "content": {
+        "System Architecture": {
+          "High-Level Component Architecture": "<detail_content>",
+          "Event-Driven Communication Flow": "<detail_content>"
+        },
+        "Core Components": {
+          "Agent Controller System": "<detail_content>",
+          "Session Management Architecture": "<detail_content>",
+          "Runtime Environment System": "<detail_content>",
+          "LLM Integration Framework": "<detail_content>"
+        },
+        "Key Execution Workflows": {
+          "Agent Task Execution Flow": "<detail_content>",
+          "Configuration and Initialization": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "Getting Started",
+      "path": "[\"subpages\", 1]",
+      "content": {
+        "Installation Options Overview": "<detail_content>",
+        "Cloud Installation": "<detail_content>",
+        "CLI Launcher Installation (Recommended)": {
+          "Prerequisites": "<detail_content>",
+          "Installation and Usage": "<detail_content>"
+        },
+        "Docker Installation": {
+          "Pull Required Images": "<detail_content>",
+          "Run OpenHands Container": "<detail_content>",
+          "Docker Environment Configuration": "<detail_content>"
+        },
+        "Development Installation": {
+          "System Requirements": "<detail_content>",
+          "Installation Steps": "<detail_content>"
+        },
+        "Configuration System Architecture": {
+          "Configuration File Structure": "<detail_content>",
+          "Configuration Class Hierarchy": "<detail_content>"
+        },
+        "Initial Configuration": {
+          "LLM Provider Setup": "<detail_content>",
+          "Recommended LLM Models": "<detail_content>"
+        },
+        "Basic Usage Patterns": {
+          "Starting OpenHands": "<detail_content>",
+          "Web Interface Access": "<detail_content>",
+          "CLI Interface Access": "<detail_content>",
+          "Workspace Configuration": "<detail_content>"
+        },
+        "Build System Overview": "<detail_content>"
+      }
+    },
+    {
+      "title": "Agent System",
+      "path": "[\"subpages\", 2]",
+      "content": {
+        "Architecture Overview": {
+          "Core Components Architecture": "<detail_content>"
+        },
+        "Agent Controller & State Management": {
+          "AgentController Core Components": "<detail_content>",
+          "Agent State Lifecycle": "<detail_content>"
+        },
+        "Session Management": {
+          "Session Architecture Flow": "<detail_content>",
+          "Session Initialization Process": "<detail_content>"
+        },
+        "Event-Driven Communication": {
+          "Event Flow Architecture": "<detail_content>",
+          "Event Processing Pipeline": "<detail_content>"
+        },
+        "Agent Lifecycle Management": {
+          "Agent Execution Loop": "<detail_content>"
+        },
+        "Memory & Context Management": {
+          "Memory Architecture": "<detail_content>"
+        },
+        "Multi-Agent Coordination": {
+          "Delegation Architecture": "<detail_content>",
+          "Delegation State Management": "<detail_content>"
+        }
+      },
+      "subpages": [
+        {
+          "title": "Agent Controller & Orchestration",
+          "path": "[\"subpages\", 2, \"subpages\", 0]",
+          "content": {
+            "Core Architecture": "<detail_content>",
+            "Agent Controller Lifecycle": {
+              "State Management Implementation": "<detail_content>"
+            },
+            "Event Orchestration": {
+              "Event Processing Logic": "<detail_content>"
+            },
+            "Agent Delegation System": {
+              "Delegation Implementation Details": "<detail_content>"
+            },
+            "Session Management Integration": {
+              "Session Lifecycle Coordination": "<detail_content>"
+            },
+            "Integration Points": {
+              "Runtime Integration": "<detail_content>",
+              "LLM Integration": "<detail_content>",
+              "Memory Integration": "<detail_content>",
+              "Error Handling and Recovery": "<detail_content>"
+            }
+          }
+        },
+        {
+          "title": "Memory & Prompt Management",
+          "path": "[\"subpages\", 2, \"subpages\", 1]",
+          "content": {
+            "System Overview": {
+              "Memory & Prompt System Architecture": "<detail_content>"
+            },
+            "Core Components": {
+              "Memory Class": "<detail_content>",
+              "ConversationMemory Class": "<detail_content>",
+              "PromptManager Class": "<detail_content>"
+            },
+            "Event Processing Flow": {
+              "Event to Message Conversion Flow": "<detail_content>"
+            },
+            "Microagent System": {
+              "Microagent Types and Loading": "<detail_content>",
+              "Knowledge Retrieval Process": "<detail_content>"
+            },
+            "Prompt Template System": {
+              "Template Structure": "<detail_content>",
+              "Context Building Process": "<detail_content>",
+              "Workspace Context Template": "<detail_content>"
+            },
+            "Tool Calling & Function Calling Mode": {
+              "Function Calling Pipeline": "<detail_content>",
+              "Tool Call Validation": "<detail_content>"
+            },
+            "Context Management": {
+              "Context Information Types": "<detail_content>",
+              "Context Injection Process": "<detail_content>",
+              "Vision and Image Handling": "<detail_content>"
+            }
+          }
+        },
+        {
+          "title": "Function Calling & Actions",
+          "path": "[\"subpages\", 2, \"subpages\", 2]",
+          "content": {
+            "Action-Observation Cycle Overview": "<detail_content>",
+            "Function Calling Mechanism": {
+              "LLM Response Processing": "<detail_content>",
+              "Tool Name Mapping": "<detail_content>"
+            },
+            "Action Types and Implementations": {
+              "Command Execution Actions": {
+                "CmdRunAction": "<detail_content>",
+                "IPythonRunCellAction": "<detail_content>"
+              },
+              "File Operations Actions": {
+                "File Editor Tool Integration": "<detail_content>"
+              },
+              "Agent Control Actions": {
+                "AgentThinkAction": "<detail_content>",
+                "AgentFinishAction  ": "<detail_content>",
+                "AgentDelegateAction": "<detail_content>"
+              }
+            },
+            "Security and Validation": {
+              "Function Call Validation": "<detail_content>",
+              "Security Risk Assessment": "<detail_content>"
+            },
+            "Observation Processing": {
+              "Command Output Observations": "<detail_content>",
+              "IPython Observations": "<detail_content>"
+            },
+            "Frontend Integration": {
+              "Action Handling": "<detail_content>",
+              "Observation Handling": "<detail_content>",
+              "Type Safety": "<detail_content>"
+            },
+            "Tool Call Metadata": "<detail_content>"
+          }
+        }
+      ]
+    },
+    {
+      "title": "LLM Integration",
+      "path": "[\"subpages\", 3]",
+      "content": {
+        "Purpose and Scope": "<detail_content>",
+        "Architecture Overview": "<detail_content>",
+        "Configuration System": {
+          "LLMConfig Structure": "<detail_content>",
+          "Configuration Loading Flow": "<detail_content>"
+        },
+        "LLM Class Hierarchy": {
+          "Core LLM Class": "<detail_content>",
+          "Async and Streaming Variants": "<detail_content>"
+        },
+        "Message Processing Pipeline": {
+          "Message Structure and Serialization": "<detail_content>",
+          "Conversation Memory Integration": "<detail_content>"
+        },
+        "Multi-Provider Support": {
+          "Provider-Specific Handling": "<detail_content>"
+        },
+        "Advanced Features": {
+          "Function Calling Support": "<detail_content>",
+          "Prompt Caching": "<detail_content>",
+          "Vision Support": "<detail_content>"
+        },
+        "Metrics and Monitoring": {
+          "Metrics Collection Flow": "<detail_content>"
+        },
+        "Error Handling and Retry Logic": {
+          "Retry Strategy": "<detail_content>",
+          "Debug and Logging": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "Runtime & Execution Environment",
+      "path": "[\"subpages\", 4]",
+      "content": {
+        "Runtime Architecture Overview": "<detail_content>",
+        "Runtime Architecture": "<detail_content>",
+        "Runtime Types and Implementations": {
+          "DockerRuntime": "<detail_content>",
+          "RemoteRuntime": "<detail_content>"
+        },
+        "Action Execution Flow": "<detail_content>",
+        "Action Execution Pipeline": {
+          "Action Types and Execution": "<detail_content>"
+        },
+        "Sandbox Environment Configuration": {
+          "Key Configuration Options": "<detail_content>",
+          "Runtime Initialization": "<detail_content>"
+        },
+        "Runtime Lifecycle Management": {
+          "Startup Process": "<detail_content>",
+          "Runtime Status Management": "<detail_content>",
+          "Connection Management and Recovery": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "Frontend & User Interfaces",
+      "path": "[\"subpages\", 5]",
+      "content": {
+        "Architecture Overview": "<detail_content>",
+        "Frontend Architecture Components": "<detail_content>",
+        "Web Frontend System": {
+          "Core Web Components": "<detail_content>"
+        },
+        "Command Line Interface System": {
+          "CLI Architecture Components": "<detail_content>"
+        },
+        "API Communication Layer": {
+          "OpenHands API Client Structure": "<detail_content>"
+        },
+        "Settings and Configuration Management": {
+          "Settings Architecture": "<detail_content>"
+        },
+        "Internationalization System": {
+          "Translation System Structure": "<detail_content>"
+        },
+        "Authentication and Session Management": {
+          "Session Management Components": "<detail_content>"
+        }
+      },
+      "subpages": [
+        {
+          "title": "Web Interface & API",
+          "path": "[\"subpages\", 5, \"subpages\", 0]",
+          "content": {
+            "Architecture Overview": "<detail_content>",
+            "Frontend Architecture": {
+              "Core Frontend Components": "<detail_content>",
+              "Settings Management": "<detail_content>"
+            },
+            "Backend API Architecture  ": {
+              "FastAPI Application Structure": "<detail_content>",
+              "Key API Endpoints": "<detail_content>",
+              "Settings API Implementation": "<detail_content>"
+            },
+            "WebSocket Communication": {
+              "WebSocket Event Flow": "<detail_content>",
+              "Socket.IO Event Handlers": "<detail_content>",
+              "Event Processing Pipeline": "<detail_content>"
+            },
+            "Authentication and Security": {
+              "Middleware Stack": "<detail_content>",
+              "User Authentication": "<detail_content>"
+            },
+            "File Operations and Workspace Management": {
+              "File API Endpoints": "<detail_content>"
+            }
+          }
+        },
+        {
+          "title": "Command Line Interface",
+          "path": "[\"subpages\", 5, \"subpages\", 1]",
+          "content": {
+            "CLI Architecture Overview": "<detail_content>",
+            "Core CLI Components": {
+              "Main Entry Point and Session Management": "<detail_content>",
+              "Terminal User Interface System": "<detail_content>"
+            },
+            "Interactive Command System": {
+              "Command Processing Flow": "<detail_content>",
+              "Available Commands": "<detail_content>"
+            },
+            "Configuration and Settings Management": {
+              "Settings Architecture": "<detail_content>",
+              "Settings Categories": "<detail_content>"
+            },
+            "MCP Server Integration": {
+              "MCP Command System": "<detail_content>"
+            },
+            "Agent Integration and Event Flow": {
+              "CLI-Agent Communication Flow": "<detail_content>",
+              "Session Lifecycle Management": "<detail_content>"
+            },
+            "Security and Confirmation System": {
+              "Security Architecture": "<detail_content>"
+            },
+            "Error Handling and User Experience": {
+              "Error Display System": "<detail_content>"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "Integrations",
+      "path": "[\"subpages\", 6]",
+      "content": {
+        "Git Provider Integration Architecture": {
+          "Provider Service Architecture": "<detail_content>",
+          "Service Interface Definition": "<detail_content>",
+          "Provider Implementation Details": "<detail_content>"
+        },
+        "Authentication and Token Management": {
+          "Token Types and Configuration": "<detail_content>"
+        },
+        "Evaluation System Integrations": {
+          "SWE-Bench Integration Architecture": "<detail_content>",
+          "Docker-based Evaluation Environment": "<detail_content>",
+          "Evaluation Modes and Dataset Support": "<detail_content>"
+        },
+        "API Integration Points": {
+          "Server Routes for Git Operations": "<detail_content>"
+        },
+        "Extension Points and Customization": {
+          "Adding New Git Providers": "<detail_content>",
+          "Custom Service Implementation": "<detail_content>"
+        }
+      },
+      "subpages": [
+        {
+          "title": "Git Provider Integration",
+          "path": "[\"subpages\", 6, \"subpages\", 0]",
+          "content": {
+            "Architecture Overview": {
+              "Provider Integration Architecture": "<detail_content>",
+              "Core Components Mapping": "<detail_content>"
+            },
+            "Provider Handler": {
+              "Core Functionality": "<detail_content>"
+            },
+            "Service Implementation Architecture": {
+              "Mixin Structure": "<detail_content>",
+              "Base Implementation Pattern": "<detail_content>"
+            },
+            "Authentication and Token Management": {
+              "Token Types and Configuration": "<detail_content>",
+              "Provider-Specific Authentication": "<detail_content>"
+            },
+            "Core Operations": {
+              "Repository Management": "<detail_content>",
+              "Microagent Discovery": "<detail_content>"
+            },
+            "API Integration": {
+              "API Routes": "<detail_content>",
+              "Request Flow": "<detail_content>"
+            },
+            "Extension Points": {
+              "Custom Service Implementation": "<detail_content>",
+              "Protocol-Based Design": "<detail_content>",
+              "Mixin Architecture": "<detail_content>"
+            }
+          }
+        },
+        {
+          "title": "Evaluation & Benchmarking",
+          "path": "[\"subpages\", 6, \"subpages\", 1]",
+          "content": {
+            "Core Evaluation Framework": {
+              "Evaluation Data Models": "<detail_content>",
+              "Evaluation Orchestration": "<detail_content>"
+            },
+            "SWE-Bench Integration": {
+              "Benchmark Variants Support": "<detail_content>",
+              "Instance Processing Workflow": "<detail_content>"
+            },
+            "Evaluation Modes and Variants": {
+              "Standard vs Interactive Evaluation": "<detail_content>",
+              "SWT-Bench Test Generation Mode": "<detail_content>"
+            },
+            "Configuration and Customization": {
+              "Environment Configuration": "<detail_content>",
+              "Instance Filtering and Selection": "<detail_content>"
+            },
+            "Results Processing and Metrics": {
+              "Metrics Collection": "<detail_content>",
+              "Output Structure and Formats": "<detail_content>"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "Development & Contributing",
+      "path": "[\"subpages\", 7]",
+      "content": {
+        "Development Setup": {
+          "Build System Architecture": "<detail_content>",
+          "Development Dependencies": "<detail_content>"
+        },
+        "Code Quality & Linting": {
+          "Linting Architecture": "<detail_content>",
+          "Pre-commit Hook Integration": "<detail_content>"
+        },
+        "CI/CD Pipeline": {
+          "GitHub Actions Workflow Architecture": "<detail_content>",
+          "Build Matrix Strategy": "<detail_content>"
+        },
+        "Docker Build System": {
+          "Runtime Image Build Process": "<detail_content>",
+          "Container Build Script Architecture": "<detail_content>"
+        },
+        "Development Workflows": {
+          "Local Development Setup": "<detail_content>",
+          "Contributing Process": "<detail_content>"
+        }
+      },
+      "subpages": [
+        {
+          "title": "Build System & Dependencies",
+          "path": "[\"subpages\", 7, \"subpages\", 0]",
+          "content": {
+            "Overview": {
+              "Build System Architecture": "<detail_content>"
+            },
+            "Python Dependency Management": {
+              "Poetry Configuration Structure": "<detail_content>",
+              "Python Version and Core Requirements": "<detail_content>",
+              "Dependency Group Usage": "<detail_content>"
+            },
+            "Frontend Dependency Management": {
+              "Frontend Build System Structure": "<detail_content>",
+              "Frontend Build Scripts": "<detail_content>"
+            },
+            "Build Orchestration": {
+              "Makefile Target Dependencies": "<detail_content>",
+              "Key Makefile Variables": "<detail_content>"
+            },
+            "Container Build System": {
+              "Container Build Architecture": "<detail_content>",
+              "Container Build Script Usage": "<detail_content>"
+            },
+            "CI/CD Integration": {
+              "CI/CD Workflow Structure": "<detail_content>",
+              "Automated Quality Enforcement": "<detail_content>"
+            },
+            "Development Workflow": {
+              "Local Development Setup": "<detail_content>",
+              "Environment Variables and Configuration": "<detail_content>"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "Advanced Features",
+      "path": "[\"subpages\", 8]",
+      "content": {
+        "Automated Issue Resolution": "<detail_content>",
+        "Advanced Conversation Management": "<detail_content>",
+        "Runtime System Advanced Features": {
+          "Warm Server Pool Management": "<detail_content>"
+        },
+        "Plugin System Architecture": "<detail_content>",
+        "File Operations & Security": {
+          "File Upload Configuration System": "<detail_content>"
+        },
+        "Evaluation Integration": "<detail_content>"
+      },
+      "subpages": [
+        {
+          "title": "Automated Issue Resolution",
+          "path": "[\"subpages\", 8, \"subpages\", 0]",
+          "content": {
+            "Overview": "<detail_content>",
+            "Trigger Mechanisms": "<detail_content>",
+            "Workflow Architecture": {
+              "Main Workflow Structure": "<detail_content>",
+              "Module Integration": "<detail_content>"
+            },
+            "Resolution Process": {
+              "Issue Analysis Phase": "<detail_content>",
+              "Agent Execution Environment": "<detail_content>",
+              "Success Determination": "<detail_content>"
+            },
+            "Output Handling": {
+              "Successful Resolutions": "<detail_content>",
+              "Failed Resolutions": "<detail_content>",
+              "Artifact Preservation": "<detail_content>"
+            },
+            "Configuration Options": {
+              "Workflow Inputs": "<detail_content>",
+              "Secret Management": "<detail_content>",
+              "Installation Modes": "<detail_content>"
+            }
+          }
+        },
+        {
+          "title": "File Operations & Security",
+          "path": "[\"subpages\", 8, \"subpages\", 1]",
+          "content": {
+            "Overview": "<detail_content>",
+            "File Path Resolution Architecture": "<detail_content>",
+            "Security Implementation": {
+              "Path Traversal Prevention": "<detail_content>"
+            },
+            "Path Resolution Examples": {
+              "Valid Path Resolution": "<detail_content>"
+            },
+            "Integration with Runtime System": "<detail_content>",
+            "Workspace Configuration": "<detail_content>"
+          }
+        }
+      ]
+    }
+  ]
+}

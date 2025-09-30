@@ -1,0 +1,142 @@
+[
+  {
+    "requirements": "OpenHands is an autonomous AI agent platform that performs software engineering tasks by orchestrating LLM-driven agents inside sandboxed runtimes",
+    "weight": 3,
+    "sub_tasks": [
+      {
+        "requirements": "Agent Core: a stateful reasoning loop that turns natural-language prompts into a sequence of code/file/system actions via an LLM",
+        "weight": 3,
+        "sub_tasks": [
+          {
+            "requirements": "CodeActAgent implements the primary loop: prompt \u2192 plan \u2192 execute \u2192 observe \u2192 revise until task success or failure",
+            "weight": 3
+          },
+          {
+            "requirements": "ActionSpace exposes atomic primitives (read, write, run, browse, git, etc.) that the agent can compose into higher-level workflows",
+            "weight": 3
+          },
+          {
+            "requirements": "Micro-agent subsystem injects domain expertise by keyword-triggered prompt augmentation (global, repo, org, user scopes)",
+            "weight": 2
+          }
+        ]
+      },
+      {
+        "requirements": "LLM Abstraction Layer: pluggable provider interface (OpenAI, Azure, Gemini, Groq, local, etc.) with retry, routing and cost/quality trade-offs",
+        "weight": 3,
+        "sub_tasks": [
+          {
+            "requirements": "LiteLLM proxy normalizes provider APIs and enables multi-model fallback",
+            "weight": 3
+          },
+          {
+            "requirements": "Named config blocks allow per-task model selection (e.g., cheap draft vs. expensive reasoning)",
+            "weight": 2
+          },
+          {
+            "requirements": "Local LLM support via OpenAI-compatible endpoints (LM-Studio, Ollama, vLLM, SGLang) with GPU acceleration hints",
+            "weight": 2
+          }
+        ]
+      },
+      {
+        "requirements": "Sandboxed Runtime Layer: executes untrusted agent actions inside isolated environments while mounting project code",
+        "weight": 3,
+        "sub_tasks": [
+          {
+            "requirements": "Docker Runtime (default): spins up hardened containers with volume mounts, network isolation, and side-car linting tools",
+            "weight": 3
+          },
+          {
+            "requirements": "Image Tagging System guarantees reproducible environments via source, lock, and versioned tags built from CI",
+            "weight": 2
+          },
+          {
+            "requirements": "Plugin interface allows pre-installation of languages, CLIs, and services without rebuilding base images",
+            "weight": 2
+          },
+          {
+            "requirements": "Alternative runtimes: Daytona, E2B, Modal, Runloop, Local (bare-metal for CI), Remote (eval-only) selectable at launch",
+            "weight": 2
+          }
+        ]
+      },
+      {
+        "requirements": "Security & Control Plane: user-configurable safety gates, confirmation prompts, and analyzers that veto dangerous operations",
+        "weight": 3,
+        "sub_tasks": [
+          {
+            "requirements": "Confirmation Mode intercepts high-risk actions (delete, network, sudo) and awaits human approval via CLI/GUI",
+            "weight": 3
+          },
+          {
+            "requirements": "LLM Risk Analyzer and Invariant Analyzer statically inspect proposed commands for red-flag patterns",
+            "weight": 2
+          },
+          {
+            "requirements": "Secrets Manager injects credentials into sandbox without persisting them in code or chat logs",
+            "weight": 2
+          }
+        ]
+      },
+      {
+        "requirements": "Interaction & Interface Layer: multi-modal access paths (GUI, CLI, headless, WebSocket, GitHub Action, Slack) backed by a unified event bus",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "GUI server (React) exposes chat panel, file diff, VS Code editor, terminal, Jupyter, browser preview and status indicator",
+            "weight": 2
+          },
+          {
+            "requirements": "CLI mode offers interactive conversation, repo init, pause/resume, MCP server hot-load and settings override",
+            "weight": 2
+          },
+          {
+            "requirements": "WebSocket API enables programmatic action injection and real-time event streaming for external tools",
+            "weight": 2
+          },
+          {
+            "requirements": "GitHub/GitLab/BitBucket integrations register webhooks so pushes, issues or PR comments can spawn agent sessions",
+            "weight": 2
+          }
+        ]
+      },
+      {
+        "requirements": "Configuration & Extensibility: TOML-based config with environment overrides, MCP servers for custom tools, and repository-level customization hooks",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "config.toml hierarchically merges core, LLM, agent, sandbox, and security stanzas; CLI args > env vars > file",
+            "weight": 2
+          },
+          {
+            "requirements": "Model Context Protocol (MCP) bridges external tools via SSE/stdio transports; proxy servers recommended for production",
+            "weight": 2
+          },
+          {
+            "requirements": ".openhands/ directory supports repo-specific microagents, setup scripts and pre-commit hooks",
+            "weight": 1
+          }
+        ]
+      },
+      {
+        "requirements": "Cloud SaaS & Evaluation Harness: hosted multi-tenant service with project-management integrations and benchmark evaluation framework",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "OpenHands Cloud provides managed runtime pools, repo auth, IP whitelists and REST API for conversation lifecycle",
+            "weight": 2
+          },
+          {
+            "requirements": "Evaluation Harness parameterizes tasks over SWE-bench-style datasets and records trajectories for regression testing",
+            "weight": 2
+          },
+          {
+            "requirements": "Planned Jira/Linear integrations will enable ticket-driven agent workflows with webhook delegation",
+            "weight": 1
+          }
+        ]
+      }
+    ]
+  }
+]

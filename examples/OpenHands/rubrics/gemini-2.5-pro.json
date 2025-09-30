@@ -1,0 +1,370 @@
+[
+  {
+    "requirements": "Core Agent Architecture",
+    "weight": 3,
+    "sub_tasks": [
+      {
+        "requirements": "Central Agentic Component (CodeActAgent)",
+        "weight": 3,
+        "sub_tasks": [
+          {
+            "requirements": "Executes a task-driven loop involving planning, action execution, and observation.",
+            "weight": 3
+          },
+          {
+            "requirements": "Interacts with the execution environment to perform actions like reading/writing files and running commands.",
+            "weight": 3
+          },
+          {
+            "requirements": "Leverages a configured LLM to reason about tasks and generate actions.",
+            "weight": 3
+          }
+        ]
+      },
+      {
+        "requirements": "Task and State Management",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "Maintains a history of actions and observations for a given task, known as a 'trajectory'.",
+            "weight": 2
+          },
+          {
+            "requirements": "Manages the lifecycle of a task, including initialization, execution, pausing, and completion.",
+            "weight": 2
+          }
+        ]
+      },
+      {
+        "requirements": "Evaluation Harness",
+        "weight": 1,
+        "sub_tasks": [
+          {
+            "requirements": "Provides a framework for benchmarking agent performance on predefined tasks.",
+            "weight": 2
+          },
+          {
+            "requirements": "Supports custom evaluation workflows through a programmable user response function (`user_response_fn`).",
+            "weight": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "requirements": "Sandboxed Execution Environment",
+    "weight": 3,
+    "sub_tasks": [
+      {
+        "requirements": "Provides an isolated environment for the agent to execute code and commands, preventing unintended side effects on the host system.",
+        "weight": 3,
+        "sub_tasks": [
+          {
+            "requirements": "Manages a dedicated workspace directory for file operations, which is mounted into the sandbox.",
+            "weight": 3
+          },
+          {
+            "requirements": "Exposes necessary ports from the sandbox to the host for services like web servers or databases.",
+            "weight": 2
+          }
+        ]
+      },
+      {
+        "requirements": "Pluggable Runtime Architecture",
+        "weight": 3,
+        "sub_tasks": [
+          {
+            "requirements": "Default Docker-based Runtime",
+            "weight": 3,
+            "sub_tasks": [
+              {
+                "requirements": "Utilizes a pre-built or custom Docker image as the execution environment.",
+                "weight": 3
+              },
+              {
+                "requirements": "Implements a versioned image tagging system (source, lock, versioned) for reproducibility and maintenance.",
+                "weight": 2
+              },
+              {
+                "requirements": "Supports hardened security configurations, including network isolation and controlled volume mounting.",
+                "weight": 2
+              }
+            ]
+          },
+          {
+            "requirements": "Local Runtime",
+            "weight": 2,
+            "sub_tasks": [
+              {
+                "requirements": "Executes agent commands directly on the host machine, bypassing containerization.",
+                "weight": 2
+              },
+              {
+                "requirements": "Designed for controlled environments like CI pipelines where Docker may be unavailable.",
+                "weight": 1
+              }
+            ]
+          },
+          {
+            "requirements": "Third-Party Cloud Runtimes",
+            "weight": 1,
+            "sub_tasks": [
+              {
+                "requirements": "Integrates with external sandbox services (e.g., E2B, Runloop, Daytona, Modal) by delegating execution via API.",
+                "weight": 2
+              }
+            ]
+          },
+          {
+            "requirements": "Remote Runtime for Evaluation",
+            "weight": 1,
+            "sub_tasks": [
+              {
+                "requirements": "A specialized runtime designed for use with the evaluation harness, not for production use.",
+                "weight": 1
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "requirements": "Pluggable Intelligence and Customization Framework",
+    "weight": 3,
+    "sub_tasks": [
+      {
+        "requirements": "LLM Abstraction Layer",
+        "weight": 3,
+        "sub_tasks": [
+          {
+            "requirements": "Utilizes LiteLLM as a middleware to support a wide range of LLM providers.",
+            "weight": 3
+          },
+          {
+            "requirements": "Supports API-based models (OpenAI, Azure, Google Gemini, etc.) and self-hosted models via OpenAI-compatible endpoints (Ollama, vLLM).",
+            "weight": 3
+          },
+          {
+            "requirements": "Allows for multiple named LLM configurations in `config.toml` for different agents or tasks (e.g., a cheaper model for drafting).",
+            "weight": 2
+          },
+          {
+            "requirements": "Manages LLM interaction parameters like API keys, retries, and rate limits through configuration.",
+            "weight": 2
+          }
+        ]
+      },
+      {
+        "requirements": "Contextual Prompting System (Microagents)",
+        "weight": 3,
+        "sub_tasks": [
+          {
+            "requirements": "Injects domain-specific knowledge and instructions into the agent's prompt based on context.",
+            "weight": 3
+          },
+          {
+            "requirements": "Defines a hierarchical loading system for microagents: Global -> Organization/User -> Repository.",
+            "weight": 3
+          },
+          {
+            "requirements": "Supports keyword-triggered microagents that activate when specific terms are found in the user's prompt.",
+            "weight": 2
+          },
+          {
+            "requirements": "Enables repository-level customization via a `.openhands` directory containing microagent files and setup/pre-commit scripts.",
+            "weight": 2
+          }
+        ]
+      },
+      {
+        "requirements": "External Tool Integration (Model Context Protocol - MCP)",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "Provides a standardized protocol for the agent to communicate with and utilize external tools.",
+            "weight": 2
+          },
+          {
+            "requirements": "Supports multiple transport protocols for tool communication, including Server-Sent Events (SSE), Streamable HTTP (SHTTP), and Standard I/O (stdio).",
+            "weight": 2
+          },
+          {
+            "requirements": "Recommends proxy-based communication (SSE/SHTTP) for production stability over direct stdio connections.",
+            "weight": 1
+          }
+        ]
+      },
+      {
+        "requirements": "External Knowledge Integration (Search)",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "Integrates with external search engines (e.g., Tavily) to provide the agent with access to real-time information.",
+            "weight": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "requirements": "System Configuration and Control",
+    "weight": 3,
+    "sub_tasks": [
+      {
+        "requirements": "Centralized Configuration File (`config.toml`)",
+        "weight": 3,
+        "sub_tasks": [
+          {
+            "requirements": "Acts as the single source of truth for configuring all major system components.",
+            "weight": 3
+          },
+          {
+            "requirements": "Defines settings for Core (workspace, logging), LLM, Agent, Sandbox, and Security.",
+            "weight": 3
+          }
+        ]
+      },
+      {
+        "requirements": "Security and Control Mechanisms",
+        "weight": 3,
+        "sub_tasks": [
+          {
+            "requirements": "Confirmation Mode requires user approval before the agent executes potentially sensitive actions.",
+            "weight": 3
+          },
+          {
+            "requirements": "Security Analyzers (LLM Risk, Invariant) automatically inspect planned actions for potential risks.",
+            "weight": 2
+          }
+        ]
+      },
+      {
+        "requirements": "Secrets Management",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "Provides a secure store for sensitive data like API keys.",
+            "weight": 2
+          },
+          {
+            "requirements": "Allows secrets to be injected into the agent's environment for use in tasks.",
+            "weight": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "requirements": "User and System Interaction Interfaces",
+    "weight": 2,
+    "sub_tasks": [
+      {
+        "requirements": "Local Deployment Interfaces",
+        "weight": 3,
+        "sub_tasks": [
+          {
+            "requirements": "Command-Line Interface (CLI)",
+            "weight": 3,
+            "sub_tasks": [
+              {
+                "requirements": "Supports interactive sessions for conversational task execution.",
+                "weight": 2
+              },
+              {
+                "requirements": "Provides commands for managing settings, repositories, and agent state (pause/resume).",
+                "weight": 2
+              }
+            ]
+          },
+          {
+            "requirements": "Graphical User Interface (GUI)",
+            "weight": 2,
+            "sub_tasks": [
+              {
+                "requirements": "Provides a web-based frontend with integrated features like a chat panel, terminal, code editor (VS Code), and browser.",
+                "weight": 2
+              }
+            ]
+          },
+          {
+            "requirements": "Headless (Scripting) Mode",
+            "weight": 2,
+            "sub_tasks": [
+              {
+                "requirements": "Enables non-interactive execution of tasks from a single command, suitable for automation and scripting.",
+                "weight": 2
+              }
+            ]
+          },
+          {
+            "requirements": "WebSocket API",
+            "weight": 1,
+            "sub_tasks": [
+              {
+                "requirements": "Exposes a WebSocket endpoint for programmatic, real-time interaction with the agent.",
+                "weight": 2
+              },
+              {
+                "requirements": "Allows for sending actions and receiving event streams from the agent.",
+                "weight": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "requirements": "Cloud Platform Abstraction",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "Provides a managed, multi-tenant version of the OpenHands system.",
+            "weight": 3
+          },
+          {
+            "requirements": "REST API for Programmatic Interaction",
+            "weight": 2,
+            "sub_tasks": [
+              {
+                "requirements": "Allows for starting conversations and checking their status programmatically, secured by API keys.",
+                "weight": 2
+              }
+            ]
+          },
+          {
+            "requirements": "Integration with Development Platforms",
+            "weight": 3,
+            "sub_tasks": [
+              {
+                "requirements": "Connects with Git providers (GitHub, GitLab, Bitbucket) to work on repositories directly.",
+                "weight": 3
+              },
+              {
+                "requirements": "Triggers agent tasks from platform events, such as commenting on issues or pull/merge requests.",
+                "weight": 3
+              },
+              {
+                "requirements": "Integrates with communication platforms (Slack) for initiating and managing tasks.",
+                "weight": 1
+              },
+              {
+                "requirements": "Plans integration with project management tools (Jira, Linear) via webhooks and API.",
+                "weight": 1
+              }
+            ]
+          },
+          {
+            "requirements": "GitHub Action",
+            "weight": 2,
+            "sub_tasks": [
+              {
+                "requirements": "Encapsulates OpenHands functionality into a reusable action for CI/CD workflows.",
+                "weight": 2
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

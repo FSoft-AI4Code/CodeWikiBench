@@ -1,0 +1,494 @@
+{
+  "rubrics": [
+    {
+      "requirements": "Core AI Agent Architecture",
+      "weight": 3,
+      "sub_tasks": [
+        {
+          "requirements": "CodeActAgent - Primary Agentic Component",
+          "weight": 3,
+          "sub_tasks": [
+            {
+              "requirements": "Task-driven reasoning loop (plan \u2192 execute \u2192 observe \u2192 revise)",
+              "weight": 3
+            },
+            {
+              "requirements": "ActionSpace management for atomic primitives (read, write, run, browse, git)",
+              "weight": 3
+            },
+            {
+              "requirements": "LLM-driven action generation and task reasoning",
+              "weight": 3
+            },
+            {
+              "requirements": "Context and conversation state management with trajectory tracking",
+              "weight": 2
+            }
+          ]
+        },
+        {
+          "requirements": "Microagent System for Domain Expertise",
+          "weight": 2,
+          "sub_tasks": [
+            {
+              "requirements": "Hierarchical loading system (Global \u2192 Organization/User \u2192 Repository)",
+              "weight": 3
+            },
+            {
+              "requirements": "Keyword-triggered microagent activation with prompt augmentation",
+              "weight": 2
+            },
+            {
+              "requirements": "Repository-level customization via .openhands directory with setup scripts",
+              "weight": 2
+            }
+          ]
+        },
+        {
+          "requirements": "Task and State Management",
+          "weight": 2,
+          "sub_tasks": [
+            {
+              "requirements": "Action-event processing pipeline with unified event bus",
+              "weight": 3
+            },
+            {
+              "requirements": "Task lifecycle management (initialization, execution, pause/resume, completion)",
+              "weight": 2
+            },
+            {
+              "requirements": "Trajectory history maintenance for actions and observations",
+              "weight": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "requirements": "LLM Abstraction and Intelligence Framework",
+      "weight": 3,
+      "sub_tasks": [
+        {
+          "requirements": "Multi-Provider LLM Integration",
+          "weight": 3,
+          "sub_tasks": [
+            {
+              "requirements": "LiteLLM middleware for provider normalization and fallback",
+              "weight": 3
+            },
+            {
+              "requirements": "API-based model support (OpenAI, Azure, Gemini, Groq) with retry and rate limiting",
+              "weight": 3
+            },
+            {
+              "requirements": "Self-hosted model support via OpenAI-compatible endpoints (Ollama, vLLM, SGLang)",
+              "weight": 2
+            }
+          ]
+        },
+        {
+          "requirements": "Named Configuration and Model Selection",
+          "weight": 2,
+          "sub_tasks": [
+            {
+              "requirements": "Multiple named LLM configurations for different agents and tasks",
+              "weight": 2
+            },
+            {
+              "requirements": "Cost/quality trade-offs with per-task model selection",
+              "weight": 2
+            },
+            {
+              "requirements": "GPU acceleration hints and optimization for local models",
+              "weight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "requirements": "Sandboxed Runtime Environment System",
+      "weight": 3,
+      "sub_tasks": [
+        {
+          "requirements": "Docker Runtime (Default)",
+          "weight": 3,
+          "sub_tasks": [
+            {
+              "requirements": "Container orchestration with hardened security configurations",
+              "weight": 3
+            },
+            {
+              "requirements": "Versioned image tagging system (source, lock, versioned) for reproducibility",
+              "weight": 3
+            },
+            {
+              "requirements": "Volume mounting and workspace directory management",
+              "weight": 3
+            },
+            {
+              "requirements": "Network isolation and controlled port exposure",
+              "weight": 2
+            },
+            {
+              "requirements": "Plugin system for pre-installation of languages and tools",
+              "weight": 2
+            }
+          ]
+        },
+        {
+          "requirements": "Alternative Runtime Providers",
+          "weight": 2,
+          "sub_tasks": [
+            {
+              "requirements": "Cloud sandbox integrations (E2B, Runloop, Daytona, Modal) via API delegation",
+              "weight": 2
+            },
+            {
+              "requirements": "Local runtime for direct host execution in CI environments",
+              "weight": 2
+            },
+            {
+              "requirements": "Remote runtime specialized for evaluation harness",
+              "weight": 1
+            }
+          ]
+        },
+        {
+          "requirements": "Runtime Abstraction Interface",
+          "weight": 2,
+          "sub_tasks": [
+            {
+              "requirements": "Pluggable runtime architecture with unified API",
+              "weight": 2
+            },
+            {
+              "requirements": "Runtime plugin lifecycle management",
+              "weight": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "requirements": "Security and Safety Framework",
+      "weight": 3,
+      "sub_tasks": [
+        {
+          "requirements": "Confirmation Mode System",
+          "weight": 3,
+          "sub_tasks": [
+            {
+              "requirements": "User approval workflow for potentially sensitive actions",
+              "weight": 3
+            },
+            {
+              "requirements": "Risk assessment pipeline for action evaluation",
+              "weight": 2
+            }
+          ]
+        },
+        {
+          "requirements": "Security Analyzers",
+          "weight": 2,
+          "sub_tasks": [
+            {
+              "requirements": "LLM Risk Analyzer for automatic action safety inspection",
+              "weight": 2
+            },
+            {
+              "requirements": "Invariant Analyzer for system state protection and red-flag detection",
+              "weight": 2
+            }
+          ]
+        },
+        {
+          "requirements": "Secrets Management",
+          "weight": 2,
+          "sub_tasks": [
+            {
+              "requirements": "Secure storage and retrieval of sensitive data (API keys, credentials)",
+              "weight": 2
+            },
+            {
+              "requirements": "Agent-accessible secret injection without code/log persistence",
+              "weight": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "requirements": "Multi-Interface User Interaction System",
+      "weight": 2,
+      "sub_tasks": [
+        {
+          "requirements": "Web-Based GUI Framework",
+          "weight": 3,
+          "sub_tasks": [
+            {
+              "requirements": "Real-time WebSocket communication with bidirectional event streaming",
+              "weight": 3
+            },
+            {
+              "requirements": "Integrated Development Environment Components",
+              "weight": 2,
+              "sub_tasks": [
+                {
+                  "requirements": "VS Code integration with file editing and diff visualization",
+                  "weight": 2
+                },
+                {
+                  "requirements": "Terminal access and command execution interface",
+                  "weight": 2
+                },
+                {
+                  "requirements": "Jupyter notebook support and browser-based preview",
+                  "weight": 1
+                }
+              ]
+            },
+            {
+              "requirements": "Chat panel for conversational interaction",
+              "weight": 2
+            }
+          ]
+        },
+        {
+          "requirements": "Command Line Interface",
+          "weight": 2,
+          "sub_tasks": [
+            {
+              "requirements": "Interactive conversation management with pause/resume control",
+              "weight": 2
+            },
+            {
+              "requirements": "Repository initialization, configuration, and settings management",
+              "weight": 2
+            },
+            {
+              "requirements": "Headless automation mode for scripting and non-interactive execution",
+              "weight": 2
+            }
+          ]
+        },
+        {
+          "requirements": "Programmatic API Access",
+          "weight": 2,
+          "sub_tasks": [
+            {
+              "requirements": "WebSocket API for real-time action injection and event streaming",
+              "weight": 2
+            },
+            {
+              "requirements": "REST API for conversation lifecycle management with authentication",
+              "weight": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "requirements": "Platform Integration and Automation",
+      "weight": 2,
+      "sub_tasks": [
+        {
+          "requirements": "Version Control System Integrations",
+          "weight": 3,
+          "sub_tasks": [
+            {
+              "requirements": "GitHub integration with issue/PR automation and webhook triggers",
+              "weight": 3
+            },
+            {
+              "requirements": "GitLab integration with merge request handling",
+              "weight": 2
+            },
+            {
+              "requirements": "Bitbucket integration and repository access",
+              "weight": 2
+            }
+          ]
+        },
+        {
+          "requirements": "Communication Platform Integrations",
+          "weight": 2,
+          "sub_tasks": [
+            {
+              "requirements": "Slack bot integration for team collaboration and task initiation",
+              "weight": 2
+            }
+          ]
+        },
+        {
+          "requirements": "CI/CD and Automation Tools",
+          "weight": 2,
+          "sub_tasks": [
+            {
+              "requirements": "GitHub Action for CI/CD workflow integration",
+              "weight": 2
+            },
+            {
+              "requirements": "Project management tool integrations (Jira, Linear) via webhooks",
+              "weight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "requirements": "Configuration and Extensibility Framework",
+      "weight": 2,
+      "sub_tasks": [
+        {
+          "requirements": "Centralized Configuration Management",
+          "weight": 3,
+          "sub_tasks": [
+            {
+              "requirements": "TOML-based hierarchical configuration with environment overrides",
+              "weight": 3
+            },
+            {
+              "requirements": "Core system settings (workspace, logging, debugging, file store)",
+              "weight": 3
+            },
+            {
+              "requirements": "LLM, Agent, Sandbox, and Security configuration stanzas",
+              "weight": 3
+            },
+            {
+              "requirements": "Configuration precedence: CLI args > env vars > config file",
+              "weight": 2
+            }
+          ]
+        },
+        {
+          "requirements": "Model Context Protocol (MCP) Integration",
+          "weight": 2,
+          "sub_tasks": [
+            {
+              "requirements": "External tool communication via standardized protocol",
+              "weight": 2
+            },
+            {
+              "requirements": "Multiple transport support (SSE, SHTTP, stdio) with proxy architecture",
+              "weight": 2
+            },
+            {
+              "requirements": "Tool capability extension framework and hot-loading",
+              "weight": 2
+            }
+          ]
+        },
+        {
+          "requirements": "External Service Integration",
+          "weight": 2,
+          "sub_tasks": [
+            {
+              "requirements": "Search engine integration (Tavily) for real-time information access",
+              "weight": 2
+            },
+            {
+              "requirements": "Custom sandbox image support and environment customization",
+              "weight": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "requirements": "Cloud Platform and Evaluation Framework",
+      "weight": 2,
+      "sub_tasks": [
+        {
+          "requirements": "OpenHands Cloud SaaS Platform",
+          "weight": 2,
+          "sub_tasks": [
+            {
+              "requirements": "Managed multi-tenant service with runtime pools",
+              "weight": 3
+            },
+            {
+              "requirements": "Repository authentication and IP whitelisting",
+              "weight": 2
+            },
+            {
+              "requirements": "REST API for programmatic conversation management",
+              "weight": 2
+            }
+          ]
+        },
+        {
+          "requirements": "Evaluation Harness",
+          "weight": 2,
+          "sub_tasks": [
+            {
+              "requirements": "Framework for benchmarking agent performance on predefined tasks",
+              "weight": 2
+            },
+            {
+              "requirements": "SWE-bench-style dataset parameterization with trajectory recording",
+              "weight": 2
+            },
+            {
+              "requirements": "Programmable user response function for custom evaluation workflows",
+              "weight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "requirements": "Data Management and Privacy System",
+      "weight": 1,
+      "sub_tasks": [
+        {
+          "requirements": "User Data Handling",
+          "weight": 2,
+          "sub_tasks": [
+            {
+              "requirements": "Feedback collection with privacy controls and consent management",
+              "weight": 2
+            },
+            {
+              "requirements": "Data sharing settings and user preference management",
+              "weight": 2
+            }
+          ]
+        },
+        {
+          "requirements": "File Storage and Workspace Management",
+          "weight": 2,
+          "sub_tasks": [
+            {
+              "requirements": "Workspace file organization and persistence across sessions",
+              "weight": 2
+            },
+            {
+              "requirements": "Change tracking and version control integration",
+              "weight": 2
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "combination_metadata": {
+    "combination_method": "semantic_llm",
+    "llm_model": "claude-sonnet-4",
+    "temperature": 0.1,
+    "num_rubrics_combined": 3,
+    "max_retries": 3,
+    "statistics": {
+      "total_items": 101,
+      "top_level_items": 9,
+      "max_depth": 3,
+      "weight_distribution": {
+        "3": 28,
+        "2": 67,
+        "1": 6
+      },
+      "average_weight": 2.217821782178218
+    }
+  }
+}

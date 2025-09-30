@@ -1,0 +1,1178 @@
+[
+  {
+    "requirements": "Core AI Agent Architecture",
+    "weight": 3,
+    "sub_tasks": [
+      {
+        "requirements": "CodeActAgent - Primary Agentic Component",
+        "weight": 3,
+        "sub_tasks": [
+          {
+            "requirements": "Task-driven reasoning loop (plan \u2192 execute \u2192 observe \u2192 revise)",
+            "weight": 3,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation clearly describes a complete task-driven reasoning loop through multiple interconnected components. The Core Agent System documentation shows a systematic flow where agents plan actions (through LLM responses), execute them via the runtime system, observe results through events and state updates, and revise their approach based on new observations. This is explicitly demonstrated in the data flow diagrams showing the sequence: Agent \u2192 LLM \u2192 Action \u2192 Runtime \u2192 Observation \u2192 State Update \u2192 Next Iteration.",
+              "evidence": "1. Core Agent System data flow shows 'loop Agent Execution' with steps: check control flags \u2192 generate response \u2192 parse to action \u2192 execute action \u2192 update state \u2192 increment counters. 2. Agent Implementations Module demonstrates CodeActAgent's unified action space that consolidates planning, execution, and observation. 3. Conversation Orchestration Module shows the complete lifecycle management with agent loop coordination. 4. The State Management component tracks execution state including iteration tracking and conversation history, enabling the revise phase. 5. Action Processing module converts observations into structured actions for the next planning cycle.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "ActionSpace management for atomic primitives (read, write, run, browse, git)",
+            "weight": 3,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation explicitly covers ActionSpace management through multiple sections. The Type Definitions Module provides comprehensive coverage of atomic action primitives including READ, WRITE, RUN, BROWSE, and git operations (PUSH, SEND_PR). The CodeAct Agents Module shows unified action space architecture, and the Browsing Agents Module demonstrates configurable action spaces.",
+              "evidence": "Type Definitions Module lists: READ (file retrieval), WRITE (file creation/overwriting), RUN (shell commands), BROWSE (web page retrieval), and git operations (PUSH, SEND_PR). CodeActAgent features 'Unified Action Space' combining these primitives. Action Processing Module handles conversion of these atomic actions into executable objects.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "LLM-driven action generation and task reasoning",
+            "weight": 3,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation extensively covers LLM-driven action generation and task reasoning across multiple modules. The LLM Integration module provides the core language model abstraction, while the CodeAct Agents module specifically implements LLM-driven task reasoning through function calling and action generation. The Agent Management module establishes the framework for LLM-based decision making, and the system architecture shows clear integration between LLMs and action generation.",
+              "evidence": "Key documentation includes: 1) LLM Integration module overview describing 'Unified interface for interacting with various Large Language Models' with 'Function calling, vision processing, and streaming responses'; 2) CodeAct Agents module showing 'LLM actions into a unified code action space' with 'Function Calling: Supports structured tool invocation through LLM function calling'; 3) Agent Management module describing 'LLM Integration: Manages LLM instances through the registry system' and 'Tool Management: Handles MCP tools and function calling capabilities'; 4) Detailed architecture diagrams showing LLM-to-action processing flows and task reasoning pipelines.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Context and conversation state management with trajectory tracking",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation comprehensively covers context and conversation state management with trajectory tracking through multiple interconnected modules. The State Management module provides detailed coverage of comprehensive state tracking with event history, session persistence, and multi-agent delegation support. The Conversation Orchestration and Management modules handle conversation lifecycle, event streaming, and trajectory tracking. Frontend State Management covers client-side state coordination. All components work together to provide complete context and trajectory tracking capabilities.",
+              "evidence": "Key documentation sections include: 1) State Management Module with 'Comprehensive state tracking with event history' and 'Multi-agent delegation support with metrics tracking', 2) Conversation Orchestration Module managing 'conversation lifecycle' and 'event streaming', 3) Conversation Management Module handling 'conversation metadata' and 'event history', 4) Frontend State Management with 'Conversation Management' and 'State Flow Architecture', 5) Session Management Module providing 'Session State Management' and 'Event history maintenance'",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 1.0
+      },
+      {
+        "requirements": "Microagent System for Domain Expertise",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "Hierarchical loading system (Global \u2192 Organization/User \u2192 Repository)",
+            "weight": 3,
+            "score": 0,
+            "evaluation": {
+              "score": 0,
+              "reasoning": "The documentation does not mention any hierarchical loading system that follows a Global \u2192 Organization/User \u2192 Repository precedence pattern. While there are configuration management systems and storage hierarchies described, none explicitly document this specific three-tier loading precedence for configuration or settings.",
+              "evidence": "Reviewed configuration modules including core_configuration, configuration_management, user_data_management, and storage_system documentation. Found configuration hierarchies for ServerConfigInterface \u2192 ServerConfig \u2192 SaaSServerConfig, and storage hierarchies for different backends, but no mention of Global \u2192 Organization/User \u2192 Repository loading precedence.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Keyword-triggered microagent activation with prompt augmentation",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation explicitly describes keyword-triggered microagent activation through the KnowledgeMicroagent type, which uses a 'Trigger System: Configurable keyword matching' and provides 'Keyword-based activation for knowledge agents'. Additionally, the system supports prompt augmentation through variable extraction and dynamic prompting capabilities, particularly in TaskMicroagents that parse '${variable_name}' patterns and automatically request missing variables.",
+              "evidence": "From the Microagent System Documentation: 'Knowledge Microagents (KnowledgeMicroagent): Keyword-triggered agents providing specialized expertise... Trigger System: Configurable keyword matching' and 'TaskMicroagents: Variable Extraction: Parses ${variable_name} patterns... Dynamic Prompting: Automatically requests missing variables'",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Repository-level customization via .openhands directory with setup scripts",
+            "weight": 2,
+            "score": 0,
+            "evaluation": {
+              "score": 0,
+              "reasoning": "While the documentation extensively covers repository-level customization through microagents and configuration files, there is no mention of setup scripts within a .openhands directory. The customization is handled through microagent files (.md files) and configuration files, not through executable setup scripts.",
+              "evidence": "Documentation shows repository microagents in .openhands/microagents/ directory and mentions .cursorrules, .openhands_instructions files, but no setup scripts are referenced.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 0.2857142857142857
+      },
+      {
+        "requirements": "Task and State Management",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "Action-event processing pipeline with unified event bus",
+            "weight": 3,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation comprehensively describes a unified event-driven architecture with a complete action-event processing pipeline. The system uses a unified event bus (EventStream) that handles all system interactions through a consistent event model, with actions and observations flowing through a centralized pipeline.",
+              "evidence": "The Events and Actions Module provides a 'unified event model' and 'central nervous system' with 'Event Streaming System' for real-time distribution. The Event Streaming Module implements a 'publish-subscribe pattern with asynchronous event processing' serving as the 'backbone for system-wide event coordination'. The Event Foundation Module defines the base Event, Action, and Observation classes that form the processing pipeline. The Action Processing Module handles the conversion of LLM responses into executable Action objects that flow through the unified event bus.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Task lifecycle management (initialization, execution, pause/resume, completion)",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation comprehensively covers task lifecycle management across multiple modules. Key evidence includes detailed state diagrams showing initialization, execution, pause/resume, and completion states in the State Management module, conversation lifecycle flows in Conversation Orchestration, agent lifecycle phases in Agent Management, and session lifecycle management across various components.",
+              "evidence": "State Management Module shows explicit PAUSED, RUNNING, AWAITING_USER_INPUT, FINISHED, and ERROR states with transitions. Conversation Orchestration provides flowcharts for complete lifecycle from initialization through completion. Agent Management documents 5 distinct lifecycle phases from initialization to reset. Session Management includes detailed state diagrams for session lifecycle with error handling and cleanup.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Trajectory history maintenance for actions and observations",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation explicitly covers trajectory history maintenance through multiple components including State Management's 'Memory and History Management', Event Foundation's lifecycle tracking, Event Streaming's caching and persistence features, and CodeAct Agents' memory and context management systems.",
+              "evidence": "State Management Module shows 'Event Caching', 'History Reconstruction', and 'Memory Views' for event history. Event Foundation demonstrates lifecycle management with 'Causality Linking' and 'Timestamp Recording'. Event Streaming provides 'Caching Strategy' with write page cache and lazy loading. CodeAct Agents include 'Memory and Context Management' with conversation memory, event history, and state tracking.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 1.0
+      }
+    ],
+    "score": 0.7959183673469388
+  },
+  {
+    "requirements": "LLM Abstraction and Intelligence Framework",
+    "weight": 3,
+    "sub_tasks": [
+      {
+        "requirements": "Multi-Provider LLM Integration",
+        "weight": 3,
+        "sub_tasks": [
+          {
+            "requirements": "LiteLLM middleware for provider normalization and fallback",
+            "weight": 3,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation explicitly mentions LiteLLM as the provider abstraction layer and describes comprehensive fallback mechanisms. The LLM Integration module uses LiteLLM for provider normalization, and the system includes robust retry logic, error handling, and fallback strategies for handling provider failures.",
+              "evidence": "1. LLM Integration module overview states 'Unified Interface: Single API for multiple LLM providers (OpenAI, Anthropic, Google, etc.)' using LiteLLM. 2. Core LLM Implementation shows 'LiteLLM[LiteLLM Library]' as a key external dependency. 3. Error handling includes 'Provider Fallback' and 'Circuit Breaker' mechanisms. 4. RetryMixin provides configurable retry logic with exponential backoff for handling transient failures. 5. Router System enables intelligent model selection and failover between multiple LLMs.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "API-based model support (OpenAI, Azure, Gemini, Groq) with retry and rate limiting",
+            "weight": 3,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation comprehensively covers API-based model support including OpenAI, Gemini, and other providers, along with detailed retry mechanisms and rate limiting features. While Azure and Groq are not explicitly named, the system supports '100+ models across providers' and has an 'extensible architecture for new providers'.",
+              "evidence": "1. Multi-Provider Support section lists 'OpenAI: GPT models with function calling and vision' and 'Google: Gemini models with multimodal capabilities' [LLM Integration Module]. 2. RetryMixin provides 'configurable retry logic with exponential backoff and intelligent error handling' [Utility Mixins Module]. 3. Rate limiting is implemented through RateLimitMiddleware with 'request throttling' and 'configurable responses' [Web Infrastructure Module]. 4. The system includes 'built-in rate limit handling' and 'comprehensive exception management' [LLM Integration Module Key Features].",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Self-hosted model support via OpenAI-compatible endpoints (Ollama, vLLM, SGLang)",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation explicitly mentions support for local models including Ollama and other local deployments under 'Multi-Provider Support' in the LLM Integration module. The system uses LiteLLM as an abstraction layer which provides OpenAI-compatible API endpoints for self-hosted models like Ollama, vLLM, and SGLang.",
+              "evidence": "In the LLM Integration module under 'Key Features' > 'Multi-Provider Support', it lists: '**Local Models**: Ollama and other local deployments' alongside OpenAI, Anthropic, and Google. The architecture uses LiteLLM as the provider abstraction layer, which is known to support OpenAI-compatible endpoints for self-hosted models.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 1.0
+      },
+      {
+        "requirements": "Named Configuration and Model Selection",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "Multiple named LLM configurations for different agents and tasks",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation extensively covers multiple LLM configurations through the Router System and LLM Integration modules. It explicitly describes how to configure multiple named LLM instances for different agents and tasks, including support for routing between different models based on content type, token limits, and task requirements.",
+              "evidence": "1. Router System Documentation shows 'llms_for_routing: dict[str, LLMConfig] = {}' for configuring multiple LLMs, 2. LLM Integration module demonstrates 'Multi-Provider Support' with OpenAI, Anthropic, Google, and local models, 3. Agent implementations (CodeAct, Browsing, VisualBrowsing) show different LLM configurations per agent type, 4. Configuration examples show named LLM instances like 'primary', 'secondary', and custom routing strategies, 5. The system supports 'Model Routing Configuration' with specific LLM configs for different use cases",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Cost/quality trade-offs with per-task model selection",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation explicitly covers cost/quality trade-offs through the Router System and LLM Integration modules. The Router System provides intelligent model selection based on task requirements, content type, and resource constraints, while the LLM Integration module includes comprehensive cost tracking and monitoring features.",
+              "evidence": "1. Router System Documentation: 'Intelligent model selection based on task requirements' and 'optimizing performance, cost, and capabilities by routing requests to the most appropriate underlying LLM' 2. MultimodalRouter: Routes based on content type (text vs multimodal) and token limits, explicitly balancing cost and capability 3. LLM Integration: Features 'Cost Management: Automatic cost tracking and token usage monitoring' and 'Model Routing: Intelligent model selection for optimal performance' 4. Configuration options allow specifying different models for routing with cost considerations",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "GPU acceleration hints and optimization for local models",
+            "weight": 1,
+            "score": 0,
+            "evaluation": {
+              "score": 0,
+              "reasoning": "The documentation extensively covers performance optimization strategies including prompt caching, connection pooling, memory management, and resource allocation, but there is no mention of GPU acceleration or optimization specifically for local models. The performance sections focus on software-level optimizations rather than hardware acceleration.",
+              "evidence": "Reviewed LLM Integration Module, Core LLM Implementation, Agent Implementations, CodeAct Agents, Browsing Agents, Runtime System, Local Runtime, and Kubernetes Runtime documentation sections - none contain references to GPU acceleration or local model GPU optimization.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 0.8
+      }
+    ],
+    "score": 0.9199999999999999
+  },
+  {
+    "requirements": "Sandboxed Runtime Environment System",
+    "weight": 3,
+    "sub_tasks": [
+      {
+        "requirements": "Docker Runtime (Default)",
+        "weight": 3,
+        "sub_tasks": [
+          {
+            "requirements": "Container orchestration with hardened security configurations",
+            "weight": 3,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation comprehensively covers container orchestration through Kubernetes runtime implementation with extensive security hardening features. This includes detailed configuration for resource management, network security, access control, TLS certificates, RBAC permissions, security contexts, and container isolation policies.",
+              "evidence": "Found in [kubernetes_runtime](subpages/35) and [kubernetes_configuration](subpages/47) modules: 1) Kubernetes Runtime provides full container orchestration with pod lifecycle management, 2) Security features include RBAC permissions, security contexts, TLS certificates, network policies, and privileged mode controls, 3) Configuration supports image pull secrets, TLS secrets, node selectors, and resource limits, 4) Integration with security system for comprehensive risk assessment and policy enforcement",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Versioned image tagging system (source, lock, versioned) for reproducibility",
+            "weight": 3,
+            "score": 0,
+            "evaluation": {
+              "score": 0,
+              "reasoning": "The documentation covers runtime building and image management extensively, including the RuntimeBuilder class with build() and image_exists() methods, but there is no mention of a versioned image tagging system with source, lock, and versioned tags specifically designed for reproducibility. The tagging discussed appears to be basic Docker tagging without the sophisticated version control system described in the criteria.",
+              "evidence": "The Builder System documentation shows image building with tags parameter, but no versioned tagging system is described. The Kubernetes Runtime and Runtime Implementations modules discuss container images and building, but without the specific versioned tagging approach for reproducibility.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Volume mounting and workspace directory management",
+            "weight": 3,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation extensively covers volume mounting and workspace directory management across multiple runtime implementations. It details workspace isolation, directory structures, persistent storage configuration, and mount paths for different environments including local, CLI, and Kubernetes runtimes.",
+              "evidence": "1. Local Runtime: Documents 'Temporary Workspaces' and 'Mounted Workspaces' with workspace_base configuration, cross-platform path handling, and directory structure examples. 2. CLI Runtime: Covers 'Isolated Workspace' creation, path sanitization, and workspace boundaries. 3. Kubernetes Runtime: Provides detailed diagrams showing 'Persistent Volume Claim' setup with mount paths at '/openhands/code/' and persistent storage architecture. 4. File Storage Infrastructure: Documents storage implementations with environment variables for different backends and path management conventions.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Network isolation and controlled port exposure",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation explicitly covers network isolation and controlled port exposure through multiple sections. The Kubernetes Runtime Module details port management with specific port configurations (8080, 8081, 30082, 30083) and service architecture that includes ClusterIP services and Ingress for controlled external access. Security considerations mention isolation through Docker containers and restricted network access in different runtime environments.",
+              "evidence": "Kubernetes Runtime Module shows detailed port management configuration with specific port mappings and service architecture. Security System Module mentions 'Isolation: Invariant analysis runs in isolated Docker containers'. Local Runtime Module explicitly warns about 'Network Access: Unrestricted network connectivity' in local environments, implying controlled exposure in other runtime types. Kubernetes Configuration Module includes security configuration parameters for ingress domains and TLS secrets.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Plugin system for pre-installation of languages and tools",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation extensively covers a plugin system that supports pre-installation of languages and tools. The system includes a PluginRequirement class for specifying dependencies, a Plugin base class for implementation, and integration with the runtime system for managing plugin lifecycle. The Builder System documentation specifically mentions 'Build-Time Plugin Setup' and 'Plugin-Aware Building' that incorporates plugin requirements into images, enabling pre-installation of languages and tools.",
+              "evidence": "Plugin system documentation shows: 1) PluginRequirement dataclass for specifying plugin dependencies, 2) Runtime system integration for plugin lifecycle management, 3) Builder system integration for 'Plugin-Aware Building' and 'Build-Time Plugin Setup', 4) Examples of built-in plugins like VSCode and Jupyter that provide development tools and languages",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 0.7692307692307693
+      },
+      {
+        "requirements": "Alternative Runtime Providers",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "Cloud sandbox integrations (E2B, Runloop, Daytona, Modal) via API delegation",
+            "weight": 2,
+            "score": 0,
+            "evaluation": {
+              "score": 0,
+              "reasoning": "The documentation extensively covers runtime implementations including LocalRuntime, CLIRuntime, and KubernetesRuntime, but there is no mention of cloud sandbox providers like E2B, Runloop, Daytona, or Modal. The runtime systems described are either local execution environments or self-managed Kubernetes clusters, with no API delegation to external cloud sandbox services.",
+              "evidence": "The runtime implementations documented include: 1) LocalRuntime - direct local execution without containers, 2) CLIRuntime - subprocess-based execution, 3) KubernetesRuntime - self-managed Kubernetes pods. None of the documentation sections mention E2B, Runloop, Daytona, Modal, or any form of API delegation to external cloud sandbox services.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Local runtime for direct host execution in CI environments",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation explicitly describes the Local Runtime module as providing direct host execution without containerization, which is suitable for CI environments. The LocalRuntime class is specifically designed for development-focused runtime that executes directly on the local machine, making it appropriate for CI environments where Docker may not be available or desired.",
+              "evidence": "From the Local Runtime documentation: 'The Local Runtime module provides a development-focused runtime implementation that executes the action execution server directly on the local machine without containerization. This runtime is designed for development environments where Docker may not be available or desired, offering direct access to the host system while maintaining the OpenHands runtime interface.' Additionally, the CLI Runtime provides another local execution option with 'direct subprocess execution' and 'minimal resource overhead' which are characteristics beneficial for CI environments.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Remote runtime specialized for evaluation harness",
+            "weight": 1,
+            "score": 0,
+            "evaluation": {
+              "score": 0,
+              "reasoning": "The documentation describes three runtime implementations (Local, CLI, and Kubernetes) but none are specifically designed or described as a 'remote runtime specialized for evaluation harness'. While 'Remote Runtime' is mentioned as a future enhancement in the Runtime System documentation, it is not currently implemented or documented as a specialized evaluation harness runtime.",
+              "evidence": "Runtime System documentation lists 'Remote Runtime: Support for remote execution environments' under 'Future Enhancements' but no current implementation exists. The existing runtimes (LocalRuntime, CLIRuntime, KubernetesRuntime) are focused on development, CLI usage, and general cloud deployment respectively, with no mention of evaluation harness specialization.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 0.4
+      },
+      {
+        "requirements": "Runtime Abstraction Interface",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "Pluggable runtime architecture with unified API",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation clearly describes a pluggable runtime architecture with a unified API. The Runtime System provides an abstract base Runtime class that defines a consistent interface (run, read, write, edit, browse, connect, close methods) across all runtime implementations. Multiple concrete implementations (LocalRuntime, CLIRuntime, KubernetesRuntime) extend this unified API. Additionally, the Plugin System enables further extensibility through a standardized Plugin interface, and the system supports dynamic loading and configuration of different runtime implementations.",
+              "evidence": "1. Runtime System documentation shows abstract Runtime base class with unified interface methods\n2. Three distinct runtime implementations (Local, CLI, Kubernetes) all implement the same unified API\n3. Plugin System documentation describes extensible plugin architecture with standard Plugin interface\n4. Configuration system allows runtime selection via 'runtime: \"local\"' or \"cli\" or \"kubernetes\"\n5. Architecture diagrams show consistent interface pattern across all runtime implementations",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Runtime plugin lifecycle management",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation comprehensively covers runtime plugin lifecycle management through the Plugin System module. It explicitly details the complete lifecycle including loading, execution, and cleanup phases, along with initialization, execution, and disposal processes.",
+              "evidence": "Plugin System documentation section 'Integration with Runtime System' contains 'Plugin Lifecycle' with three distinct phases: Loading Phase (plugin requirements reading, instantiation, initialization), Execution Phase (action routing, asynchronous processing, observation generation), and Cleanup Phase (proper disposal, resource cleanup). The Plugin base class also defines initialize() and run() methods that manage plugin lifecycle states.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 1.0
+      }
+    ],
+    "score": 0.7296703296703297
+  },
+  {
+    "requirements": "Security and Safety Framework",
+    "weight": 3,
+    "sub_tasks": [
+      {
+        "requirements": "Confirmation Mode System",
+        "weight": 3,
+        "sub_tasks": [
+          {
+            "requirements": "User approval workflow for potentially sensitive actions",
+            "weight": 3,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation explicitly describes a user approval workflow through the 'confirmation_mode' feature in the Security Configuration Module. This feature enables user confirmation prompts for potentially risky actions, providing an additional layer of human oversight. The system integrates with the security analysis pipeline to intercept actions and request user approval before execution.",
+              "evidence": "Security Configuration Module documentation states: 'confirmation_mode (bool): Enables user confirmation prompts for potentially risky actions' and 'When confirmation_mode is enabled: Users receive prompts before executing potentially risky actions, Provides an additional layer of human oversight, Integrates with the events_and_actions system for action interception'. This is further supported by the Security System documentation which describes risk assessment and policy enforcement mechanisms that would trigger such approval workflows.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Risk assessment pipeline for action evaluation",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation clearly describes a comprehensive risk assessment pipeline for action evaluation through multiple security analysis components. The Security System module provides a complete pipeline with pluggable analyzers including InvariantAnalyzer for rule-based security analysis and LLMRiskAnalyzer for LLM-powered risk assessment. The system integrates with action processing through the core agent system, providing real-time security evaluation of agent actions before execution.",
+              "evidence": "Security System module shows: 1) SecurityAnalyzer base class with security_risk() method for action evaluation, 2) InvariantAnalyzer with Docker-based containerized security analysis using trace-based action evaluation, 3) LLMRiskAnalyzer for LLM-powered risk assessment, 4) Integration with Events and Actions module for action analysis, 5) Complete data flow diagrams showing the security analysis pipeline from action generation to risk assessment, 6) Risk level enumeration (UNKNOWN, LOW, MEDIUM, HIGH) for standardized evaluation, 7) Configuration system for selecting security analyzers, 8) Error handling and recovery mechanisms for the assessment pipeline",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 1.0
+      },
+      {
+        "requirements": "Security Analyzers",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "LLM Risk Analyzer for automatic action safety inspection",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation explicitly covers the LLM Risk Analyzer through the dedicated 'LLM Risk Analysis Module' which provides automatic action safety inspection. The module includes the LLMRiskAnalyzer class that evaluates security risks of agent actions based on LLM assessments, implements risk level validation, and integrates with the broader security system for automatic safety inspection.",
+              "evidence": "Found in subpages[39]['content']['LLM Risk Analysis Module'] which states: 'The LLM Risk Analysis module provides a specialized security analyzer that leverages Large Language Model (LLM) assessments to evaluate the security risks of agent actions' and includes detailed documentation of the LLMRiskAnalyzer component with methods like 'security_risk(action)' for automatic safety inspection.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Invariant Analyzer for system state protection and red-flag detection",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation explicitly covers the Invariant Analyzer as a core security component. It provides comprehensive details about the InvariantAnalyzer class, its architecture, system state protection mechanisms, and red-flag detection capabilities through policy-driven risk assessment.",
+              "evidence": "Found detailed documentation in the Invariant Analysis Module (subpages[19]) and Security System Module (subpages[13]). Key evidence includes: 1) 'InvariantAnalyzer' as the main security analyzer orchestrating security analysis, 2) 'Policy-driven risk assessment' and 'Real-time action evaluation' features, 3) 'Security analysis pipeline' that evaluates actions against security policies, 4) 'Red-flag detection' through risk assessment process that parses actions and returns structured risk assessments.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 1.0
+      },
+      {
+        "requirements": "Secrets Management",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "Secure storage and retrieval of sensitive data (API keys, credentials)",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation extensively covers secure storage and retrieval of sensitive data including API keys and credentials. Multiple modules specifically address this: User Data Management Module has dedicated 'Secure Secret Management' and 'Security Architecture' sections, Storage System Documentation covers 'Security and Data Protection', Security Infrastructure Module handles token security, and various authentication systems implement secure credential management.",
+              "evidence": "Found comprehensive coverage in: 1) User Data Management Module - 'Secure Secret Management' with features like 'Secure handling of provider tokens and custom secrets', 2) Security Architecture diagram showing 'Secret Types' including 'API Keys', 3) Storage System Documentation - 'Secret Masking: Sensitive data is automatically masked in serialization contexts', 4) Security Infrastructure Module - 'Token Security' with JWT handling and secure cookies, 5) Platform Managers Module - 'Secure token storage and retrieval' and 'Encrypted storage of sensitive credentials'",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Agent-accessible secret injection without code/log persistence",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation comprehensively covers agent-accessible secret injection through the UserSecrets and SecretsStore classes, while explicitly implementing automatic secret redaction/masking in event streams and logs. The Event Streaming Module specifically mentions 'Secret Management: Automatic secret redaction ensures sensitive data doesn't persist' and the User Data Management Module details secure secret handling with context-aware serialization that prevents secrets from appearing in stored events or logs.",
+              "evidence": "User Data Management Module shows 'Secure Secret Management' with 'context-aware serialization with secret masking' and Event Streaming Module demonstrates 'Secret Management: Automatic secret redaction in stored events' with 'recursive replacement' of sensitive data.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 1.0
+      }
+    ],
+    "score": 1.0
+  },
+  {
+    "requirements": "Multi-Interface User Interaction System",
+    "weight": 2,
+    "sub_tasks": [
+      {
+        "requirements": "Web-Based GUI Framework",
+        "weight": 3,
+        "sub_tasks": [
+          {
+            "requirements": "Real-time WebSocket communication with bidirectional event streaming",
+            "weight": 3,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation explicitly covers real-time WebSocket communication with bidirectional event streaming through multiple components. The Session Management Module specifically mentions 'WebSocket-based bidirectional communication' and 'Asynchronous event streaming' as key features. The Event Streaming Module provides comprehensive documentation of the publish-subscribe pattern with real-time event distribution, persistent storage, and bidirectional communication between system components.",
+              "evidence": "Session Management Module: 'WebSocket-based bidirectional communication', 'Asynchronous event streaming'; Event Streaming Module: 'real-time event distribution', 'publish-subscribe pattern with asynchronous event processing', 'enabling decoupled communication between system components'; Event Streaming Architecture shows bidirectional flow between EventStream, subscribers, and storage layer",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Integrated Development Environment Components",
+            "weight": 2,
+            "sub_tasks": [
+              {
+                "requirements": "VS Code integration with file editing and diff visualization",
+                "weight": 2,
+                "score": 1,
+                "evaluation": {
+                  "score": 1,
+                  "reasoning": "The documentation explicitly mentions 'VSCode integration URLs' and 'Git change visualization' under the Development Tools section of Frontend Core Module's Key Features. Additionally, the CLI Runtime Module shows file editing capabilities with diff visualization through the FileEditAction that returns diff information.",
+                  "evidence": "Frontend Core Module > Key Features > Development Tools: ['VSCode integration URLs', 'Git change visualization'] and CLI Runtime Module > Usage Examples > File Editing shows FileEditAction with diff output",
+                  "tokens": {
+                    "input": 0,
+                    "output": 0
+                  }
+                }
+              },
+              {
+                "requirements": "Terminal access and command execution interface",
+                "weight": 2,
+                "score": 1,
+                "evaluation": {
+                  "score": 1,
+                  "reasoning": "The documentation extensively covers terminal access and command execution interfaces across multiple runtime implementations. The CLI Runtime module specifically provides 'Cross-Platform Command Execution' with detailed documentation on shell command execution via subprocess, PowerShell integration on Windows, and streaming output. The Local Runtime and Kubernetes Runtime modules also provide command execution capabilities. Additionally, the CodeAct Agents module documents 'Bash Command Tool' and 'IPython Tool' as part of its tool system architecture.",
+                  "evidence": "CLI Runtime Module: 'Cross-Platform Command Execution' with Unix/Linux bash -c and Windows PowerShell integration. Local Runtime: 'Direct local execution' with subprocess-based command execution. Kubernetes Runtime: Containerized command execution in pods. CodeAct Agents: 'Bash Command Tool' and 'RUN' action type for shell commands.",
+                  "tokens": {
+                    "input": 0,
+                    "output": 0
+                  }
+                }
+              },
+              {
+                "requirements": "Jupyter notebook support and browser-based preview",
+                "weight": 1,
+                "score": 0,
+                "evaluation": {
+                  "score": 0,
+                  "reasoning": "The documentation does not mention Jupyter notebook support or browser-based preview functionality in any of the examined sections including key features, frontend modules, or runtime systems.",
+                  "evidence": "Searched through Key Features, Getting Started, Server and API Module, Frontend Core Module, Frontend State Management Module, Web Infrastructure Module, CodeAct Agents Module, and Browsing Agents Module - none contain references to Jupyter notebooks or browser-based preview capabilities.",
+                  "tokens": {
+                    "input": 0,
+                    "output": 0
+                  }
+                }
+              }
+            ],
+            "score": 0.8
+          },
+          {
+            "requirements": "Chat panel for conversational interaction",
+            "weight": 2,
+            "score": 0,
+            "evaluation": {
+              "score": 0,
+              "reasoning": "While the documentation extensively covers conversation management, session handling, and frontend components, there is no explicit mention of a 'chat panel' or dedicated UI component for conversational interaction. The documentation focuses on backend systems, APIs, and abstract conversation management rather than specific UI elements like chat panels.",
+              "evidence": "Searched through Frontend Core Module, Frontend State Management Module, Server and API Module, Conversation Orchestration Module, and Conversation Management Module - none contain references to 'chat panel' or similar UI terminology for conversational interaction.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 0.6571428571428571
+      },
+      {
+        "requirements": "Command Line Interface",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "Interactive conversation management with pause/resume control",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation explicitly covers interactive conversation management with pause/resume control through multiple components. The State Management module provides direct support for pausing and resuming conversations with states like 'PAUSED' and 'RUNNING'. The Conversation Orchestration module includes conversation lifecycle management with explicit pause/resume capabilities. Session management supports state persistence and restoration, enabling conversations to be paused and resumed across sessions.",
+              "evidence": "1. State Management Module shows explicit state transitions: 'RUNNING --> PAUSED: User pause/limit reached' and 'PAUSED --> RUNNING: Resume' [subpages, 37]. 2. Conversation Orchestration includes 'Conversation Lifecycle Management' with process flows for managing active conversations [subpages, 16]. 3. Session Management provides 'Session Persistence' and 'State Restoration' capabilities for resuming conversations [subpages, 34]. 4. The system supports 'AWAITING_USER_INPUT' state for interactive pauses and 'SAVED' state for persistent pause/resume functionality [subpages, 37].",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Repository initialization, configuration, and settings management",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation comprehensively covers repository initialization, configuration, and settings management through multiple dedicated modules. The Core Configuration Module provides centralized configuration management, while specialized modules handle CLI, security, MCP, Kubernetes, and other configuration aspects. The documentation includes detailed setup instructions, configuration schemas, validation mechanisms, and integration patterns.",
+              "evidence": "Found extensive coverage in: 1) Core Configuration Module with TOML-based configuration loading, 2) Configuration Management Module for enterprise deployments, 3) Git Integrations Module with repository setup and authentication configuration, 4) CLI Configuration Module for terminal settings, 5) Kubernetes Configuration Module for container orchestration, 6) Security Configuration Module for security settings, and 7) MCP Configuration Module for protocol server management. Each module provides detailed configuration schemas, validation, usage examples, and integration patterns.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Headless automation mode for scripting and non-interactive execution",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The CLI Runtime module explicitly provides headless automation capabilities for scripting and non-interactive execution. It offers direct subprocess execution, native file system operations, and is designed specifically for environments without containerization or interactive requirements.",
+              "evidence": "CLI Runtime module documentation describes it as 'A lightweight runtime implementation that executes commands directly using subprocess and performs file operations using Python's standard library. Designed for environments where containerization is not available or desired.' Usage examples show programmatic execution without user interaction.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 1.0
+      },
+      {
+        "requirements": "Programmatic API Access",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "WebSocket API for real-time action injection and event streaming",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation extensively covers WebSocket-based real-time communication through multiple modules. The Server and API module explicitly mentions 'WebSocket support for real-time communication' and 'WebSocket-based event streaming for live agent interactions'. The Session Management module details WebSocket connections via Socket.IO for bidirectional communication, real-time event streaming, and status updates. The Event Streaming module provides comprehensive coverage of real-time event distribution with publish-subscribe patterns and asynchronous processing.",
+              "evidence": "1. Server and API module: 'FastAPI-based HTTP server with WebSocket support for real-time communication' and 'Real-time Communication: WebSocket-based event streaming for live agent interactions' 2. Session Management module: 'WebSocket connection management via Socket.IO', 'Real-time event streaming to clients', and 'Event streaming to client: Real-time updates' 3. Event Streaming module: 'Real-time event distribution', 'Asynchronous event processing', and 'Live communication across system components'",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "REST API for conversation lifecycle management with authentication",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation comprehensively covers REST API endpoints for conversation lifecycle management with authentication. The Server and API module provides HTTP/WebSocket APIs, session management, conversation orchestration, and user authentication. The Conversation Orchestration module specifically manages conversation lifecycle (creation, attachment, detachment, cleanup) through REST APIs. The Authentication System provides extensible authentication with multiple providers, and the API Services module shows concrete TypeScript service classes that encapsulate HTTP API interactions for conversation management with session-based authentication.",
+              "evidence": "1. Server and API module: 'serves as the core web server infrastructure for OpenHands, providing HTTP/WebSocket APIs, session management, conversation orchestration, and user authentication' 2. Conversation Orchestration module: 'ConversationManager...defines the interface for managing conversations...managing conversation lifecycle (creation, attachment, detachment, cleanup)' 3. Authentication System: 'pluggable architecture that allows different authentication implementations...handles user identity verification, access token management' 4. API Services module: 'TypeScript service classes that encapsulate all HTTP API interactions...OpenHands Service for conversation management...AuthService for authentication'",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 1.0
+      }
+    ],
+    "score": 0.8530612244897959
+  },
+  {
+    "requirements": "Platform Integration and Automation",
+    "weight": 2,
+    "sub_tasks": [
+      {
+        "requirements": "Version Control System Integrations",
+        "weight": 3,
+        "sub_tasks": [
+          {
+            "requirements": "GitHub integration with issue/PR automation and webhook triggers",
+            "weight": 3,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation explicitly covers GitHub integration through the Enterprise Integrations Module and Platform Managers Module, which include dedicated GitHub Manager components that handle webhook processing, issue/PR automation, and repository intelligence features.",
+              "evidence": "Found in Enterprise Integrations Module: 'GitHub Manager handles GitHub App webhooks and orchestrates automated issue and pull request resolution' with key responsibilities including 'Process GitHub webhooks (issues, comments, PR events)' and 'Trigger solvability analysis for issues'. Also documented webhook processing features including 'Secure webhook validation and signature verification' and 'Event-driven job triggering based on platform-specific events'.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "GitLab integration with merge request handling",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation explicitly covers GitLab integration with merge request handling through multiple dedicated components. The Enterprise Integrations module includes a GitLab Manager specifically designed for handling GitLab webhook events and merge request interactions. The Platform Managers module provides detailed workflow diagrams showing how merge requests are processed, including user permission validation and conversation management. Additionally, the Git Integrations module provides comprehensive GitLab API integration with merge request details retrieval and PR status checking capabilities.",
+              "evidence": "1. Enterprise Integrations Module: 'GitLab Manager (`enterprise.integrations.gitlab.gitlab_manager.GitlabManager`)' - Purpose: 'Handles GitLab webhook events and merge request interactions' with features including 'Issue and merge request comment handling' and 'User permission validation'. 2. Platform Managers Module: Shows workflow diagram for GitLab webhook processing including merge request events with 'Check User Permissions' and 'Create GitLab View' steps. 3. Git Integrations Module: Provides 'get_pr_details()' and 'is_pr_open()' methods for merge request handling, along with comprehensive GitLab API integration through GitLabMixinBase.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Bitbucket integration and repository access",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation explicitly covers Bitbucket integration through multiple dedicated sections. The Git Integrations module provides a unified interface for Bitbucket along with GitHub and GitLab. The Provider Implementations module specifically includes BitBucketMixinBase with detailed implementation of Bitbucket API integration, authentication methods (OAuth Bearer and Basic Auth), repository operations, and microagent discovery. The Service Foundation module establishes the common protocols and data models used across all Git providers including Bitbucket.",
+              "evidence": "1. Git Integrations module overview explicitly lists 'Bitbucket' as a supported provider alongside GitHub and GitLab. 2. Provider Implementations module contains 'BitBucketMixinBase' class with comprehensive Bitbucket-specific functionality including dual authentication support, pagination handling, and repository metadata extraction. 3. Service Foundation module defines 'ProviderType.BITBUCKET' enumeration and includes Bitbucket in all integration patterns. 4. Detailed documentation covers Bitbucket API 2.0 integration, workspace/repo_slug format handling, and specific authentication strategies for Bitbucket.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 1.0
+      },
+      {
+        "requirements": "Communication Platform Integrations",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "Slack bot integration for team collaboration and task initiation",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation explicitly covers Slack bot integration through the SlackManager component in both the Enterprise Integrations Module and Platform Managers Module. It describes OAuth integration, conversation management, repository selection forms, and thread-based interactions - all key aspects of team collaboration and task initiation via Slack.",
+              "evidence": "Enterprise Integrations Module shows 'Slack Manager (`enterprise.integrations.slack.slack_manager.SlackManager`)' with features including 'Slack OAuth integration', 'Interactive repository selection forms', and 'Thread-based conversation management'. Platform Managers Module provides detailed flowcharts showing how Slack mentions trigger authentication and repository selection workflows for task initiation.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 1.0
+      },
+      {
+        "requirements": "CI/CD and Automation Tools",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "GitHub Action for CI/CD workflow integration",
+            "weight": 2,
+            "score": 0,
+            "evaluation": {
+              "score": 0,
+              "reasoning": "While the documentation extensively covers GitHub integrations including repository management, webhook processing, and API interactions, there is no mention of GitHub Actions specifically for CI/CD workflow integration. The focus is on GitHub Apps and API-based integrations rather than GitHub Actions workflows.",
+              "evidence": "Searched through Git Integrations Module, Enterprise Integrations Module, Platform Managers Module, Service Foundation Module, and Provider Implementations Module - none contain references to GitHub Actions, CI/CD workflows, or Action-based automation.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Project management tool integrations (Jira, Linear) via webhooks",
+            "weight": 1,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation explicitly covers Jira integration via webhooks in the Enterprise Integrations module, including a dedicated JiraManager class that processes Jira webhook events. Linear integration is also mentioned as a planned/enabled feature in the configuration management section. Both integrations support webhook processing for issue tracking and task automation.",
+              "evidence": "1. Enterprise Integrations module documents 'Jira Manager (enterprise.integrations.jira.jira_manager.JiraManager)' with 'Jira Cloud API integration' and 'Issue comment and label-based triggers' via webhooks. 2. Platform Managers module shows JiraManager handling 'Jira webhook events (comments, label updates)' with security validation. 3. Configuration Management lists 'ENABLE_LINEAR: Enable Linear integration' as a feature flag. 4. Both integrations use webhook processing with signature verification and authentication.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 0.3333333333333333
+      }
+    ],
+    "score": 0.8095238095238095
+  },
+  {
+    "requirements": "Configuration and Extensibility Framework",
+    "weight": 2,
+    "sub_tasks": [
+      {
+        "requirements": "Centralized Configuration Management",
+        "weight": 3,
+        "sub_tasks": [
+          {
+            "requirements": "TOML-based hierarchical configuration with environment overrides",
+            "weight": 3,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation explicitly demonstrates TOML-based hierarchical configuration across multiple modules (Core Configuration, Kubernetes Configuration, Security Configuration, and MCP Configuration) and shows environment variable overrides in the Configuration Management Module. The system supports loading configuration from TOML files with hierarchical sections and allows environment variables to override these settings.",
+              "evidence": "1. Core Configuration Module shows TOML-based configuration examples with hierarchical sections like [security], [mcp], and [kubernetes]. 2. Configuration Management Module documents specific environment variables (OPENHANDS_CONFIG_CLS, POSTHOG_CLIENT_KEY, etc.) that override configuration. 3. Multiple modules (Kubernetes, Security, MCP) provide from_toml_section methods for TOML loading. 4. Environment variables are explicitly documented as configuration overrides in the Configuration Management Module.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Core system settings (workspace, logging, debugging, file store)",
+            "weight": 3,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation comprehensively covers all four core system settings. Workspace management is detailed in multiple runtime modules (CLI Runtime, Local Runtime, Kubernetes Runtime), logging and debugging are extensively covered in the Utility Mixins module with RetryMixin and DebugMixin, and file store configuration is thoroughly documented in the File Storage Infrastructure module with multiple storage backends and configuration options.",
+              "evidence": "1. **Workspace**: Documented in CLI Runtime (workspace isolation, path management), Local Runtime (temporary workspaces, directory structure), and Kubernetes Runtime (persistent volume claims)\n2. **Logging**: Covered in Utility Mixins module with DebugMixin providing comprehensive logging for LLM interactions, prompt/response logging, and debug level controls\n3. **Debugging**: Extensively documented in Utility Mixins with RetryMixin for error handling, temperature adjustment, and retry strategies, plus debug configuration options\n4. **File Store**: Fully documented in File Storage Infrastructure with Local, S3, Google Cloud, and In-Memory implementations, configuration via environment variables, and factory pattern instantiation",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "LLM, Agent, Sandbox, and Security configuration stanzas",
+            "weight": 3,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation comprehensively covers configuration stanzas for all four specified areas: LLM configuration through the LLM Integration Module's LLMConfig, Agent configuration through the Core Agent System's configuration sections, Sandbox configuration through Runtime System configurations (including local, CLI, and Kubernetes runtimes), and Security configuration through the dedicated Security Configuration Module with SecurityConfig class. Each area has dedicated configuration sections with TOML examples and detailed parameter documentation.",
+              "evidence": "Found explicit configuration stanzas in: 1) LLM Integration Module - LLMConfig with model, api_key, temperature settings; 2) Core Agent System - Agent Configuration section with configurable LLM settings and tool management; 3) Runtime System - sandbox and runtime configurations with container images, timeouts, and resource limits; 4) Security Configuration Module - SecurityConfig with confirmation_mode and security_analyzer settings, plus TOML [security] sections.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Configuration precedence: CLI args > env vars > config file",
+            "weight": 2,
+            "score": 0,
+            "evaluation": {
+              "score": 0,
+              "reasoning": "The documentation does not mention any configuration precedence rules or hierarchy between CLI arguments, environment variables, and configuration files. While the documentation extensively covers configuration management through TOML files, environment variables, and CLI-specific settings, there is no explicit documentation of precedence rules that would determine which source takes priority when conflicts occur.",
+              "evidence": "Reviewed Core Configuration Module, Configuration Management Module, CLI Configuration Module, CLI Runtime Module, and Kubernetes Configuration Module. All show configuration loading from TOML files and environment variables, but none document precedence rules like 'CLI args override env vars which override config files'.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 0.8181818181818182
+      },
+      {
+        "requirements": "Model Context Protocol (MCP) Integration",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "External tool communication via standardized protocol",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation extensively covers external tool communication through the Model Context Protocol (MCP) as a standardized protocol. The MCP Configuration Module specifically details multi-protocol support including SSE, stdio, and HTTP-based MCP servers, along with comprehensive configuration management, validation, and integration patterns.",
+              "evidence": "MCP Configuration Module provides: 1) Multi-protocol MCP integration (SSE, stdio, HTTP), 2) Configuration validation for server parameters, 3) Runtime server management, 4) Search engine integration via MCP, 5) Enterprise extensibility. Additionally, the Microagent System and CodeAct Agents modules explicitly mention MCP tool integration as a key feature for extending agent capabilities.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Multiple transport support (SSE, SHTTP, stdio) with proxy architecture",
+            "weight": 2,
+            "score": 0,
+            "evaluation": {
+              "score": 0,
+              "reasoning": "The documentation extensively covers WebSocket-based real-time communication and HTTP APIs, but there is no mention of Server-Sent Events (SSE), Secure HTTP (SHTTP), or stdio transport support. Additionally, there is no documentation of a proxy architecture for handling multiple transport protocols.",
+              "evidence": "The Server and API module documentation focuses on WebSocket/Socket.IO connections and HTTP APIs. The Event Streaming module covers real-time communication but only mentions WebSocket-based streaming. There are no references to SSE endpoints, SHTTP protocols, stdio transport mechanisms, or proxy architectures for transport protocol handling.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Tool capability extension framework and hot-loading",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation extensively covers tool capability extension through multiple frameworks including the Plugin System, Microagent System, and Runtime System. While 'hot-loading' isn't explicitly mentioned by that term, the Plugin System supports dynamic plugin loading and the Microagent System supports dynamic loading and discovery of microagents, which provides equivalent functionality.",
+              "evidence": "1. Plugin System ([subpages, 29]) provides a complete extension framework with 'Dynamic Plugin Loading' and 'Plugin Requirements Configuration' that allows runtime extension without restart. 2. Microagent System ([subpages, 12]) offers 'Dynamic Loading and Discovery' with automatic scanning and loading of microagents. 3. Runtime System ([subpages, 5]) supports plugin-based extensions that can be loaded dynamically. 4. Future Enhancements sections mention 'Hot Reloading' as a planned feature for dynamic plugin updates without runtime restart.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 0.6666666666666666
+      },
+      {
+        "requirements": "External Service Integration",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "Search engine integration (Tavily) for real-time information access",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation explicitly documents Tavily search engine integration through the MCP Configuration Module, showing automatic integration when Tavily API keys are provided, including configuration flow diagrams and setup instructions.",
+              "evidence": "MCP Configuration Module contains: 'Search Engine Integration' section with Tavily MCP server integration, automatic API key checking, and configuration examples showing how Tavily is integrated into the system for real-time information access",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Custom sandbox image support and environment customization",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation extensively covers custom sandbox image support and environment customization through multiple components. The Builder System provides abstract interfaces for building custom runtime images, the Runtime System supports multiple runtime implementations (Local, CLI, Kubernetes) with configurable container images, and the Kubernetes Configuration module allows detailed customization of runtime environments including resource limits, storage, networking, and security settings.",
+              "evidence": "1. Builder System Documentation shows RuntimeBuilder abstract base class with build() and image_exists() methods for custom image building. 2. Runtime System configuration includes 'runtime_container_image' and 'base_container_image' settings. 3. Kubernetes Configuration module provides extensive customization options for container environments including resource requests/limits, storage classes, image pull secrets, node selectors, and tolerations. 4. Multiple runtime implementations (Local, CLI, Kubernetes) support different sandboxing approaches with configurable environments.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 1.0
+      }
+    ],
+    "score": 0.8268398268398268
+  },
+  {
+    "requirements": "Cloud Platform and Evaluation Framework",
+    "weight": 2,
+    "sub_tasks": [
+      {
+        "requirements": "OpenHands Cloud SaaS Platform",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "Managed multi-tenant service with runtime pools",
+            "weight": 3,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation explicitly mentions multi-tenant support and runtime pooling capabilities. In the Kubernetes Runtime Module's Performance Considerations section, it lists 'Multi-tenant Support: Session-based resource isolation' and 'Resource Pooling: Efficient resource utilization across sessions'. Additionally, the Enterprise Server Module provides comprehensive SaaS deployment features including user management, authentication systems, and scalable infrastructure that support multi-tenant architectures.",
+              "evidence": "Kubernetes Runtime Module Performance Considerations: 'Multi-tenant Support: Session-based resource isolation' and 'Resource Pooling: Efficient resource utilization across sessions'. Enterprise Server Module provides SaaS-specific features including 'Multi-tenant Support' as a planned enhancement in Conversation Management, and the overall architecture supports managed service deployment with runtime environments.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Repository authentication and IP whitelisting",
+            "weight": 2,
+            "score": 0,
+            "evaluation": {
+              "score": 0,
+              "reasoning": "While the documentation extensively covers authentication systems, token management, and user verification, there is no mention of IP whitelisting specifically for repository access. The authentication mechanisms described focus on user identity verification, OAuth tokens, and user allowlists, but do not include IP-based access controls or repository-level IP whitelisting features.",
+              "evidence": "The documentation covers: 1) Git integration authentication using tokens and OAuth (subpages[6]), 2) Enterprise authentication systems with user allowlists via files or Google Sheets (subpages[30]), 3) Security infrastructure with JWT tokens and cookie management (subpages[45]), but nowhere mentions IP address restrictions or IP whitelisting for repository access control.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "REST API for programmatic conversation management",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation clearly describes a comprehensive REST API system for programmatic conversation management through multiple modules. The Server and API Module provides HTTP/WebSocket APIs, session management, and conversation orchestration. The API Services Module explicitly documents RESTful endpoints for conversation operations including create, start, stop, and delete conversations. The Conversation Management Module provides storage interfaces for conversation metadata. The system includes authentication, rate limiting, and comprehensive API documentation with usage patterns.",
+              "evidence": "1. Server and API Module: 'serves as the core web server infrastructure for OpenHands, providing HTTP/WebSocket APIs, session management, conversation orchestration' with 'FastAPI-based HTTP server with WebSocket support' 2. API Services Module: Documents specific REST endpoints for 'Conversation lifecycle management (create, start, stop, delete)' with TypeScript service classes 3. Conversation Management Module: Provides 'abstract storage layer for conversation metadata' with RESTful operations like save_metadata(), get_metadata(), delete_metadata() 4. Authentication system with 'cookie-based and bearer token authentication methods' 5. Usage patterns showing REST API calls: 'OpenHands.createConversation()', 'OpenHands.startConversation()', 'OpenHands.getWorkspaceZip()'",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 0.7142857142857143
+      },
+      {
+        "requirements": "Evaluation Harness",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "Framework for benchmarking agent performance on predefined tasks",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation explicitly mentions evaluation and benchmarking features in the Browsing Agents module, including support for WebArena, MiniWoB++, and VisualWebArena benchmarks, along with performance metrics collection capabilities.",
+              "evidence": "In the Browsing Agents module under 'Evaluation and Benchmarking', the documentation lists: 'Benchmark Support: WebArena (Web-based task evaluation), MiniWoB++ (Mini web-based tasks), VisualWebArena (Visual web task evaluation)' and 'Evaluation Features: Performance metrics collection'",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "SWE-bench-style dataset parameterization with trajectory recording",
+            "weight": 2,
+            "score": 0,
+            "evaluation": {
+              "score": 0,
+              "reasoning": "The documentation does not mention SWE-bench datasets, dataset parameterization, or trajectory recording specifically. While the system has event streaming and state management capabilities that could potentially support trajectory recording, these are not documented in the context of SWE-bench-style evaluation or dataset parameterization.",
+              "evidence": "Searched through all major documentation sections including Core Agent System, Agent Implementations, Events and Actions, Storage System, and Runtime System. No mentions of 'SWE-bench', 'dataset parameterization', or 'trajectory recording' were found in the context of benchmark evaluation.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Programmable user response function for custom evaluation workflows",
+            "weight": 1,
+            "score": 0,
+            "evaluation": {
+              "score": 0,
+              "reasoning": "While the documentation extensively covers configuration, customization, and extension points throughout various modules (including custom ConversationManager implementations, custom ConversationStore implementations, plugin systems, and microagent configurations), there is no specific mention of 'programmable user response functions' or 'custom evaluation workflows' that would allow users to define custom functions for evaluating agent responses or creating custom evaluation pipelines.",
+              "evidence": "The documentation shows extensive customization capabilities including: custom ConversationManager implementations, custom ConversationStore implementations, plugin systems, microagent configurations, and parser customizations. However, none of these specifically address user-defined response evaluation functions or custom evaluation workflows for assessing agent outputs.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 0.4
+      }
+    ],
+    "score": 0.5571428571428572
+  },
+  {
+    "requirements": "Data Management and Privacy System",
+    "weight": 1,
+    "sub_tasks": [
+      {
+        "requirements": "User Data Handling",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "Feedback collection with privacy controls and consent management",
+            "weight": 2,
+            "score": 0,
+            "evaluation": {
+              "score": 0,
+              "reasoning": "While the documentation mentions a 'Feedback System' in the Frontend Core Module that includes conversation rating, event-specific feedback tracking, and metadata-rich feedback storage, there is no mention of privacy controls or consent management specifically for feedback collection. The security and privacy features documented (secret masking, user validation, secure serialization) are general system security measures rather than feedback-specific privacy controls or consent mechanisms.",
+              "evidence": "Frontend Core Module mentions: 'Conversation rating and feedback', 'Event-specific feedback tracking', 'Batch feedback operations', 'Metadata-rich feedback storage' - but no privacy controls or consent management for feedback collection.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Data sharing settings and user preference management",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation extensively covers user preference management through the User Data Management module, which includes SettingsStore for managing user settings and preferences, and Settings data model for storing user preferences including agent preferences, LLM configuration, and security settings. While 'data sharing settings' is not explicitly mentioned, the comprehensive user settings management system implies users can control their data preferences.",
+              "evidence": "User Data Management Module provides: 1) SettingsStore abstract base class for storing user settings and preferences, 2) Settings data model for user preferences including agent preferences, LLM configuration, security settings, 3) User-scoped data isolation, 4) Secure storage and retrieval of user-specific data, 5) Configuration integration for merging user settings with system defaults",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 0.5
+      },
+      {
+        "requirements": "File Storage and Workspace Management",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "Workspace file organization and persistence across sessions",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation extensively covers workspace file organization and persistence across sessions through multiple modules. Key evidence includes: (1) Runtime System documentation shows workspace isolation and directory structure, (2) Storage System documentation provides comprehensive file storage infrastructure with persistent backends (local, S3, Google Cloud), (3) State Management module explicitly documents session persistence capabilities, (4) Conversation Management module shows how conversation data is persisted across sessions, and (5) File Storage Infrastructure details the unified storage abstraction layer that enables persistence across sessions.",
+              "evidence": "Runtime System: 'Workspace Isolation: Creates temporary or uses configured workspace directories' and shows directory structure. Storage System: 'Provides unified interfaces for storing and managing different types of application data' with 'pluggable architecture that allows for multiple storage backends'. State Management: 'Session Persistence: The module provides robust session management with save_to_session and restore_from_session methods'. File Storage Infrastructure: 'unified, pluggable file storage abstraction layer' with 'persistent storage implementations (Local, S3, Google Cloud)'.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Change tracking and version control integration",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation extensively covers version control integration through multiple modules including Git Integrations, Service Foundation, Platform Managers, and Enterprise Integrations. These modules provide comprehensive Git operations, repository management, branch handling, webhook processing, and integration with GitHub, GitLab, and Bitbucket. The system supports change tracking through repository operations, microagent discovery, task automation, and enterprise platform integrations.",
+              "evidence": "Key documentation sections include: 1) Git Integrations Module with repository operations, branch management, and microagent discovery; 2) Service Foundation Module providing unified Git provider interfaces; 3) Platform Managers handling GitHub, GitLab, Jira, and Slack integrations with webhook processing; 4) Enterprise Integrations supporting automated issue/PR resolution; 5) Runtime System with Git operations and repository cloning capabilities; 6) Type Definitions including version control actions like PUSH and SEND_PR.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 1.0
+      }
+    ],
+    "score": 0.75
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "inter_model_consistency": {
+    "semantic_consistency_scores": [
+      0.7468638593753475,
+      0.7594960137426606,
+      0.7029026355707759
+    ],
+    "structural_consistency_scores": [
+      0.6456267746590327,
+      0.8240925740925741,
+      0.5947654496041593
+    ],
+    "avg_semantic_consistency": 0.7364208362295948,
+    "avg_structural_consistency": 0.688161599451922,
+    "consistency_std": 0.0242555170706039,
+    "num_models_compared": 3
+  },
+  "overall_reliability_score": 0.7364208362295948
+}

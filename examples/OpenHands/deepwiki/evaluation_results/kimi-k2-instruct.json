@@ -1,0 +1,1178 @@
+[
+  {
+    "requirements": "Core AI Agent Architecture",
+    "weight": 3,
+    "sub_tasks": [
+      {
+        "requirements": "CodeActAgent - Primary Agentic Component",
+        "weight": 3,
+        "sub_tasks": [
+          {
+            "requirements": "Task-driven reasoning loop (plan \u2192 execute \u2192 observe \u2192 revise)",
+            "weight": 3,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation clearly describes a task-driven reasoning loop through multiple sections. The 'Action-Observation Cycle Overview' shows the fundamental cycle where agents receive LLM responses, convert them to actions, execute them, and process observations. The 'Agent Execution Loop' diagram shows the complete cycle including planning (agent.step), execution (Execute Action), observation (Generate Observation), and implicit revision through the loop returning to wait for the next event. The 'Agent Task Execution Flow' demonstrates how user messages trigger this entire cycle.",
+              "evidence": "Action-Observation Cycle Overview shows: LLM Response \u2192 Function Calling Parser \u2192 Action Objects \u2192 Action Execution \u2192 Observation Objects \u2192 Agent Memory \u2192 LLM. Agent Execution Loop diagram shows: agent_step \u2192 execute_action \u2192 observe_result \u2192 save_state \u2192 wait_event (cycle continues). Agent Task Execution Flow shows the complete pipeline from user input through agent processing to action execution and observation generation.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "ActionSpace management for atomic primitives (read, write, run, browse, git)",
+            "weight": 3,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation comprehensively covers the action space management system, including all the mentioned atomic primitives. It details specific action classes for each primitive: read/write operations via FileReadAction/FileEditAction, run operations via CmdRunAction and IPythonRunCellAction, browse operations via BrowseURLAction/BrowseInteractiveAction, and git operations are covered under the Git Provider Integration sections. The function calling mechanism maps tool names to these action classes, and the event-driven architecture manages their execution flow.",
+              "evidence": "Tool Name Mapping table shows bash->CmdRunAction, str_replace_editor->FileEditAction/FileReadAction, browser->BrowseInteractiveAction. Git operations are covered in Integrations sections. The Action Types and Implementations section details all these primitives with their specific implementations and security considerations.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "LLM-driven action generation and task reasoning",
+            "weight": 3,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation extensively covers LLM-driven action generation and task reasoning through multiple sections. The 'Function Calling & Actions' section details how LLM responses are processed to generate actions, including the complete action-observation cycle where LLM tool calls are converted to typed Action objects. The 'Memory & Prompt Management' section explains how conversation memory and prompts are managed to support LLM reasoning. The 'LLM Integration' section covers the unified interface for LLM interactions. The 'Agent Controller & State Management' section shows how agent states are managed during task execution. Together, these sections comprehensively document the LLM-driven action generation and task reasoning capabilities.",
+              "evidence": "Key documentation sections include: 1) Action-Observation Cycle Overview showing LLM responses \u2192 function calling parser \u2192 action objects \u2192 execution \u2192 observations \u2192 memory \u2192 LLM, 2) LLM Response Processing flow diagram showing how model responses are converted to actions, 3) Function calling mechanism with tool name mapping from LLM calls to specific action classes, 4) AgentThinkAction for recording agent reasoning, 5) Conversation memory processing that converts events to messages for LLM consumption, 6) Event-driven communication architecture showing how LLM-generated actions flow through the system",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Context and conversation state management with trajectory tracking",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation extensively covers context and conversation state management through multiple components including Memory Architecture, Agent State Lifecycle, Session Management, and Conversation Memory Integration. While the term 'trajectory tracking' isn't explicitly used, the system implements comprehensive state tracking through EventStream processing, agent state transitions, conversation history management, and stuck detection mechanisms that effectively track the trajectory of agent execution.",
+              "evidence": "Key sections include: Memory & Context Management with EventStream conversation history, Agent State Lifecycle with 8 distinct states and transitions, Session Architecture Flow tracking session lifecycle, ConversationMemory class for processing events into messages, StateTracker for run_control_flags, and StuckDetector for trajectory monitoring. The Agent Execution Loop shows complete trajectory tracking from initialization through execution cycles with error handling and recovery.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 1.0
+      },
+      {
+        "requirements": "Microagent System for Domain Expertise",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "Hierarchical loading system (Global \u2192 Organization/User \u2192 Repository)",
+            "weight": 3,
+            "score": 0,
+            "evaluation": {
+              "score": 0,
+              "reasoning": "The documentation does not mention a hierarchical loading system that follows the pattern Global \u2192 Organization/User \u2192 Repository. While there are configuration systems documented (such as the Configuration Loading Flow showing Environment Variables \u2192 TOML File \u2192 Defaults, and CLI settings with different precedence levels), there is no specific documentation of a three-tier hierarchy that loads configuration from global level, then organization/user level, then repository level.",
+              "evidence": "The configuration systems documented include: 1) LLM configuration loading from environment variables, TOML files, and defaults, 2) CLI settings with hierarchical precedence (CLI args \u2192 config files \u2192 settings.json \u2192 defaults), 3) Git provider authentication tokens, and 4) Microagent discovery in repositories. However, none of these document a Global \u2192 Organization/User \u2192 Repository hierarchical loading pattern.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Keyword-triggered microagent activation with prompt augmentation",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation clearly describes keyword-triggered microagent activation through the KnowledgeMicroagent system and prompt augmentation through the microagent_info.j2 template. The system searches for trigger keywords in user queries and augments prompts with triggered microagent knowledge.",
+              "evidence": "Microagent System section shows 'KnowledgeMicroagent' with 'Keyword-triggered knowledge base' purpose and describes '_find_microagent_knowledge()' method that 'searches for matching microagents'. Prompt Template System shows 'microagent_info.j2' template specifically for 'Triggered microagent knowledge'. Context Management describes 'Knowledge Recall - Triggered by keyword matching in user/agent messages'.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Repository-level customization via .openhands directory with setup scripts",
+            "weight": 2,
+            "score": 0,
+            "evaluation": {
+              "score": 0,
+              "reasoning": "The documentation extensively covers configuration systems, workspace management, and plugin architecture, but there is no mention of a .openhands directory for repository-level customization or setup scripts. The configuration is handled through config.toml files, environment variables, and API settings, but not through a .openhands directory mechanism.",
+              "evidence": "Searched through Configuration System Architecture, Initial Configuration, Workspace Configuration, Settings and Configuration Management, Extension Points, and Plugin System Architecture sections. Found detailed documentation of TOML configuration files, environment variables, CLI settings, and plugin systems, but no reference to .openhands directory or repository-level setup scripts.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 0.2857142857142857
+      },
+      {
+        "requirements": "Task and State Management",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "Action-event processing pipeline with unified event bus",
+            "weight": 3,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation extensively covers the action-event processing pipeline and unified event bus architecture. It shows a complete event-driven communication flow with EventStream as the central unified bus, processing both Actions (from users/agents) and Observations (from environment), with consistent event processing pipeline stages and multiple subscribers (AgentController, WebSession, MainLoop).",
+              "evidence": "Event-Driven Communication Flow diagram shows unified EventStream handling all event sources (User, Agent, Environment) with EventStreamSubscriber pattern. Event Processing Pipeline section details 6-stage consistent processing: Event Addition \u2192 Subscriber Notification \u2192 Filtering \u2192 Processing \u2192 State Updates \u2192 Response Generation. Event Orchestration shows sophisticated processing logic in should_step() method.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Task lifecycle management (initialization, execution, pause/resume, completion)",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation comprehensively covers task lifecycle management through multiple sections. It details agent initialization phases, execution loops with state transitions, pause/resume capabilities through state management (STOPPED, AWAITING_USER_INPUT, AWAITING_USER_CONFIRMATION states), and completion handling (FINISHED, ERROR states). The Agent Execution Loop diagram shows the complete lifecycle from initialization through execution to completion or error states.",
+              "evidence": "Agent Execution Loop diagram showing initialization, execution, and completion phases; Agent State Lifecycle table documenting all states including RUNNING, STOPPED, AWAITING_USER_INPUT, FINISHED, ERROR; State Management Implementation section with detailed state transition table; Runtime Lifecycle Management covering startup process and status management",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Trajectory history maintenance for actions and observations",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation extensively covers trajectory history maintenance through the EventStream system, ConversationMemory class, and event processing pipeline. The system maintains a complete history of actions and observations, processes them into conversation memory, and uses this history for context in agent decision-making.",
+              "evidence": "Key evidence includes: 1) EventStream architecture that captures all events with source attribution, 2) ConversationMemory class that processes event history into structured messages, 3) Event to Message Conversion Flow that handles both Action and Observation events, 4) Memory Architecture that shows EventStream as a core component for conversation history, 5) Action-Observation Cycle Overview demonstrating the complete cycle from LLM responses to actions to observations back to memory",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 1.0
+      }
+    ],
+    "score": 0.7959183673469388
+  },
+  {
+    "requirements": "LLM Abstraction and Intelligence Framework",
+    "weight": 3,
+    "sub_tasks": [
+      {
+        "requirements": "Multi-Provider LLM Integration",
+        "weight": 3,
+        "sub_tasks": [
+          {
+            "requirements": "LiteLLM middleware for provider normalization and fallback",
+            "weight": 3,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation shows that OpenHands uses LiteLLM as the provider interface layer for multi-provider support, including provider-specific handling and normalization. The architecture diagram explicitly shows 'LiteLLM' as a component that interfaces with external providers (OpenAI, Anthropic, Google, Local Models), and the provider-specific handling section demonstrates normalization of different provider features. While the term 'middleware' isn't explicitly used, the architecture shows LiteLLM serving as an abstraction layer between the application and external providers.",
+              "evidence": "Architecture Overview shows 'Provider Interface' layer with 'LiteLLM' component interfacing with multiple external providers. Multi-Provider Support section demonstrates provider-specific normalization (OpenAI, Anthropic, Google, Azure handling). The system abstracts provider differences through the LLM integration framework.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "API-based model support (OpenAI, Azure, Gemini, Groq) with retry and rate limiting",
+            "weight": 3,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation clearly shows support for multiple API-based LLM providers including OpenAI, Azure, and Gemini with specific handling for each provider. It also documents retry mechanisms with exponential backoff and rate limiting error handling.",
+              "evidence": "Multi-Provider Support section shows provider-specific handling for OpenAI (gpt-4*, o1-*, o3-*), Azure (azure/*), and Gemini (gemini-*). Error Handling and Retry Logic section documents RetryMixin with configurable exponential backoff, specific handling for RateLimitError, and retry behavior for different error types including APIConnectionError and ServiceUnavailableError.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Self-hosted model support via OpenAI-compatible endpoints (Ollama, vLLM, SGLang)",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation explicitly mentions support for local/self-hosted models through the 'base_url' configuration parameter and 'Local Models' in the architecture diagram. The LLM Provider Setup section shows that users can configure a custom base URL for local LLMs, and the architecture includes 'Local Models' as an external provider category alongside OpenAI, Anthropic, and Google.",
+              "evidence": "1. LLM Provider Setup section mentions 'Base URL (for local LLMs)' as a configuration parameter\n2. Architecture diagram shows 'Local Models' as an external provider connected via LiteLLM\n3. LLMConfig Structure documents 'base_url' parameter for 'Custom API endpoint'\n4. Multi-Provider Support section shows provider-specific handling for different model types",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 1.0
+      },
+      {
+        "requirements": "Named Configuration and Model Selection",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "Multiple named LLM configurations for different agents and tasks",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation shows support for multiple named LLM configurations through the configuration loading flow which mentions 'llms: dict[str, LLMConfig]' indicating a dictionary of named LLM configurations. The AgentConfig class has an 'llm_config: str' field that references which LLM configuration to use, allowing different agents to be assigned different LLM configurations. The configuration system supports loading multiple LLM configurations from TOML files and environment variables.",
+              "evidence": "From the Configuration Loading Flow diagram showing 'llms: dict[str, LLMConfig]' and the AgentConfig class diagram showing 'llm_config: str' field that references specific LLM configurations. The documentation states configurations can be loaded from TOML files and environment variables with support for multiple LLM configurations.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Cost/quality trade-offs with per-task model selection",
+            "weight": 2,
+            "score": 0,
+            "evaluation": {
+              "score": 0,
+              "reasoning": "The documentation mentions cost tracking and monitoring through metrics collection, and provides a table comparing different LLM models with performance and cost ratings. However, there is no documentation about per-task model selection strategies or systematic cost/quality trade-off decision making. The system appears to use a single configured model rather than dynamically selecting models based on task requirements.",
+              "evidence": "Found cost tracking in Metrics and Monitoring section with accumulated_cost, prompt_tokens, completion_tokens metrics. Found model comparison table showing 'Cost' column with values like 'High', 'Low', 'Medium' for different models. No evidence of per-task model selection logic or cost/quality optimization strategies.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "GPU acceleration hints and optimization for local models",
+            "weight": 1,
+            "score": 0,
+            "evaluation": {
+              "score": 0,
+              "reasoning": "The documentation does not mention GPU acceleration, GPU optimization, or any hardware-specific configurations for local models. While the documentation covers local model support through the LLM integration system and mentions base_url configuration for local LLMs, there are no specific details about GPU utilization, performance optimization for GPU-accelerated local models, or hardware requirements and recommendations.",
+              "evidence": "The LLMConfig structure shows parameters like model, api_key, base_url, temperature, max_output_tokens, num_retries, caching_prompt, and native_tool_calling, but no GPU-related configurations. The Multi-Provider Support section mentions 'Local Models' as an external provider but focuses on provider-specific handling for OpenAI, Anthropic, Google, and Azure without detailing local model optimization. The Initial Configuration section mentions base URL configuration for local LLMs but provides no GPU acceleration guidance.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 0.4
+      }
+    ],
+    "score": 0.76
+  },
+  {
+    "requirements": "Sandboxed Runtime Environment System",
+    "weight": 3,
+    "sub_tasks": [
+      {
+        "requirements": "Docker Runtime (Default)",
+        "weight": 3,
+        "sub_tasks": [
+          {
+            "requirements": "Container orchestration with hardened security configurations",
+            "weight": 3,
+            "score": 0,
+            "evaluation": {
+              "score": 0,
+              "reasoning": "The documentation covers Docker container usage and basic security features like path traversal prevention and user confirmation systems, but does not mention container orchestration platforms (Kubernetes, Docker Swarm, etc.) or hardened security configurations such as security contexts, pod security policies, network policies, or other orchestration-level security hardening measures.",
+              "evidence": "Found Docker installation instructions, runtime configuration options, basic security features like folder security agreements and action risk assessment, but no mention of orchestration platforms or security hardening at the orchestration level.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Versioned image tagging system (source, lock, versioned) for reproducibility",
+            "weight": 3,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation comprehensively describes a versioned image tagging system with three distinct tag types (source, lock, versioned) specifically designed for reproducibility. The system uses hash-based tagging and multi-tier image tags to ensure consistent and reproducible builds.",
+              "evidence": "The Docker Build System section details: 1) Three-tier tagging strategy: SOURCE (oh_v{version}_{lock_hash}_{source_hash}), LOCK (oh_v{version}_{lock_hash}), and VERSIONED (oh_v{version}_{base_image_tag}) tags. 2) Hash calculation functions for lock files and source files. 3) Build strategy hierarchy: SCRATCH, VERSIONED, and LOCK modes for different levels of reusability. 4) Git-based tagging with commit SHA and semantic version parsing for release builds.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Volume mounting and workspace directory management",
+            "weight": 3,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation extensively covers volume mounting and workspace directory management across multiple sections. It includes Docker volume configuration examples, workspace path mapping between host and container environments, configuration options for volume mounts, and file operations API endpoints for workspace management.",
+              "evidence": "Docker Installation section shows volume mount syntax (-v flags), Workspace Configuration explains host-to-container path mapping with visual diagrams, Sandbox Environment Configuration documents 'volumes' as a key configuration option, File Operations section details API endpoints for workspace file management, and Advanced Features section covers workspace configuration parameters including sandbox_path_prefix, container_path, and host_path settings.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Network isolation and controlled port exposure",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation mentions network isolation and port exposure control in the DockerRuntime implementation. Specifically, it states that DockerRuntime handles 'Network isolation and additional network connections' as one of its key features, and the Docker installation section shows port mapping configuration with '-p 3000:3000' and network gateway configuration with '--add-host host.docker.internal:host-gateway'.",
+              "evidence": "From Runtime & Execution Environment section: 'DockerRuntime creates Docker containers with the runtime environment and communicates with an ActionExecutor running inside the container. It handles container lifecycle, port mapping, volume mounts, and network isolation and additional network connections.' Also from Docker Installation: The docker run command includes '-p 3000:3000' for port exposure and '--add-host host.docker.internal:host-gateway' for network configuration.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Plugin system for pre-installation of languages and tools",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation describes a plugin system architecture that supports extending runtime capabilities with development tools. It specifically mentions VSCode and Jupyter plugins that provide pre-installed development environments, and describes a plugin lifecycle with initialization patterns for managing external services and tools.",
+              "evidence": "Found in 'Advanced Features' section under 'Plugin System Architecture' which details: VSCode Plugin that 'Initializes OpenVSCode Server with authentication tokens' and 'Configures workspace settings', Jupyter Plugin that 'Launches Jupyter Kernel Gateway on available ports' and 'Manages JupyterKernel instances', and a general plugin lifecycle with 'initialize() called with username and runtime context' and 'Subprocess management for external services'",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 0.7692307692307693
+      },
+      {
+        "requirements": "Alternative Runtime Providers",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "Cloud sandbox integrations (E2B, Runloop, Daytona, Modal) via API delegation",
+            "weight": 2,
+            "score": 0,
+            "evaluation": {
+              "score": 0,
+              "reasoning": "The documentation mentions a RemoteRuntime that connects to remote execution environments via API, but it does not specifically mention any of the cloud sandbox providers listed in the criteria (E2B, Runloop, Daytona, Modal). The RemoteRuntime appears to be a generic API-based runtime system rather than specific integrations with these named cloud sandbox services.",
+              "evidence": "Found RemoteRuntime documentation that mentions 'API-based runtime provisioning and management' and 'cloud-based sandboxed execution', but no specific mention of E2B, Runloop, Daytona, or Modal integrations. The documentation focuses on generic remote runtime capabilities rather than specific third-party cloud sandbox service integrations.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Local runtime for direct host execution in CI environments",
+            "weight": 2,
+            "score": 0,
+            "evaluation": {
+              "score": 0,
+              "reasoning": "The documentation only describes DockerRuntime and RemoteRuntime implementations. There is no mention of a local runtime that executes directly on the host system without containerization, which would be needed for direct host execution in CI environments.",
+              "evidence": "Runtime Types and Implementations section only documents DockerRuntime (creates Docker containers) and RemoteRuntime (connects to remote execution environments). No local/host runtime implementation is described.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Remote runtime specialized for evaluation harness",
+            "weight": 1,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation shows that RemoteRuntime exists and connects to remote execution environments, and there's a comprehensive evaluation framework with SWE-Bench integration. While the documentation doesn't explicitly state 'RemoteRuntime is specialized for evaluation harness', the combination of RemoteRuntime capabilities (API-based provisioning, auto-scaling, resource management) and the evaluation system's instance processing workflow that includes runtime initialization suggests this specialization exists.",
+              "evidence": "RemoteRuntime documentation shows it provides 'API-based runtime provisioning and management, automatic runtime resumption, resource scaling, and session persistence'. The evaluation framework documentation shows 'instance processing workflow' that includes 'create_runtime()' and 'initialize_runtime()' steps, indicating the evaluation system uses runtime environments for execution.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 0.2
+      },
+      {
+        "requirements": "Runtime Abstraction Interface",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "Pluggable runtime architecture with unified API",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation clearly describes a pluggable runtime architecture with a unified API. The system uses a base Runtime class with multiple implementations (DockerRuntime, RemoteRuntime) that all communicate through a common ActionExecutionClient interface. The plugin system architecture shows how different plugins (VSCode, Jupyter) implement a standard Plugin interface with initialize() and run() methods, demonstrating the pluggable nature of the runtime system.",
+              "evidence": "Runtime Architecture section shows base Runtime class with DockerRuntime and RemoteRuntime implementations, Plugin System Architecture section shows Plugin interface with standardized initialize() and run() methods, ActionExecutionClient provides unified communication interface between backend and sandboxed environments",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Runtime plugin lifecycle management",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation comprehensively covers runtime plugin lifecycle management through the Plugin System Architecture section, which details plugin initialization patterns, lifecycle stages (initialize() method), and provides concrete implementations of VSCode and Jupyter plugins showing how plugins are managed within the runtime environment.",
+              "evidence": "Plugin System Architecture section shows plugin lifecycle with initialize() method, Runtime Lifecycle Management includes 'Initialize Plugins' in startup process, and specific plugin implementations demonstrate lifecycle management patterns",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 1.0
+      }
+    ],
+    "score": 0.6725274725274726
+  },
+  {
+    "requirements": "Security and Safety Framework",
+    "weight": 3,
+    "sub_tasks": [
+      {
+        "requirements": "Confirmation Mode System",
+        "weight": 3,
+        "sub_tasks": [
+          {
+            "requirements": "User approval workflow for potentially sensitive actions",
+            "weight": 3,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation clearly describes a comprehensive security and confirmation system that includes user approval workflows for potentially sensitive actions. The system assesses action security risk levels (LOW, MEDIUM, HIGH) and requires user confirmation for risky operations through interactive prompts.",
+              "evidence": "Found in CLI Security and Confirmation System section which shows: 1) Action Risk Assessment that classifies actions by security risk level (HIGH, MEDIUM, LOW), 2) User Confirmation system with interactive approval for risky operations, 3) Multiple confirmation modes (Always Confirm, Auto High-Risk, Manual Confirm), 4) Security risk assessment in Function Calling & Actions section that tags actions with security risk levels affecting execution",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Risk assessment pipeline for action evaluation",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation clearly describes a security risk assessment pipeline that evaluates actions before execution. This includes risk level classification (UNKNOWN, LOW, MEDIUM, HIGH), security risk assessment processing, and a confirmation system for risky operations.",
+              "evidence": "Found in 'Security and Validation' section: 'Security Risk Assessment' describes actions being tagged with security risk levels and the `set_security_risk` function. Also in 'Security and Confirmation System': detailed architecture showing 'Action Security Assessment' with risk classification and confirmation flow for different risk levels.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 1.0
+      },
+      {
+        "requirements": "Security Analyzers",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "LLM Risk Analyzer for automatic action safety inspection",
+            "weight": 2,
+            "score": 0,
+            "evaluation": {
+              "score": 0,
+              "reasoning": "While the documentation describes security risk assessment systems and action validation, there is no mention of a specific 'LLM Risk Analyzer' component. The security features described include function call validation, security risk assessment with risk levels (LOW, MEDIUM, HIGH), and user confirmation systems, but these are not presented as an 'LLM Risk Analyzer' for automatic action safety inspection.",
+              "evidence": "The documentation shows security measures in ['subpages', 2, 'subpages', 2, 'content', 'Security and Validation'] including function call validation and security risk assessment with risk levels, and in ['subpages', 5, 'subpages', 1, 'content', 'Security and Confirmation System'] showing action security assessment and confirmation flows. However, no section specifically mentions an 'LLM Risk Analyzer' component or automatic safety inspection system driven by LLM analysis.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Invariant Analyzer for system state protection and red-flag detection",
+            "weight": 2,
+            "score": 0,
+            "evaluation": {
+              "score": 0,
+              "reasoning": "The documentation does not mention any 'Invariant Analyzer' component. While there are security-related components like SecurityAnalyzer, StuckDetector, and various security validation mechanisms, there is no specific component described as an 'Invariant Analyzer' that monitors system state invariants or provides red-flag detection for system state protection.",
+              "evidence": "The documentation shows security components like SecurityAnalyzer (mentioned in agent controller integration points), StuckDetector (for agent loop detection), security risk assessment for actions (LOW/MEDIUM/HIGH), and path traversal prevention, but no 'Invariant Analyzer' component is described in any of the architecture diagrams or component descriptions.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 0.0
+      },
+      {
+        "requirements": "Secrets Management",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "Secure storage and retrieval of sensitive data (API keys, credentials)",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation covers secure storage and retrieval of sensitive data through multiple mechanisms. It shows API keys are handled using `SecretStr` type in LLMConfig, environment variable configuration, token management systems for Git providers, and secret management in workflows. The system supports various authentication methods including bearer tokens, basic auth, and external token managers with automatic token refresh capabilities.",
+              "evidence": "LLMConfig uses `SecretStr` type for api_key field, environment variable configuration for LLM_API_KEY, ProviderToken class with token management, authentication helpers like `get_secrets_store()`, and secret management in resolver workflows with LLM_API_KEY, PAT_TOKEN secrets",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Agent-accessible secret injection without code/log persistence",
+            "weight": 2,
+            "score": 0,
+            "evaluation": {
+              "score": 0,
+              "reasoning": "The documentation covers secret management through environment variables and configuration files, and mentions security measures for path traversal prevention and action validation. However, there is no specific documentation about mechanisms for injecting secrets that are accessible to agents without being persisted in code or logs. The secret management section only describes basic environment variable usage and token configuration, with no mention of ephemeral secret injection or log sanitization features.",
+              "evidence": "Found secret management in Automated Issue Resolution configuration showing environment variables like LLM_API_KEY and PAT_TOKEN, security validation for function calls and path traversal, but no documentation of ephemeral secret injection mechanisms or log persistence prevention for agent-accessible secrets.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 0.5
+      }
+    ],
+    "score": 0.5714285714285714
+  },
+  {
+    "requirements": "Multi-Interface User Interaction System",
+    "weight": 2,
+    "sub_tasks": [
+      {
+        "requirements": "Web-Based GUI Framework",
+        "weight": 3,
+        "sub_tasks": [
+          {
+            "requirements": "Real-time WebSocket communication with bidirectional event streaming",
+            "weight": 3,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation clearly describes a WebSocket communication system with bidirectional event streaming. It shows real-time event flow between frontend and backend using Socket.IO, with events flowing in both directions (user actions to backend, and backend events to frontend). The sequence diagram demonstrates bidirectional communication with 'oh_user_action' events from frontend to backend and 'oh_event' streams from backend to frontend.",
+              "evidence": "WebSocket Event Flow section shows bidirectional communication: Frontend sends 'oh_user_action(user_input)' to Backend, Backend processes and sends 'oh_event(agent_response)' back to Frontend. Socket.IO Event Handlers section documents handlers for both incoming ('oh_user_action') and outgoing ('oh_event') events. Event Processing Pipeline shows real-time event streaming with validation, parsing, and state updates.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Integrated Development Environment Components",
+            "weight": 2,
+            "sub_tasks": [
+              {
+                "requirements": "VS Code integration with file editing and diff visualization",
+                "weight": 2,
+                "score": 0,
+                "evaluation": {
+                  "score": 0,
+                  "reasoning": "The documentation extensively covers file operations, editing, and management within OpenHands' own web interface and CLI system, but there is no mention of VS Code integration. The system provides file editing through its 'str_replace_editor' tool, FileEditAction/FileReadAction classes, and web-based file management APIs, but no documentation exists about VS Code plugin integration, VS Code extension support, or diff visualization features specifically for VS Code.",
+                  "evidence": "Documentation covers: 1) File operations through web interface with endpoints like GET /list-files, SELECT_FILE, SAVE_FILE ([subpages, 5, subpages, 0, content, 'File Operations and Workspace Management']), 2) File editing through str_replace_editor tool and FileEditAction ([subpages, 2, subpages, 2, content, 'File Editor Tool Integration']), 3) Secure file path resolution and workspace management ([subpages, 8, subpages, 1, content]), but no mention of VS Code integration or VS Code-specific diff visualization features.",
+                  "tokens": {
+                    "input": 0,
+                    "output": 0
+                  }
+                }
+              },
+              {
+                "requirements": "Terminal access and command execution interface",
+                "weight": 2,
+                "score": 1,
+                "evaluation": {
+                  "score": 1,
+                  "reasoning": "The documentation extensively covers terminal access and command execution interfaces through multiple sections. It details the Command Line Interface (CLI) system with terminal user interface components, interactive command processing, and command execution actions. The documentation includes specific coverage of CmdRunAction for shell command execution, terminal user interface system with display functions and input handling, and the complete CLI architecture with command processing flow.",
+                  "evidence": "Found comprehensive documentation in: 1) CLI Architecture Overview showing Terminal User Interface System with components like display_event(), read_prompt_input(), cli_confirm(), and CommandCompleter. 2) Command Execution Actions section detailing CmdRunAction for executing shell commands in sandboxed environments with security risk assessment. 3) Interactive Command System with command processing flow and available commands like /exit, /help, /init, etc. 4) Runtime & Execution Environment showing action execution pipeline for CmdRunAction through BashSession.",
+                  "tokens": {
+                    "input": 0,
+                    "output": 0
+                  }
+                }
+              },
+              {
+                "requirements": "Jupyter notebook support and browser-based preview",
+                "weight": 1,
+                "score": 1,
+                "evaluation": {
+                  "score": 1,
+                  "reasoning": "The documentation clearly shows Jupyter notebook support through the JupyterPlugin system, which enables interactive Python execution via Jupyter Kernel Gateway. The system supports rich output including images and provides WebSocket communication for real-time interaction. While the documentation doesn't explicitly mention 'browser-based preview' as a standalone feature, it describes web-based interfaces and Jupyter integration that would provide preview capabilities through the web interface.",
+                  "evidence": "Found in multiple sections: 1) IPythonRunCellAction for executing Python code in Jupyter kernel environment with rich output support including images ([subpages, 2, subpages, 2, content, Action Types and Implementations, Command Execution Actions]), 2) JupyterPlugin architecture that launches Jupyter Kernel Gateway and manages JupyterKernel instances with WebSocket communication ([subpages, 8, content, Plugin System Architecture]), 3) Web interface system that provides browser-based access to the platform ([subpages, 5, content, Web Frontend System]), 4) IPython observations that handle Python code execution output ([subpages, 2, subpages, 2, content, Observation Processing, IPython Observations])",
+                  "tokens": {
+                    "input": 0,
+                    "output": 0
+                  }
+                }
+              }
+            ],
+            "score": 0.6
+          },
+          {
+            "requirements": "Chat panel for conversational interaction",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation clearly describes conversational interaction capabilities through multiple interfaces. The web frontend system includes a 'ChatInterface' component, and the system supports real-time communication via WebSocket events for user actions and agent responses. The CLI also provides interactive command processing with message handling.",
+              "evidence": "Web Interface section shows 'CHAT_INTERFACE' component in the React application architecture. WebSocket Communication section describes 'oh_user_action' event handling for user input and 'oh_event' for agent responses. The system supports message actions, conversation management, and real-time event processing for conversational interactions.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 0.8857142857142858
+      },
+      {
+        "requirements": "Command Line Interface",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "Interactive conversation management with pause/resume control",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation clearly shows pause/resume functionality exists in the CLI system. The `/resume` command is explicitly documented as a way to resume a paused agent, and the agent state lifecycle includes a `STOPPED` state that can transition back to `RUNNING`, indicating pause/resume capability.",
+              "evidence": "CLI documentation shows '/resume' command in the 'Available Commands' table: 'Resumes a paused agent'. Agent state lifecycle documentation shows 'STOPPED' state with transition to 'RUNNING' state, and the command processing flow includes a 'handle_resume_command()' function.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Repository initialization, configuration, and settings management",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation comprehensively covers repository initialization, configuration, and settings management through multiple detailed sections. It includes configuration file structures (TOML format), class hierarchies for different config types (LLMConfig, AgentConfig, SandboxConfig), initialization workflows, settings management architectures for both CLI and web interfaces, and detailed configuration options for various components.",
+              "evidence": "Key sections found: 'Configuration System Architecture' with TOML structure and class hierarchy, 'Initial Configuration' with setup processes, 'Configuration and Initialization' workflow diagrams, 'Settings and Configuration Management' covering both frontend and CLI systems, and detailed settings categories for LLM, agent, and memory configuration.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Headless automation mode for scripting and non-interactive execution",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation clearly documents headless automation capabilities through multiple mechanisms: 1) CLI interface with direct command execution using 'openhands --task' for non-interactive operation, 2) Automated issue resolution system that runs without user interaction via GitHub Actions, 3) Evaluation framework that supports automated benchmarking in headless mode, and 4) Multiple execution modes including standard autonomous evaluation and scripting capabilities.",
+              "evidence": "Found in 'Basic Usage Patterns' section showing 'openhands --task \"Fix the bug in main.py\" --model gpt-4o' for direct command execution, 'Automated Issue Resolution' section describing GitHub Actions workflow for autonomous operation, and 'Evaluation & Benchmarking' section detailing headless evaluation modes with automated instance processing.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 1.0
+      },
+      {
+        "requirements": "Programmatic API Access",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "WebSocket API for real-time action injection and event streaming",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation clearly describes a WebSocket communication system that enables real-time action injection and event streaming. It shows Socket.IO event handlers for processing user actions (`oh_user_action`) and streaming events back to clients (`oh_event`), with a complete event flow architecture including event replay, validation, and processing pipelines.",
+              "evidence": "WebSocket Event Flow diagram shows bidirectional communication with 'oh_user_action' for action injection and 'oh_event' for event streaming. Socket.IO Event Handlers section documents the main handlers including 'oh_user_action()' for processing user actions and event replay functionality. Event Processing Pipeline shows comprehensive event validation, parsing, and state update mechanisms.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "REST API for conversation lifecycle management with authentication",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation covers REST API endpoints for conversation/session management and authentication. It describes API routes for git operations, session management components with conversation IDs and API keys, authentication middleware, and conversation lifecycle management through both standalone and Docker implementations.",
+              "evidence": "Key documentation sections include: Backend API Architecture with FastAPI structure, authentication middleware stack with UserAuth abstract base class, session management with conversation_id and session_api_key, conversation managers with attach_to_conversation() and close_session() methods, and API routes for git operations at /api/user endpoints.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 1.0
+      }
+    ],
+    "score": 0.9510204081632654
+  },
+  {
+    "requirements": "Platform Integration and Automation",
+    "weight": 2,
+    "sub_tasks": [
+      {
+        "requirements": "Version Control System Integrations",
+        "weight": 3,
+        "sub_tasks": [
+          {
+            "requirements": "GitHub integration with issue/PR automation and webhook triggers",
+            "weight": 3,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation comprehensively covers GitHub integration with automated issue resolution, PR automation, and webhook triggers. It describes a complete system with multiple trigger mechanisms (labels, comments, reviews), automated PR creation, and webhook-based workflow execution.",
+              "evidence": "The 'Automated Issue Resolution' section details: 1) Multiple webhook triggers including 'issues.labeled', 'pull_request.labeled', 'issue_comment.created', 'pull_request_review_comment.created', and 'pull_request_review.submitted'; 2) Label-based automation with 'fix-me' and 'fix-me-experimental' labels; 3) Comment-based triggers using '@openhands-agent' macro; 4) Automated PR creation through 'openhands.resolver.send_pull_request'; 5) Complete workflow architecture with GitHub Actions integration",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "GitLab integration with merge request handling",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation shows that OpenHands has a comprehensive Git provider integration architecture that supports GitLab along with other providers. While the documentation primarily focuses on GitHub in the examples (showing GitHubService, GitHubPRsMixin, etc.), the architecture clearly indicates GitLab support through GitLabServiceImpl and the service interface includes pull request operations that would apply to merge requests in GitLab terminology. The system has provider-agnostic API endpoints and a protocol-based design that supports all Git providers including GitLab.",
+              "evidence": "Documentation shows: 1) Provider service architecture with GitLabService listed as a concrete implementation, 2) Service interface definition includes pull request operations (get_pr_details, is_pr_open) that would map to GitLab merge requests, 3) Provider handler supports GitLab through GitLabServiceImpl in the service class mapping, 4) Extension points mention custom GitLab service class configuration via OPENHANDS_GITLAB_SERVICE_CLS environment variable, 5) The automated issue resolution workflow shows PR creation capabilities that would work across providers",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Bitbucket integration and repository access",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "Bitbucket integration is explicitly documented with dedicated service implementation (BitBucketService), mixin architecture (BitBucketMixinBase), and full repository access capabilities through the GitService protocol",
+              "evidence": "Documentation shows BitBucketService as a concrete implementation alongside GitHubService and GitLabService, with architecture diagrams showing BitBucketService connected to the ProviderHandler and implementing the GitService interface for repository operations",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 1.0
+      },
+      {
+        "requirements": "Communication Platform Integrations",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "Slack bot integration for team collaboration and task initiation",
+            "weight": 2,
+            "score": 0,
+            "evaluation": {
+              "score": 0,
+              "reasoning": "While the documentation mentions 'Slack Integration' in the context of evaluation progress notifications, this is limited to evaluation workflow status updates only. There is no documentation of Slack bot integration for general team collaboration, task initiation, or interactive Slack-based workflows. The mention is specifically for automated evaluation result notifications, not for user-facing Slack bot functionality.",
+              "evidence": "Found in subpages[8].content.Evaluation Integration: 'SLACK_NOTIFY[\"Slack Integration<br/>evaluation progress\"]' - This only covers evaluation progress notifications, not general Slack bot integration for team collaboration or task initiation.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 0.0
+      },
+      {
+        "requirements": "CI/CD and Automation Tools",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "GitHub Action for CI/CD workflow integration",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation extensively covers GitHub Actions for CI/CD workflow integration, including detailed architecture diagrams, workflow configurations, build strategies, and multiple workflow types (build, lint, test, automated issue resolution).",
+              "evidence": "Found comprehensive documentation in 'Development & Contributing' section covering GitHub Actions Workflow Architecture, Build Matrix Strategy, CI/CD Integration, and Automated Issue Resolution workflows. Includes specific workflow files like ghcr-build.yml, lint.yml, openhands-resolver.yml with detailed configuration options and trigger mechanisms.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Project management tool integrations (Jira, Linear) via webhooks",
+            "weight": 1,
+            "score": 0,
+            "evaluation": {
+              "score": 0,
+              "reasoning": "The documentation extensively covers Git provider integrations (GitHub, GitLab, Bitbucket) and evaluation system integrations, but there is no mention of project management tools like Jira or Linear, nor any webhook-based integrations for these tools. The integrations section only covers Git providers and evaluation/benchmarking systems.",
+              "evidence": "The Integrations section ([\"subpages\", 6]) covers only Git Provider Integration Architecture with GitHub, GitLab, and Bitbucket services. The Advanced Features section ([\"subpages\", 8]) includes automated issue resolution but only for GitHub issues via GitHub Actions workflows, not external project management tools. No mentions of Jira, Linear, or webhook integrations were found in any of the documentation sections.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 0.6666666666666666
+      }
+    ],
+    "score": 0.619047619047619
+  },
+  {
+    "requirements": "Configuration and Extensibility Framework",
+    "weight": 2,
+    "sub_tasks": [
+      {
+        "requirements": "Centralized Configuration Management",
+        "weight": 3,
+        "sub_tasks": [
+          {
+            "requirements": "TOML-based hierarchical configuration with environment overrides",
+            "weight": 3,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation clearly shows TOML-based configuration with hierarchical structure and environment variable overrides. The Configuration System Architecture section demonstrates a TOML file structure with sections like [core], [llm], [agent], and [sandbox]. The Configuration Loading Flow shows environment variables override TOML files, which override defaults. The LLM Provider Setup section explicitly shows environment variable configuration examples like LLM_MODEL, LLM_API_KEY, and LLM_BASE_URL.",
+              "evidence": "Configuration File Structure shows TOML format with hierarchical sections [core], [llm], [agent], [sandbox]. Configuration Loading Flow diagram shows 'Environment Variables' as a configuration source that feeds into the loading process. LLM Provider Setup section provides explicit examples: 'export LLM_MODEL=\"anthropic/claude-sonnet-4-20250514\"', 'export LLM_API_KEY=\"your-api-key\"', 'export LLM_BASE_URL=\"https://api.anthropic.com\"'. The hierarchical class structure is shown with OpenHandsConfig containing LLMConfig, AgentConfig, and SandboxConfig.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Core system settings (workspace, logging, debugging, file store)",
+            "weight": 3,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation covers core system settings comprehensively. Workspace configuration is detailed with path mappings, security boundaries, and configuration options. The configuration system architecture shows TOML-based settings for core, LLM, agent, and sandbox configurations. Settings management is covered through both web and CLI interfaces with hierarchical precedence. While logging and debugging aren't explicitly mentioned as separate sections, they are implied in the configuration system and error handling sections.",
+              "evidence": "Workspace Configuration section details sandbox_path_prefix, container_path, host_path, and workspace_subdir settings. Configuration System Architecture shows TOML structure with [core], [llm], [agent], [sandbox] sections. Settings and Configuration Management covers frontend and CLI settings architecture with API endpoints and storage mechanisms.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "LLM, Agent, Sandbox, and Security configuration stanzas",
+            "weight": 3,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation comprehensively covers all four configuration stanzas. It shows TOML configuration examples with [llm], [agent], and [sandbox] sections, documents the corresponding configuration classes (LLMConfig, AgentConfig, SandboxConfig), and includes security configuration details in the path traversal prevention section.",
+              "evidence": "Configuration File Structure section shows TOML stanzas: [llm], [agent], [sandbox], and [core]. Configuration Class Hierarchy shows LLMConfig, AgentConfig, and SandboxConfig classes. Security configuration is covered in path traversal prevention. LLM Provider Setup shows configuration examples for LLM stanza.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Configuration precedence: CLI args > env vars > config file",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation explicitly mentions a hierarchical precedence model in the CLI settings system. In the 'Settings Categories' section under 'Command Line Interface', it states: 'The settings system uses a hierarchical precedence model where CLI arguments override config files, which override settings.json, which override defaults.' While the exact order CLI args > env vars > config file isn't explicitly spelled out in that specific sequence, the documentation shows that CLI arguments have the highest precedence and the configuration system supports environment variables, config files, and CLI arguments as configuration sources.",
+              "evidence": "From the 'Configuration and Settings Management' section: 'The settings system uses a hierarchical precedence model where CLI arguments override config files, which override settings.json, which override defaults.' The architecture diagram also shows CLI_ARGS, ENV_VARS, and CONFIG_TOML as separate configuration sources feeding into the configuration object.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 1.0
+      },
+      {
+        "requirements": "Model Context Protocol (MCP) Integration",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "External tool communication via standardized protocol",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation extensively covers external tool communication through multiple standardized protocols. The system implements function calling mechanisms that convert LLM responses to typed Action objects, supports MCP (Model Context Protocol) server integration with three transport types (SSE, Stdio, SHTTP), and provides standardized tool name mapping for various operations. The documentation shows a complete action-observation cycle with standardized protocols for tool execution and response handling.",
+              "evidence": "1. Function Calling Mechanism: Documents standardized conversion of LLM tool calls to Action objects with validation and security assessment. 2. MCP Server Integration: Details three standardized transport protocols (SSE, Stdio, SHTTP) for external server communication. 3. Tool Name Mapping: Shows standardized mapping between function names and Action classes (str_replace_editor, bash, ipython, etc.). 4. Event-Driven Communication: Documents standardized event processing pipeline for tool communication. 5. Action-Observation Cycle: Describes standardized protocol for tool execution and observation processing.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Multiple transport support (SSE, SHTTP, stdio) with proxy architecture",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation explicitly mentions support for three transport types (SSE, SHTTP, and stdio) in the MCP server integration section. While it doesn't detail a 'proxy architecture' per se, it does describe a configuration management system that handles different server types with dedicated configuration handlers, which implies an architectural approach to managing these different transport mechanisms.",
+              "evidence": "In the CLI documentation under 'MCP Server Integration', it states: 'The MCP integration supports three transport types: SSE (Server-Sent Events): HTTP-based streaming connections, Stdio: Standard input/output process communication, SHTTP: Streamable HTTP connections'. Each server type has dedicated configuration handlers that validate input and persist settings to config.toml.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Tool capability extension framework and hot-loading",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation describes a comprehensive plugin system architecture that serves as a tool capability extension framework. It includes plugin interfaces, lifecycle management, and examples of VSCode and Jupyter plugins. However, there's no explicit mention of 'hot-loading' capabilities - plugins appear to require initialization rather than dynamic runtime loading.",
+              "evidence": "Plugin System Architecture section describes: 'OpenHands supports a flexible plugin system for extending runtime capabilities with development tools' with detailed implementation of Plugin interface (initialize(), run() methods), VSCodePlugin and JupyterPlugin examples, and plugin lifecycle management. The system allows extending runtime capabilities but doesn't explicitly document hot-loading functionality.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 1.0
+      },
+      {
+        "requirements": "External Service Integration",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "Search engine integration (Tavily) for real-time information access",
+            "weight": 2,
+            "score": 0,
+            "evaluation": {
+              "score": 0,
+              "reasoning": "After searching through all major sections of the documentation including LLM Integration, Agent System, Runtime Environment, Integrations, and Advanced Features, there is no mention of search engine integration or Tavily specifically. The system appears to rely solely on LLM knowledge, Git repository information, and local file system access without any web search or real-time information retrieval capabilities.",
+              "evidence": "Searched sections: Overview/Core Components, LLM Integration, Agent System (including Memory & Context Management, Function Calling & Actions), Runtime & Execution Environment, Integrations (Git providers, Evaluation), Advanced Features (Automated Issue Resolution, Plugin System, File Operations). No references found to search engines, web search, Tavily, or real-time information access.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Custom sandbox image support and environment customization",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation clearly documents custom sandbox image support through the `base_container_image` configuration option and `SANDBOX_RUNTIME_CONTAINER_IMAGE` environment variable. It also shows environment customization through various configuration options like `runtime_extra_deps`, volume mounts, user ID configuration, and plugin loading.",
+              "evidence": "Found in Sandbox Environment Configuration: 'base_container_image' setting for specifying base Docker images, 'runtime_extra_deps' for additional dependencies, 'volumes' for volume mount configuration. Docker Installation section shows 'SANDBOX_RUNTIME_CONTAINER_IMAGE' environment variable for custom runtime images. Runtime initialization mentions plugin loading and environment setup capabilities.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 0.5
+      }
+    ],
+    "score": 0.8571428571428571
+  },
+  {
+    "requirements": "Cloud Platform and Evaluation Framework",
+    "weight": 2,
+    "sub_tasks": [
+      {
+        "requirements": "OpenHands Cloud SaaS Platform",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "Managed multi-tenant service with runtime pools",
+            "weight": 3,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation covers both multi-tenant service capabilities and runtime pool management. The system supports multiple concurrent sessions through conversation managers and maintains warm server pools for efficient resource utilization.",
+              "evidence": "Found in Advanced Features section: 'Warm Server Pool Management' describes pre-initialized server pools with configuration options like INITIAL_NUM_WARM_SERVERS and DESIRED_NUM_WARM_SERVERS. The ConversationManager architecture supports multiple concurrent sessions, and the Runtime System Advanced Features section shows server lifecycle management with warm pools, running servers tracking, and resource management capabilities.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Repository authentication and IP whitelisting",
+            "weight": 2,
+            "score": 0,
+            "evaluation": {
+              "score": 0,
+              "reasoning": "The documentation covers repository authentication through various token-based methods (Bearer tokens, Basic Auth) for Git providers like GitHub, GitLab, and Bitbucket, but there is no mention of IP whitelisting functionality anywhere in the authentication sections.",
+              "evidence": "Found detailed authentication documentation in 'Authentication and Token Management' sections covering ProviderToken class, token types (GITHUB_TOKEN, GITLAB_TOKEN, BITBUCKET_TOKEN), and provider-specific authentication methods, but no references to IP whitelisting or IP-based access controls.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "REST API for programmatic conversation management",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation clearly shows REST API endpoints for conversation management through the OpenHands API Client Structure, which includes methods like createConversation(), getConversation(), updateConversation(), startConversation(), and stopConversation(). While the primary real-time communication uses WebSocket, the API client provides programmatic access to conversation management operations.",
+              "evidence": "API Communication Layer section shows: 'Conversation Management' methods including createConversation(), getConversation(), updateConversation() for CRUD operations, and 'Session Control' methods like startConversation(), stopConversation() for agent lifecycle management. Sources: [frontend/src/api/open-hands.ts:67-500](), [frontend/src/api/open-hands.types.ts:1-142]()",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 0.7142857142857143
+      },
+      {
+        "requirements": "Evaluation Harness",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "Framework for benchmarking agent performance on predefined tasks",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation clearly describes a comprehensive evaluation framework for benchmarking agent performance. It includes core evaluation data models (EvalMetadata and EvalOutput), orchestration processes, support for multiple benchmark variants (SWE-Bench, SWE-Bench-Live, etc.), different evaluation modes (standard vs interactive), and detailed metrics collection and results processing.",
+              "evidence": "Found in 'Integrations > Evaluation & Benchmarking' section with detailed coverage of: Core Evaluation Framework with data models and orchestration, SWE-Bench Integration supporting multiple dataset variants, Evaluation Modes including standard and interactive evaluation, and Results Processing with metrics collection and output formats.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "SWE-bench-style dataset parameterization with trajectory recording",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation comprehensively covers SWE-bench-style dataset parameterization and trajectory recording. It shows support for multiple SWE-bench variants (SWE-bench, SWE-bench_Lite, SWE-bench_Verified, SWE-bench_Multimodal, SWE-bench-Live, SWE-Gym, SWT-Bench) with dynamic configuration. The EvalOutput data model explicitly includes a 'history: list[dict]' field that records the complete interaction history/trajectory for each evaluation instance, which is stored in output.jsonl files.",
+              "evidence": "EvalOutput Components show 'HIS[\"history: list[dict]\"]' for complete interaction history, dataset support includes multiple SWE-bench variants with 'set_dataset_type()' function, and output structure specifies 'history: array | Complete interaction history' in the evaluation results.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Programmable user response function for custom evaluation workflows",
+            "weight": 1,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation mentions interactive evaluation mode with FakeUser simulation that allows agents to communicate with simulated users, which provides programmable user response functionality for custom evaluation workflows.",
+              "evidence": "In the 'Evaluation Modes and Variants' section, the documentation describes 'Interactive Mode' with 'FakeUser Simulation' and 'Question-Answer Cycles' that enables interactive evaluation where agents can communicate with simulated users. This is specifically mentioned as an alternative to standard autonomous evaluation, allowing for custom evaluation workflows with user interaction patterns.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 1.0
+      }
+    ],
+    "score": 0.8571428571428572
+  },
+  {
+    "requirements": "Data Management and Privacy System",
+    "weight": 1,
+    "sub_tasks": [
+      {
+        "requirements": "User Data Handling",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "Feedback collection with privacy controls and consent management",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation explicitly mentions a feedback system with API endpoints for feedback collection. While privacy controls and consent management are not detailed in depth, the system includes authentication mechanisms, user settings management, and security features that imply privacy considerations. The feedback system is documented as a core API feature.",
+              "evidence": "Found in subpages[5].content.API Communication Layer: 'Feedback System | submitFeedback(), getBatchFeedback() | User feedback collection'. Additional evidence includes authentication systems, user settings management, and security middleware that provide the foundation for privacy controls.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Data sharing settings and user preference management",
+            "weight": 2,
+            "score": 0,
+            "evaluation": {
+              "score": 0,
+              "reasoning": "The documentation extensively covers configuration management, settings architecture, authentication tokens, and security implementations, but there is no mention of data sharing settings or user privacy preferences. The settings system focuses on technical configuration (LLM providers, API keys, runtime settings) rather than user privacy controls or data sharing preferences.",
+              "evidence": "While the documentation covers: 1) Settings architecture with web and CLI interfaces, 2) Authentication and token management for Git providers, 3) Security implementations for file operations and path traversal prevention, 4) Configuration categories for LLM settings, agent settings, and memory management - there are no sections discussing user privacy settings, data sharing preferences, consent management, or privacy controls that would allow users to manage how their data is shared or used.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 0.5
+      },
+      {
+        "requirements": "File Storage and Workspace Management",
+        "weight": 2,
+        "sub_tasks": [
+          {
+            "requirements": "Workspace file organization and persistence across sessions",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation covers workspace file organization through configuration options, file operations API, and persistence mechanisms. It describes workspace directory structure, file access permissions, storage locations, and API endpoints for file management that would persist across sessions.",
+              "evidence": "Found coverage in: 1) Basic Usage Patterns - Workspace Configuration showing workspace directory structure and persistent storage location, 2) File Operations and Workspace Management - API endpoints for file operations (getFiles, getFile, uploadFiles), 3) Advanced Features - Workspace Configuration with sandbox_path_prefix, container_path, host_path, and workspace_subdir parameters for organizing files",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          },
+          {
+            "requirements": "Change tracking and version control integration",
+            "weight": 2,
+            "score": 1,
+            "evaluation": {
+              "score": 1,
+              "reasoning": "The documentation extensively covers Git provider integration including repository management, branch operations, pull request handling, and authentication. While it doesn't explicitly use the term 'change tracking', it describes comprehensive version control integration through Git operations, file management, and automated issue resolution workflows that involve code changes.",
+              "evidence": "Git Provider Integration Architecture section covers repository operations, branch management, pull request operations, and microagent discovery. The system supports GitHub, GitLab, and Bitbucket with authentication, API integration, and automated workflows for issue resolution that involve code changes and version control operations.",
+              "tokens": {
+                "input": 0,
+                "output": 0
+              }
+            }
+          }
+        ],
+        "score": 1.0
+      }
+    ],
+    "score": 0.75
+  }
+]

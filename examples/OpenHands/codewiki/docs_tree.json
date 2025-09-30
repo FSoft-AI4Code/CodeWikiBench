@@ -1,0 +1,2424 @@
+{
+  "title": "docs",
+  "description": "Documentation for docs",
+  "subpages": [
+    {
+      "title": "overview",
+      "path": "[\"subpages\", 0]",
+      "content": {
+        "OpenHands Repository Overview": {
+          "Purpose": "<detail_content>",
+          "End-to-End Architecture": {
+            "System Data Flow": "<detail_content>"
+          },
+          "Core Module Documentation": {
+            "Frontend Modules": "<detail_content>",
+            "Core System Modules": "<detail_content>",
+            "Runtime and Execution": "<detail_content>",
+            "Integration and Storage": "<detail_content>",
+            "Configuration and Specialized Systems": "<detail_content>",
+            "Enterprise Features": "<detail_content>"
+          },
+          "Key Features": "<detail_content>",
+          "Getting Started": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "core_agent_system",
+      "path": "[\"subpages\", 1]",
+      "content": {
+        "Core Agent System": {
+          "Overview": "<detail_content>",
+          "Purpose": "<detail_content>",
+          "Architecture Overview": "<detail_content>",
+          "Core Components": {
+            "1. Agent Management": "<detail_content>",
+            "2. State Management": "<detail_content>",
+            "3. Action Processing": "<detail_content>"
+          },
+          "System Integration": {
+            "Agent Implementations Integration": "<detail_content>",
+            "Events and Actions Integration": "<detail_content>",
+            "LLM Integration": "<detail_content>",
+            "Runtime System Integration": "<detail_content>"
+          },
+          "Data Flow": "<detail_content>",
+          "Configuration and Customization": {
+            "Agent Configuration": "<detail_content>",
+            "State Configuration": "<detail_content>",
+            "Parser Configuration": "<detail_content>"
+          },
+          "Error Handling and Recovery": {
+            "Agent Errors": "<detail_content>",
+            "State Errors": "<detail_content>",
+            "Parsing Errors": "<detail_content>"
+          },
+          "Performance Considerations": {
+            "State Management": "<detail_content>",
+            "Action Processing": "<detail_content>",
+            "Control Flow": "<detail_content>"
+          },
+          "Security Considerations": {
+            "Agent Security": "<detail_content>",
+            "State Security": "<detail_content>",
+            "Action Security": "<detail_content>"
+          },
+          "Future Enhancements": {
+            "Planned Features": "<detail_content>",
+            "Extension Points": "<detail_content>"
+          },
+          "Related Documentation": {
+            "Sub-Module Documentation": "<detail_content>",
+            "System Integration Documentation": "<detail_content>"
+          }
+        }
+      }
+    },
+    {
+      "title": "agent_implementations",
+      "path": "[\"subpages\", 2]",
+      "content": {
+        "Agent Implementations Module": {
+          "Overview": "<detail_content>",
+          "Architecture": "<detail_content>",
+          "Core Components": {
+            "CodeAct Agent Family": {
+              "CodeActAgent": "<detail_content>",
+              "LocAgent": "<detail_content>",
+              "ReadOnlyAgent": "<detail_content>"
+            },
+            "Browsing Agent Family": {
+              "BrowsingAgent": "<detail_content>",
+              "VisualBrowsingAgent": "<detail_content>"
+            },
+            "Microagent System": {
+              "TaskMicroagent": "<detail_content>",
+              "KnowledgeMicroagent": "<detail_content>",
+              "RepoMicroagent": "<detail_content>"
+            }
+          },
+          "Component Relationships": "<detail_content>",
+          "Data Flow": "<detail_content>",
+          "Integration Points": {
+            "Core Agent System Integration": "<detail_content>",
+            "LLM Integration": "<detail_content>",
+            "Runtime System Integration": "<detail_content>",
+            "Events and Actions": "<detail_content>"
+          },
+          "Configuration": {
+            "Agent Selection": "<detail_content>",
+            "Tool Configuration": "<detail_content>",
+            "Microagent Configuration": "<detail_content>"
+          },
+          "Usage Patterns": {
+            "General Purpose Development": "<detail_content>",
+            "Safe Exploration": "<detail_content>",
+            "Web Automation": "<detail_content>",
+            "Specialized Tasks": "<detail_content>"
+          },
+          "Error Handling": {
+            "Browser Error Recovery": "<detail_content>",
+            "Microagent Validation": "<detail_content>"
+          },
+          "Performance Considerations": {
+            "Memory Management": "<detail_content>",
+            "Model Optimization": "<detail_content>"
+          },
+          "Security Features": {
+            "ReadOnlyAgent Safety": "<detail_content>",
+            "Input Validation": "<detail_content>"
+          },
+          "Future Extensions": {
+            "Planned Enhancements": "<detail_content>",
+            "Integration Opportunities": "<detail_content>"
+          }
+        }
+      }
+    },
+    {
+      "title": "events_and_actions",
+      "path": "[\"subpages\", 3]",
+      "content": {
+        "Events and Actions Module": {
+          "Overview": "<detail_content>",
+          "Purpose": "<detail_content>",
+          "Architecture Overview": "<detail_content>",
+          "Core Components": {
+            "Event Hierarchy": "<detail_content>",
+            "Event Streaming System": "<detail_content>",
+            "Type System": "<detail_content>"
+          },
+          "Sub-modules": {
+            "[Event Foundation](event_foundation.md)": "<detail_content>",
+            "[Event Streaming](event_streaming.md)": "<detail_content>",
+            "[Type Definitions](type_definitions.md)": "<detail_content>"
+          },
+          "Integration with Other Modules": "<detail_content>",
+          "Event Flow Architecture": "<detail_content>",
+          "Key Features": {
+            "Event Metadata": "<detail_content>",
+            "Security and Privacy": "<detail_content>",
+            "Performance Optimization": "<detail_content>"
+          },
+          "Usage Patterns": {
+            "Basic Event Creation": "<detail_content>",
+            "Event Subscription": "<detail_content>",
+            "Event Filtering and Search": "<detail_content>"
+          }
+        }
+      }
+    },
+    {
+      "title": "llm_integration",
+      "path": "[\"subpages\", 4]",
+      "content": {
+        "LLM Integration Module": {
+          "Overview": "<detail_content>",
+          "Purpose": "<detail_content>",
+          "Architecture Overview": "<detail_content>",
+          "Sub-modules": {
+            "Core LLM Implementation": "<detail_content>",
+            "Router System": "<detail_content>",
+            "Utility Mixins": "<detail_content>"
+          },
+          "Key Features": {
+            "Multi-Provider Support": "<detail_content>",
+            "Advanced Capabilities": "<detail_content>",
+            "Reliability Features": "<detail_content>"
+          },
+          "Integration Points": {
+            "With Core Agent System": "<detail_content>",
+            "With Events and Actions": "<detail_content>",
+            "With Server and API": "<detail_content>",
+            "With Agent Implementations": "<detail_content>",
+            "With Configuration System": "<detail_content>"
+          },
+          "Configuration": "<detail_content>",
+          "Usage Examples": {
+            "Basic LLM Usage": "<detail_content>",
+            "Async Operations": "<detail_content>",
+            "Streaming Responses": "<detail_content>"
+          },
+          "Metrics and Monitoring": "<detail_content>",
+          "Security Considerations": "<detail_content>",
+          "Performance Optimization": "<detail_content>",
+          "Error Handling": "<detail_content>",
+          "Future Enhancements": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "runtime_system",
+      "path": "[\"subpages\", 5]",
+      "content": {
+        "Runtime System": {
+          "Overview": "<detail_content>",
+          "Purpose": "<detail_content>",
+          "Architecture Overview": {
+            "Component Relationships": "<detail_content>"
+          },
+          "Core Components": {
+            "Base Runtime (`openhands.runtime.base.Runtime`)": "<detail_content>",
+            "Runtime Implementations": {
+              "1. Local Runtime (`openhands.runtime.impl.local.local_runtime.LocalRuntime`)": "<detail_content>",
+              "2. CLI Runtime (`openhands.runtime.impl.cli.cli_runtime.CLIRuntime`)": "<detail_content>",
+              "3. Kubernetes Runtime (`openhands.runtime.impl.kubernetes.kubernetes_runtime.KubernetesRuntime`)": "<detail_content>"
+            },
+            "Runtime Builder (`openhands.runtime.builder.base.RuntimeBuilder`)": "<detail_content>",
+            "Plugin System (`openhands.runtime.plugins.requirement.Plugin`)": "<detail_content>"
+          },
+          "Sub-Modules": {
+            "[Runtime Implementations](runtime_implementations.md)": "<detail_content>",
+            "[Plugin System](plugin_system.md)": "<detail_content>",
+            "[Builder System](builder_system.md)": "<detail_content>"
+          },
+          "Key Features": {
+            "Multi-Runtime Support": "<detail_content>",
+            "Security Integration": "<detail_content>",
+            "Development Tools Integration": "<detail_content>",
+            "Git Operations": "<detail_content>"
+          },
+          "Data Flow": "<detail_content>",
+          "Configuration": "<detail_content>",
+          "Integration Points": {
+            "With Core Agent System": "<detail_content>",
+            "With Events & Actions": "<detail_content>",
+            "With Security System": "<detail_content>"
+          },
+          "Usage Examples": {
+            "Basic Runtime Usage": "<detail_content>",
+            "File Operations": "<detail_content>"
+          },
+          "Best Practices": {
+            "Runtime Selection": "<detail_content>",
+            "Resource Management": "<detail_content>",
+            "Security Considerations": "<detail_content>"
+          },
+          "Error Handling": "<detail_content>",
+          "Monitoring and Observability": {
+            "Status Callbacks": "<detail_content>",
+            "Logging": "<detail_content>"
+          },
+          "Future Enhancements": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "git_integrations",
+      "path": "[\"subpages\", 6]",
+      "content": {
+        "Git Integrations Module": {
+          "Overview": "<detail_content>",
+          "Architecture": "<detail_content>",
+          "Core Components": {
+            "Service Foundation": "<detail_content>",
+            "Provider Implementations  ": "<detail_content>",
+            "Data Models and Types": "<detail_content>"
+          },
+          "Data Models": {
+            "Core Data Structures": "<detail_content>",
+            "Enumeration Types": "<detail_content>"
+          },
+          "Key Functionality": {
+            "Microagent Discovery System": {
+              "Discovery Process": "<detail_content>"
+            },
+            "Authentication and Token Management": "<detail_content>",
+            "Repository Operations": "<detail_content>"
+          },
+          "Integration Points": {
+            "Dependencies on Other Modules": "<detail_content>",
+            "External Integration Points": "<detail_content>"
+          },
+          "Error Handling": "<detail_content>",
+          "Configuration and Setup": {
+            "Authentication Configuration": "<detail_content>",
+            "Microagent Path Configuration": "<detail_content>"
+          },
+          "Usage Examples": {
+            "Repository Discovery": "<detail_content>",
+            "Microagent Management": "<detail_content>",
+            "Task Automation": "<detail_content>"
+          },
+          "Performance Considerations": {
+            "Optimization Strategies": "<detail_content>",
+            "Resource Management": "<detail_content>"
+          },
+          "Future Enhancements": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "server_and_api",
+      "path": "[\"subpages\", 7]",
+      "content": {
+        "Server and API Module": {
+          "Overview": "<detail_content>",
+          "Purpose": "<detail_content>",
+          "Architecture Overview": "<detail_content>",
+          "Core Components": {
+            "1. Session Management Layer": "<detail_content>",
+            "2. Conversation Orchestration": "<detail_content>",
+            "3. Authentication & Authorization": "<detail_content>",
+            "4. Web Server Infrastructure": "<detail_content>",
+            "5. Configuration Management": "<detail_content>"
+          },
+          "Sub-Module Documentation": {
+            "Session Management": "<detail_content>",
+            "Conversation Orchestration  ": "<detail_content>",
+            "Authentication System": "<detail_content>",
+            "Web Infrastructure": "<detail_content>",
+            "Configuration Management": "<detail_content>"
+          },
+          "Key Interactions": {
+            "Session Lifecycle Flow": "<detail_content>",
+            "Authentication Flow": "<detail_content>"
+          },
+          "Integration Points": {
+            "Dependencies on Other Modules": "<detail_content>",
+            "External Integrations": "<detail_content>"
+          },
+          "Configuration": {
+            "Environment Variables": "<detail_content>",
+            "Extension Points": "<detail_content>"
+          },
+          "Performance Considerations": {
+            "Scalability Features": "<detail_content>",
+            "Monitoring & Observability": "<detail_content>"
+          },
+          "Security Features": {
+            "Request Security": "<detail_content>",
+            "Session Security": "<detail_content>"
+          }
+        }
+      }
+    },
+    {
+      "title": "storage_system",
+      "path": "[\"subpages\", 8]",
+      "content": {
+        "Storage System Documentation": {
+          "Overview": "<detail_content>",
+          "Purpose and Core Functionality": "<detail_content>",
+          "Architecture Overview": "<detail_content>",
+          "System Components": {
+            "Core Storage Interfaces": "<detail_content>",
+            "Data Models": "<detail_content>",
+            "Storage Backends": "<detail_content>"
+          },
+          "Sub-Module Architecture": {
+            "Conversation Management": "<detail_content>",
+            "User Data Management  ": "<detail_content>",
+            "File Storage Infrastructure": "<detail_content>"
+          },
+          "Integration with Other Modules": {
+            "Server and API Integration": "<detail_content>",
+            "Configuration Management": "<detail_content>",
+            "Git Integrations": "<detail_content>"
+          },
+          "Data Flow and Operations": "<detail_content>",
+          "Security and Data Protection": "<detail_content>",
+          "Configuration and Deployment": "<detail_content>",
+          "Extension Points": "<detail_content>",
+          "Performance Considerations": "<detail_content>",
+          "Error Handling and Reliability": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "frontend_core",
+      "path": "[\"subpages\", 9]",
+      "content": {
+        "Frontend Core Module": {
+          "Overview": "<detail_content>",
+          "Purpose": "<detail_content>",
+          "Architecture Overview": "<detail_content>",
+          "Core Components": {
+            "1. OpenHands API Service (`frontend.src.api.open-hands.OpenHands`)": "<detail_content>",
+            "2. Authentication Service (`frontend.src.api.auth-service.auth-service.api.AuthService`)": "<detail_content>",
+            "3. Git Service (`frontend.src.api.git-service.git-service.api.GitService`)": "<detail_content>",
+            "4. User Service (`frontend.src.api.user-service.user-service.api.UserService`)": "<detail_content>"
+          },
+          "Integration Points": {
+            "Backend Module Dependencies": "<detail_content>",
+            "Frontend State Integration": "<detail_content>"
+          },
+          "Data Flow Architecture": "<detail_content>",
+          "Key Features": {
+            "Conversation Management": "<detail_content>",
+            "File Operations": "<detail_content>",
+            "Git Integration": "<detail_content>",
+            "Feedback System": "<detail_content>",
+            "Development Tools": "<detail_content>"
+          },
+          "Error Handling": "<detail_content>",
+          "Security Considerations": "<detail_content>",
+          "Performance Optimizations": "<detail_content>",
+          "Future Enhancements": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "frontend_state_management",
+      "path": "[\"subpages\", 10]",
+      "content": {
+        "Frontend State Management Module": {
+          "Overview": "<detail_content>",
+          "Purpose": "<detail_content>",
+          "Architecture Overview": "<detail_content>",
+          "Core Components": {
+            "1. ConversationState": "<detail_content>",
+            "2. FileState": "<detail_content>",
+            "3. MetricsState": "<detail_content>"
+          },
+          "State Flow Architecture": "<detail_content>",
+          "Integration with Other Modules": {
+            "Frontend Core Module": "<detail_content>",
+            "Server and API Module": "<detail_content>"
+          },
+          "State Management Patterns": {
+            "Redux Toolkit Implementation": "<detail_content>",
+            "Async State Handling": "<detail_content>"
+          },
+          "Key Features": {
+            "1. Conversation Management": "<detail_content>",
+            "2. Code Editor Integration": "<detail_content>",
+            "3. System Monitoring": "<detail_content>"
+          },
+          "Usage Patterns": {
+            "State Updates": "<detail_content>",
+            "State Selection": "<detail_content>"
+          },
+          "Performance Considerations": {
+            "State Normalization": "<detail_content>",
+            "Memory Management": "<detail_content>"
+          },
+          "Future Enhancements": {
+            "Planned Features": "<detail_content>",
+            "Scalability Improvements": "<detail_content>"
+          },
+          "Related Documentation": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "core_configuration",
+      "path": "[\"subpages\", 11]",
+      "content": {
+        "Core Configuration Module": {
+          "Overview": "<detail_content>",
+          "Purpose": "<detail_content>",
+          "Architecture Overview": "<detail_content>",
+          "Component Relationships": "<detail_content>",
+          "Sub-modules": {
+            "CLI Configuration": "<detail_content>",
+            "Security Configuration  ": "<detail_content>",
+            "MCP Configuration": "<detail_content>",
+            "Kubernetes Configuration": "<detail_content>"
+          },
+          "Integration Points": "<detail_content>",
+          "Configuration Flow": "<detail_content>",
+          "Usage Patterns": {
+            "Basic Configuration Loading": "<detail_content>",
+            "TOML-based Configuration": "<detail_content>"
+          },
+          "Error Handling and Validation": "<detail_content>",
+          "Best Practices": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "microagent_system",
+      "path": "[\"subpages\", 12]",
+      "content": {
+        "Microagent System Documentation": {
+          "Overview": "<detail_content>",
+          "Purpose and Core Functionality": "<detail_content>",
+          "Architecture Overview": "<detail_content>",
+          "Component Relationships": "<detail_content>",
+          "Sub-Modules": {
+            "Agent Implementations": "<detail_content>",
+            "Type System": "<detail_content>"
+          },
+          "Agent Types and Functionality": {
+            "1. Repository Microagents (RepoMicroagent)": "<detail_content>",
+            "2. Knowledge Microagents (KnowledgeMicroagent)": "<detail_content>",
+            "3. Task Microagents (TaskMicroagent)": "<detail_content>"
+          },
+          "Data Flow and Processing": "<detail_content>",
+          "Integration Points": {
+            "Core Agent System Integration": "<detail_content>",
+            "LLM Integration": "<detail_content>",
+            "Configuration System": "<detail_content>",
+            "Storage System": "<detail_content>"
+          },
+          "Key Features": {
+            "Dynamic Loading and Discovery": "<detail_content>",
+            "Flexible Triggering System": "<detail_content>",
+            "Input Management": "<detail_content>",
+            "MCP Tool Integration": "<detail_content>",
+            "Error Handling and Validation": "<detail_content>"
+          },
+          "Usage Patterns": {
+            "Repository Setup": "<detail_content>",
+            "Task Agent Definition": "<detail_content>"
+          },
+          "Security Considerations": "<detail_content>",
+          "Performance Characteristics": "<detail_content>",
+          "Future Enhancements": "<detail_content>",
+          "Related Documentation": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "security_system",
+      "path": "[\"subpages\", 13]",
+      "content": {
+        "Security System Module": {
+          "Overview": "<detail_content>",
+          "Purpose": "<detail_content>",
+          "Architecture Overview": "<detail_content>",
+          "Core Components": {
+            "Base Security Framework": "<detail_content>",
+            "Analysis Implementations": "<detail_content>",
+            "Supporting Infrastructure": "<detail_content>"
+          },
+          "Sub-modules": {
+            "[Invariant Analysis](invariant_analysis.md)": "<detail_content>",
+            "[LLM Risk Analysis](llm_risk_analysis.md)": "<detail_content>"
+          },
+          "Integration Points": {
+            "Core Agent System Integration": "<detail_content>",
+            "Events and Actions Integration": "<detail_content>",
+            "Server and API Integration": "<detail_content>"
+          },
+          "Security Risk Levels": "<detail_content>",
+          "Data Flow": "<detail_content>",
+          "Configuration": "<detail_content>",
+          "Usage Patterns": {
+            "Basic Security Analysis": "<detail_content>",
+            "Invariant-based Analysis": "<detail_content>",
+            "LLM Risk Analysis": "<detail_content>"
+          },
+          "Dependencies": {
+            "Internal Dependencies": "<detail_content>",
+            "External Dependencies": "<detail_content>"
+          },
+          "Error Handling": "<detail_content>",
+          "Performance Considerations": "<detail_content>",
+          "Security Considerations": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "enterprise_integrations",
+      "path": "[\"subpages\", 14]",
+      "content": {
+        "Enterprise Integrations Module": {
+          "Overview": "<detail_content>",
+          "Architecture Overview": "<detail_content>",
+          "Core Components": {
+            "Platform Integration Managers": {
+              "1. GitHub Manager (`enterprise.integrations.github.github_manager.GithubManager`)": "<detail_content>",
+              "2. GitLab Manager (`enterprise.integrations.gitlab.gitlab_manager.GitlabManager`)": "<detail_content>",
+              "3. Jira Manager (`enterprise.integrations.jira.jira_manager.JiraManager`)": "<detail_content>",
+              "4. Slack Manager (`enterprise.integrations.slack.slack_manager.SlackManager`)": "<detail_content>"
+            },
+            "Shared Models and Types": {
+              "Job Result Model (`enterprise.integrations.models.JobResult`)": "<detail_content>"
+            }
+          },
+          "Integration Flow": "<detail_content>",
+          "Sub-modules": {
+            "[Platform Managers](platform_managers.md)": "<detail_content>",
+            "[Shared Infrastructure](shared_infrastructure.md)": "<detail_content>"
+          },
+          "Dependencies": "<detail_content>",
+          "Key Features": {
+            "1. Unified Integration Interface": "<detail_content>",
+            "2. Webhook Processing": "<detail_content>",
+            "3. Conversation Management": "<detail_content>",
+            "4. Authentication & Security": "<detail_content>",
+            "5. Repository Intelligence": "<detail_content>"
+          },
+          "Configuration": "<detail_content>",
+          "Error Handling": "<detail_content>",
+          "Future Enhancements": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "enterprise_server",
+      "path": "[\"subpages\", 15]",
+      "content": {
+        "Enterprise Server Module": {
+          "Overview": "<detail_content>",
+          "Purpose": "<detail_content>",
+          "Architecture Overview": "<detail_content>",
+          "Core Components": {
+            "Configuration Management": "<detail_content>",
+            "Authentication System  ": "<detail_content>",
+            "Security Infrastructure": "<detail_content>"
+          },
+          "Component Relationships": "<detail_content>",
+          "Integration with Other Modules": {
+            "Server and API Module": "<detail_content>",
+            "Git Integrations Module": "<detail_content>",
+            "Storage System Module": "<detail_content>",
+            "Core Configuration Module": "<detail_content>"
+          },
+          "Key Features": {
+            "Multi-Provider Authentication": "<detail_content>",
+            "Advanced Security": "<detail_content>",
+            "User Management": "<detail_content>",
+            "Configuration Flexibility": "<detail_content>"
+          },
+          "Data Flow": "<detail_content>",
+          "Environment Configuration": {
+            "Authentication Configuration": "<detail_content>",
+            "Feature Flags": "<detail_content>",
+            "User Verification": "<detail_content>",
+            "System Configuration": "<detail_content>"
+          },
+          "Security Considerations": {
+            "Token Security": "<detail_content>",
+            "Webhook Security": "<detail_content>",
+            "User Verification": "<detail_content>"
+          },
+          "Deployment Considerations": {
+            "High Availability": "<detail_content>",
+            "Monitoring and Observability": "<detail_content>",
+            "Maintenance and Updates": "<detail_content>"
+          },
+          "Related Documentation": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "conversation_orchestration",
+      "path": "[\"subpages\", 16]",
+      "content": {
+        "Conversation Orchestration Module": {
+          "Core Components": {
+            "ConversationManager": "<detail_content>",
+            "ServerConversation": "<detail_content>",
+            "AgentLoopInfo": "<detail_content>"
+          },
+          "Architecture Overview": "<detail_content>",
+          "Component Relationships": "<detail_content>",
+          "Data Flow Architecture": "<detail_content>",
+          "Process Flow Diagrams": {
+            "Conversation Lifecycle Management": "<detail_content>",
+            "Agent Loop Coordination": "<detail_content>"
+          },
+          "Integration Points": {
+            "Storage System Integration": "<detail_content>",
+            "Session Management Integration": "<detail_content>",
+            "Runtime System Integration": "<detail_content>",
+            "LLM Integration": "<detail_content>"
+          },
+          "Configuration and Extension": {
+            "Custom ConversationManager Implementation": "<detail_content>",
+            "Server Configuration": "<detail_content>"
+          },
+          "Status Management": {
+            "Conversation Status States": "<detail_content>",
+            "Runtime Status Tracking": "<detail_content>"
+          },
+          "Security Considerations": "<detail_content>",
+          "Error Handling and Recovery": {
+            "Connection Management": "<detail_content>",
+            "State Recovery": "<detail_content>"
+          },
+          "Monitoring and Observability": "<detail_content>",
+          "Related Modules": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "user_data_management",
+      "path": "[\"subpages\", 17]",
+      "content": {
+        "User Data Management Module": {
+          "Core Components": {
+            "SecretsStore": "<detail_content>",
+            "SettingsStore  ": "<detail_content>",
+            "UserSecrets": "<detail_content>",
+            "Settings": "<detail_content>"
+          },
+          "Architecture Overview": "<detail_content>",
+          "Component Relationships": "<detail_content>",
+          "Data Flow": "<detail_content>",
+          "Security Architecture": "<detail_content>",
+          "Key Features": {
+            "Extensible Storage Architecture": "<detail_content>",
+            "Secure Secret Management": "<detail_content>",
+            "User Settings Persistence": "<detail_content>",
+            "Multi-User Support": "<detail_content>"
+          },
+          "Integration Points": {
+            "Server System Integration": "<detail_content>",
+            "Storage System Integration": "<detail_content>",
+            "Configuration Integration": "<detail_content>"
+          },
+          "Usage Patterns": {
+            "Settings Management": "<detail_content>",
+            "Secrets Management": "<detail_content>",
+            "Event Stream Integration": "<detail_content>"
+          },
+          "Extension Points": {
+            "Custom Store Implementation": "<detail_content>",
+            "Configuration Integration": "<detail_content>"
+          },
+          "Security Considerations": {
+            "Secret Protection": "<detail_content>",
+            "Access Control": "<detail_content>",
+            "Data Validation": "<detail_content>"
+          },
+          "Performance Considerations": {
+            "Caching Strategy": "<detail_content>",
+            "Scalability": "<detail_content>"
+          },
+          "Related Modules": "<detail_content>",
+          "Future Enhancements": {
+            "Planned Features": "<detail_content>",
+            "Extension Opportunities": "<detail_content>"
+          }
+        }
+      }
+    },
+    {
+      "title": "file_storage_infrastructure",
+      "path": "[\"subpages\", 18]",
+      "content": {
+        "File Storage Infrastructure": {
+          "Overview": "<detail_content>",
+          "Architecture": {
+            "Core Components": "<detail_content>",
+            "Storage Implementations": {
+              "Local File Store": "<detail_content>",
+              "S3 File Store": "<detail_content>",
+              "Google Cloud File Store": "<detail_content>",
+              "In-Memory File Store": "<detail_content>"
+            },
+            "Decorator Pattern Implementation": "<detail_content>"
+          },
+          "Data Flow": {
+            "File Operations Flow": "<detail_content>",
+            "Configuration and Instantiation Flow": "<detail_content>"
+          },
+          "Integration Points": {
+            "Storage System Integration": "<detail_content>",
+            "Path Management": "<detail_content>"
+          },
+          "Configuration": {
+            "Environment Variables": {
+              "Local Storage": "<detail_content>",
+              "S3 Storage": "<detail_content>",
+              "Google Cloud Storage": "<detail_content>",
+              "Webhook Configuration": "<detail_content>"
+            },
+            "Factory Configuration": "<detail_content>"
+          },
+          "Error Handling": {
+            "Exception Hierarchy": "<detail_content>",
+            "Retry Logic": "<detail_content>"
+          },
+          "Performance Considerations": {
+            "Caching Strategy": "<detail_content>",
+            "Scalability Features": "<detail_content>",
+            "Monitoring and Observability": "<detail_content>"
+          },
+          "Security": {
+            "Access Control": "<detail_content>",
+            "Data Protection": "<detail_content>"
+          },
+          "Testing Strategy": {
+            "Unit Testing": "<detail_content>",
+            "Integration Testing": "<detail_content>"
+          },
+          "Future Enhancements": {
+            "Planned Features": "<detail_content>",
+            "Extension Points": "<detail_content>"
+          },
+          "Related Documentation": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "invariant_analysis",
+      "path": "[\"subpages\", 19]",
+      "content": {
+        "Invariant Analysis Module": {
+          "Overview": "<detail_content>",
+          "Architecture": "<detail_content>",
+          "Core Components": {
+            "InvariantAnalyzer": "<detail_content>",
+            "InvariantClient": "<detail_content>",
+            "Parser System": "<detail_content>"
+          },
+          "Integration Points": {
+            "Security System Integration": "<detail_content>",
+            "Runtime Dependencies": "<detail_content>"
+          },
+          "Data Flow": {
+            "Security Analysis Pipeline": "<detail_content>",
+            "Container Lifecycle": "<detail_content>"
+          },
+          "Configuration and Setup": {
+            "Docker Requirements": "<detail_content>",
+            "Policy Management": "<detail_content>",
+            "Session Management": "<detail_content>"
+          },
+          "Error Handling": {
+            "Container Management Errors": "<detail_content>",
+            "API Communication Errors": "<detail_content>"
+          },
+          "Performance Considerations": {
+            "Resource Management": "<detail_content>",
+            "Scalability Factors": "<detail_content>"
+          },
+          "Security Implications": {
+            "Isolation": "<detail_content>",
+            "Data Privacy": "<detail_content>"
+          },
+          "Usage Examples": {
+            "Basic Security Analysis": "<detail_content>",
+            "Custom Policy Analysis": "<detail_content>"
+          },
+          "Related Documentation": "<detail_content>",
+          "Future Enhancements": {
+            "Planned Features": "<detail_content>",
+            "Optimization Opportunities": "<detail_content>"
+          }
+        }
+      }
+    },
+    {
+      "title": "mcp_configuration",
+      "path": "[\"subpages\", 20]",
+      "content": {
+        "MCP Configuration Module": {
+          "Overview": "<detail_content>",
+          "Core Purpose": "<detail_content>",
+          "Architecture Overview": "<detail_content>",
+          "Component Architecture": {
+            "Core Configuration Classes": {
+              "OpenHandsMCPConfig": "<detail_content>",
+              "MCPConfig": "<detail_content>",
+              "Server Configuration Types": "<detail_content>"
+            }
+          },
+          "Data Flow and Processing": {
+            "Configuration Loading Flow": "<detail_content>",
+            "Server Configuration Processing": "<detail_content>"
+          },
+          "Integration with System Components": {
+            "Core Configuration Integration": "<detail_content>",
+            "Runtime System Integration": "<detail_content>",
+            "Server and API Integration": "<detail_content>"
+          },
+          "Configuration Validation": {
+            "URL Validation": "<detail_content>",
+            "Server Name Validation": "<detail_content>",
+            "Environment Variable Validation": "<detail_content>"
+          },
+          "Search Engine Integration": "<detail_content>",
+          "Configuration Examples": {
+            "TOML Configuration": "<detail_content>",
+            "Programmatic Configuration": "<detail_content>"
+          },
+          "Error Handling and Validation": {
+            "Common Validation Errors": "<detail_content>",
+            "Error Recovery Strategies": "<detail_content>"
+          },
+          "Extensibility and Customization": {
+            "Custom MCP Configuration Implementation": "<detail_content>",
+            "Enterprise Extensions": "<detail_content>"
+          },
+          "Performance Considerations": {
+            "Configuration Loading": "<detail_content>",
+            "Runtime Optimization": "<detail_content>"
+          },
+          "Security Features": {
+            "API Key Management": "<detail_content>",
+            "URL Security": "<detail_content>"
+          },
+          "Monitoring and Debugging": {
+            "Configuration Validation Logging": "<detail_content>",
+            "Server Health Monitoring": "<detail_content>"
+          },
+          "Future Enhancements": {
+            "Planned Features": "<detail_content>",
+            "API Evolution": "<detail_content>"
+          },
+          "Related Documentation": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "runtime_implementations",
+      "path": "[\"subpages\", 21]",
+      "content": {
+        "Runtime Implementations Module": {
+          "Overview": "<detail_content>",
+          "Purpose": "<detail_content>",
+          "Architecture Overview": "<detail_content>",
+          "Core Components": {
+            "LocalRuntime": "<detail_content>",
+            "CLIRuntime": "<detail_content>",
+            "KubernetesRuntime": "<detail_content>"
+          },
+          "Implementation Patterns": {
+            "Inheritance Hierarchy": "<detail_content>",
+            "Common Execution Flow": "<detail_content>"
+          },
+          "Sub-Module Documentation": {
+            "[Local Runtime](local_runtime.md)": "<detail_content>",
+            "[CLI Runtime](cli_runtime.md)": "<detail_content>",
+            "[Kubernetes Runtime](kubernetes_runtime.md)": "<detail_content>"
+          },
+          "Related Runtime Components": {
+            "[Runtime System](runtime_system.md)": "<detail_content>",
+            "[Builder System](builder_system.md)": "<detail_content>",
+            "[Plugin System](plugin_system.md)": "<detail_content>"
+          },
+          "Integration Points": {
+            "With Core Agent System": "<detail_content>",
+            "With Events and Actions": "<detail_content>",
+            "With LLM Integration": "<detail_content>"
+          },
+          "Configuration and Setup": "<detail_content>",
+          "Security Considerations": "<detail_content>",
+          "Performance Characteristics": "<detail_content>",
+          "Error Handling and Recovery": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "cli_runtime",
+      "path": "[\"subpages\", 22]",
+      "content": {
+        "CLI Runtime Module": {
+          "Overview": "<detail_content>",
+          "Core Architecture": "<detail_content>",
+          "Component Relationships": "<detail_content>",
+          "Data Flow Architecture": "<detail_content>",
+          "Key Features": {
+            "1. Cross-Platform Command Execution": "<detail_content>",
+            "2. Workspace Management": "<detail_content>",
+            "3. File System Operations": "<detail_content>",
+            "4. Security Features": "<detail_content>"
+          },
+          "Process Flow": "<detail_content>",
+          "Integration Points": {
+            "Runtime System Integration": "<detail_content>",
+            "Event System Integration": "<detail_content>",
+            "Agent System Integration": "<detail_content>"
+          },
+          "Configuration": {
+            "Basic Configuration": "<detail_content>",
+            "Environment Variables": "<detail_content>",
+            "MCP Configuration": "<detail_content>"
+          },
+          "Platform-Specific Features": {
+            "Windows Support": "<detail_content>",
+            "Unix/Linux Support": "<detail_content>"
+          },
+          "Security Considerations": {
+            "Workspace Isolation": "<detail_content>",
+            "Command Execution": "<detail_content>",
+            "File System Access": "<detail_content>"
+          },
+          "Error Handling": {
+            "Common Error Scenarios": "<detail_content>",
+            "Error Recovery": "<detail_content>"
+          },
+          "Performance Characteristics": {
+            "Command Execution": "<detail_content>",
+            "File Operations": "<detail_content>"
+          },
+          "Limitations": {
+            "Functional Limitations": "<detail_content>",
+            "Security Limitations": "<detail_content>"
+          },
+          "Usage Examples": {
+            "Basic Command Execution": "<detail_content>",
+            "File Operations": "<detail_content>",
+            "File Editing": "<detail_content>",
+            "Shell Output Streaming": "<detail_content>"
+          },
+          "Related Documentation": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "local_runtime",
+      "path": "[\"subpages\", 23]",
+      "content": {
+        "Local Runtime Module": {
+          "Overview": "<detail_content>",
+          "Architecture": {
+            "Core Components": "<detail_content>",
+            "Class Hierarchy": "<detail_content>"
+          },
+          "Core Functionality": {
+            "Server Management": {
+              "Global Server Tracking": "<detail_content>",
+              "Server Lifecycle": "<detail_content>"
+            },
+            "Workspace Management": {
+              "Workspace Isolation": "<detail_content>",
+              "Directory Structure": "<detail_content>"
+            },
+            "Platform-Specific Adaptations": {
+              "Windows Support": "<detail_content>",
+              "Unix/Linux Support": "<detail_content>"
+            }
+          },
+          "Dependencies and Integration": {
+            "Runtime System Integration": "<detail_content>",
+            "External Dependencies": "<detail_content>"
+          },
+          "Configuration and Setup": {
+            "Environment Variables": "<detail_content>",
+            "Dependency Requirements": {
+              "Required Dependencies": "<detail_content>",
+              "Platform-Specific Dependencies": "<detail_content>"
+            },
+            "Setup Process": "<detail_content>"
+          },
+          "Process Management": {
+            "Server Creation Process": "<detail_content>",
+            "Warm Server Management": {
+              "Warm Server Lifecycle": "<detail_content>",
+              "Benefits": "<detail_content>"
+            }
+          },
+          "Error Handling and Recovery": {
+            "Connection Management": "<detail_content>",
+            "Error Types and Handling": "<detail_content>"
+          },
+          "Security Considerations": {
+            "Sandbox Limitations": "<detail_content>",
+            "Recommended Usage": "<detail_content>",
+            "Security Analyzer Integration": "<detail_content>"
+          },
+          "Performance Optimization": {
+            "Warm Server Strategy": "<detail_content>",
+            "Resource Management": "<detail_content>"
+          },
+          "Integration Examples": {
+            "Basic Usage": "<detail_content>",
+            "With Warm Servers": "<detail_content>"
+          },
+          "Related Documentation": "<detail_content>",
+          "Troubleshooting": {
+            "Common Issues": "<detail_content>",
+            "Debug Configuration": "<detail_content>",
+            "Monitoring": "<detail_content>"
+          }
+        }
+      }
+    },
+    {
+      "title": "web_infrastructure",
+      "path": "[\"subpages\", 24]",
+      "content": {
+        "Web Infrastructure Module": {
+          "Overview": "<detail_content>",
+          "Core Components": {
+            "RateLimitMiddleware": "<detail_content>"
+          },
+          "Architecture": "<detail_content>",
+          "Component Details": {
+            "RateLimitMiddleware": "<detail_content>",
+            "Supporting Components": {
+              "InMemoryRateLimiter": "<detail_content>",
+              "LocalhostCORSMiddleware": "<detail_content>",
+              "CacheControlMiddleware": "<detail_content>"
+            }
+          },
+          "Data Flow": "<detail_content>",
+          "Integration Points": {
+            "Server and API Module": "<detail_content>",
+            "Configuration Management": "<detail_content>"
+          },
+          "Security Considerations": {
+            "Rate Limiting Strategy": "<detail_content>",
+            "CORS Security Model": "<detail_content>"
+          },
+          "Performance Optimization": {
+            "Caching Strategy": "<detail_content>",
+            "Memory Management": "<detail_content>"
+          },
+          "Configuration Examples": {
+            "Rate Limiting Configuration": "<detail_content>",
+            "CORS Configuration": "<detail_content>"
+          },
+          "Error Handling": {
+            "Rate Limit Responses": "<detail_content>",
+            "CORS Failures": "<detail_content>"
+          },
+          "Monitoring and Observability": {
+            "Rate Limiting Metrics": "<detail_content>",
+            "Performance Monitoring": "<detail_content>"
+          },
+          "Future Enhancements": {
+            "Distributed Rate Limiting": "<detail_content>",
+            "Advanced Security Features": "<detail_content>"
+          },
+          "Dependencies": "<detail_content>",
+          "Related Documentation": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "codeact_agents",
+      "path": "[\"subpages\", 25]",
+      "content": {
+        "CodeAct Agents Module": {
+          "Architecture Overview": "<detail_content>",
+          "Core Components": {
+            "CodeActAgent": "<detail_content>",
+            "LocAgent": "<detail_content>",
+            "ReadOnlyAgent": "<detail_content>"
+          },
+          "Tool System Architecture": "<detail_content>",
+          "Agent Lifecycle and Processing Flow": "<detail_content>",
+          "Memory and Context Management": "<detail_content>",
+          "Configuration and Customization": {
+            "Agent Configuration Options": "<detail_content>"
+          },
+          "Integration Points": {
+            "Dependencies on Other Modules": "<detail_content>",
+            "Runtime Requirements": "<detail_content>"
+          },
+          "Usage Patterns": {
+            "CodeActAgent Usage": "<detail_content>",
+            "LocAgent Usage": "<detail_content>",
+            "ReadOnlyAgent Usage": "<detail_content>"
+          },
+          "Function Calling Architecture": "<detail_content>",
+          "Error Handling and Safety": {
+            "Safety Mechanisms": "<detail_content>",
+            "Error Recovery": "<detail_content>"
+          },
+          "Performance Considerations": {
+            "Memory Optimization": "<detail_content>",
+            "Execution Efficiency": "<detail_content>"
+          },
+          "Future Extensions": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "event_foundation",
+      "path": "[\"subpages\", 26]",
+      "content": {
+        "Event Foundation Module": {
+          "Overview": "<detail_content>",
+          "Architecture": "<detail_content>",
+          "Core Components": {
+            "Event Base Class": "<detail_content>",
+            "Action Class": "<detail_content>",
+            "Observation Class": "<detail_content>"
+          },
+          "Event Source Classification": "<detail_content>",
+          "Integration Points": {
+            "Core Agent System": "<detail_content>",
+            "Event Streaming": "<detail_content>",
+            "Type System Integration": "<detail_content>"
+          },
+          "Data Flow": "<detail_content>",
+          "Specialized Event Types": {
+            "File Operations": "<detail_content>",
+            "Microagent Integration": "<detail_content>"
+          },
+          "Event Lifecycle Management": "<detail_content>",
+          "Best Practices": {
+            "Event Creation": "<detail_content>",
+            "Metadata Management": "<detail_content>",
+            "Security Considerations": "<detail_content>"
+          },
+          "Performance Considerations": "<detail_content>",
+          "Related Modules": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "conversation_management",
+      "path": "[\"subpages\", 27]",
+      "content": {
+        "Conversation Management Module": {
+          "Overview": "<detail_content>",
+          "Architecture": "<detail_content>",
+          "Core Components": {
+            "ConversationStore": "<detail_content>",
+            "ConversationMetadata": "<detail_content>",
+            "ConversationMetadataResultSet": "<detail_content>"
+          },
+          "Data Flow": "<detail_content>",
+          "Integration Points": {
+            "Server Integration": "<detail_content>",
+            "Event System Integration": "<detail_content>",
+            "Storage System Integration": "<detail_content>"
+          },
+          "Component Relationships": "<detail_content>",
+          "Usage Patterns": {
+            "Basic Conversation Operations": "<detail_content>",
+            "Conversation Lifecycle Management": "<detail_content>"
+          },
+          "Configuration and Extensibility": {
+            "Custom Store Implementation": "<detail_content>",
+            "Configuration Integration": "<detail_content>"
+          },
+          "Security Considerations": {
+            "Access Control": "<detail_content>",
+            "Data Protection": "<detail_content>"
+          },
+          "Performance Characteristics": {
+            "Scalability Features": "<detail_content>",
+            "Optimization Strategies": "<detail_content>"
+          },
+          "Error Handling": {
+            "Exception Management": "<detail_content>",
+            "Monitoring and Logging": "<detail_content>"
+          },
+          "Future Considerations": {
+            "Planned Enhancements": "<detail_content>",
+            "Extension Points": "<detail_content>"
+          },
+          "Related Documentation": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "platform_managers",
+      "path": "[\"subpages\", 28]",
+      "content": {
+        "Platform Managers Module": {
+          "Architecture Overview": "<detail_content>",
+          "Component Dependencies": "<detail_content>",
+          "Core Components": {
+            "GithubManager": "<detail_content>",
+            "GitlabManager": "<detail_content>",
+            "JiraManager": "<detail_content>",
+            "SlackManager": "<detail_content>"
+          },
+          "Data Flow Architecture": "<detail_content>",
+          "Integration Patterns": {
+            "Common Manager Interface": "<detail_content>",
+            "Authentication Strategy": "<detail_content>",
+            "Error Handling Strategy": "<detail_content>"
+          },
+          "Security Considerations": {
+            "Webhook Validation": "<detail_content>",
+            "Token Management": "<detail_content>"
+          },
+          "Configuration Requirements": {
+            "Environment Variables": "<detail_content>",
+            "Database Schema": "<detail_content>"
+          },
+          "Performance Considerations": {
+            "Async Processing": "<detail_content>",
+            "Caching Strategy": "<detail_content>"
+          },
+          "Integration with Core Systems": {
+            "Conversation Management": "<detail_content>",
+            "Agent Orchestration": "<detail_content>",
+            "Storage Integration": "<detail_content>"
+          },
+          "Monitoring and Observability": {
+            "Logging Strategy": "<detail_content>",
+            "Health Checks": "<detail_content>"
+          },
+          "Future Extensibility": "<detail_content>",
+          "Related Documentation": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "plugin_system",
+      "path": "[\"subpages\", 29]",
+      "content": {
+        "Plugin System": {
+          "Overview": "<detail_content>",
+          "Architecture": "<detail_content>",
+          "Core Components": {
+            "Plugin Base Class": "<detail_content>",
+            "PluginRequirement": "<detail_content>"
+          },
+          "Integration with Runtime System": {
+            "Plugin Lifecycle": "<detail_content>"
+          },
+          "Plugin Types and Examples": {
+            "Built-in Plugin Types": "<detail_content>",
+            "Plugin Implementation Pattern": "<detail_content>"
+          },
+          "Data Flow": "<detail_content>",
+          "Configuration and Management": {
+            "Plugin Requirements Configuration": "<detail_content>",
+            "Dynamic Plugin Loading": "<detail_content>"
+          },
+          "Error Handling and Resilience": {
+            "Error Handling Strategies": "<detail_content>"
+          },
+          "Security Considerations": {
+            "Plugin Isolation": "<detail_content>",
+            "Security Analysis Integration": "<detail_content>"
+          },
+          "Performance Considerations": {
+            "Asynchronous Operations": "<detail_content>",
+            "Optimization Strategies": "<detail_content>"
+          },
+          "Integration Points": {
+            "Event System Integration": "<detail_content>",
+            "Runtime System Integration": "<detail_content>",
+            "LLM Integration": "<detail_content>"
+          },
+          "Development Guidelines": {
+            "Creating Custom Plugins": "<detail_content>",
+            "Testing Plugins": "<detail_content>",
+            "Best Practices": "<detail_content>"
+          },
+          "Future Enhancements": {
+            "Planned Features": "<detail_content>",
+            "Extension Points": "<detail_content>"
+          },
+          "Related Documentation": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "authentication_system",
+      "path": "[\"subpages\", 30]",
+      "content": {
+        "Authentication System": {
+          "Overview": "<detail_content>",
+          "Architecture": "<detail_content>",
+          "Core Components": {
+            "UserAuth (Abstract Base Class)": "<detail_content>",
+            "UserVerifier (Enterprise)": "<detail_content>"
+          },
+          "Authentication Flow": "<detail_content>",
+          "User Verification Process": "<detail_content>",
+          "Data Flow": "<detail_content>",
+          "Component Interactions": "<detail_content>",
+          "Key Features": {
+            "Flexible Authentication Architecture": "<detail_content>",
+            "Enterprise Access Control": "<detail_content>",
+            "Secure Session Management": "<detail_content>",
+            "User Data Management": "<detail_content>",
+            "Middleware Integration": "<detail_content>"
+          },
+          "Security Features": {
+            "Token Management": "<detail_content>",
+            "Access Control": "<detail_content>",
+            "Error Handling": "<detail_content>"
+          },
+          "Configuration": {
+            "Environment Variables": "<detail_content>",
+            "Server Configuration": "<detail_content>"
+          },
+          "Integration Points": {
+            "Storage System Integration": "<detail_content>",
+            "Configuration Management": "<detail_content>",
+            "Session Management": "<detail_content>"
+          },
+          "Implementation Examples": {
+            "Custom Authentication Provider": "<detail_content>",
+            "User Verification Setup": "<detail_content>"
+          },
+          "Error Handling": "<detail_content>",
+          "Best Practices": {
+            "Security": "<detail_content>",
+            "Performance": "<detail_content>",
+            "Monitoring": "<detail_content>"
+          },
+          "Future Enhancements": {
+            "Planned Features": "<detail_content>",
+            "Extensibility": "<detail_content>"
+          },
+          "Related Documentation": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "shared_infrastructure",
+      "path": "[\"subpages\", 31]",
+      "content": {
+        "Shared Infrastructure Module": {
+          "Overview": "<detail_content>",
+          "Architecture": "<detail_content>",
+          "Core Components": {
+            "JobResult": "<detail_content>",
+            "JobContext": "<detail_content>",
+            "Message": "<detail_content>",
+            "SourceType": "<detail_content>",
+            "GithubResolverJob": "<detail_content>"
+          },
+          "Dependencies": "<detail_content>",
+          "Integration Patterns": {
+            "Job Lifecycle Management": "<detail_content>",
+            "Cross-Platform Messaging": "<detail_content>"
+          },
+          "Usage Examples": {
+            "Creating a Job Context": "<detail_content>",
+            "Processing Job Results": "<detail_content>"
+          },
+          "Related Modules": "<detail_content>",
+          "Extension Points": "<detail_content>",
+          "Best Practices": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "configuration_management",
+      "path": "[\"subpages\", 32]",
+      "content": {
+        "Configuration Management Module": {
+          "Architecture Overview": "<detail_content>",
+          "Core Components": {
+            "ServerConfigInterface": "<detail_content>",
+            "SaaSServerConfig": "<detail_content>"
+          },
+          "Configuration Hierarchy": "<detail_content>",
+          "Configuration Flow": "<detail_content>",
+          "Environment Variables": {
+            "Core Configuration": "<detail_content>",
+            "Feature Flags": "<detail_content>",
+            "Authentication Providers": "<detail_content>",
+            "Maintenance": "<detail_content>"
+          },
+          "Integration Points": {
+            "Storage System Integration": "<detail_content>",
+            "Authentication System Integration": "<detail_content>",
+            "Git Integrations": "<detail_content>"
+          },
+          "Security Features": {
+            "JWT Token Management": "<detail_content>",
+            "Webhook Signature Verification": "<detail_content>",
+            "Security Considerations": "<detail_content>"
+          },
+          "Configuration Validation": "<detail_content>",
+          "Frontend Configuration": "<detail_content>",
+          "Error Handling": {
+            "Configuration Errors": "<detail_content>",
+            "Runtime Errors": "<detail_content>"
+          },
+          "Best Practices": {
+            "Environment Management": "<detail_content>",
+            "Security": "<detail_content>",
+            "Monitoring": "<detail_content>"
+          },
+          "Related Modules": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "service_foundation",
+      "path": "[\"subpages\", 33]",
+      "content": {
+        "Service Foundation Module": {
+          "Overview": "<detail_content>",
+          "Core Purpose": "<detail_content>",
+          "Architecture Overview": "<detail_content>",
+          "Core Components": {
+            "GitService Protocol": "<detail_content>",
+            "BaseGitService Abstract Base Class": "<detail_content>"
+          },
+          "Data Models": {
+            "Core Entity Models": "<detail_content>",
+            "Enumeration Types": "<detail_content>"
+          },
+          "Microagent Integration": "<detail_content>",
+          "Task Suggestion System": "<detail_content>",
+          "Error Handling": "<detail_content>",
+          "Integration Dependencies": "<detail_content>",
+          "Provider Implementation Pattern": "<detail_content>",
+          "Configuration and Authentication": "<detail_content>",
+          "Key Features": {
+            "Repository Management": "<detail_content>",
+            "Microagent Discovery": "<detail_content>",
+            "Task Automation": "<detail_content>",
+            "Performance Optimization": "<detail_content>"
+          },
+          "Usage Patterns": "<detail_content>",
+          "Related Documentation": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "session_management",
+      "path": "[\"subpages\", 34]",
+      "content": {
+        "Session Management Module": {
+          "Overview": "<detail_content>",
+          "Architecture": "<detail_content>",
+          "Core Components": {
+            "WebSession": "<detail_content>",
+            "AgentSession": "<detail_content>"
+          },
+          "Component Interactions": "<detail_content>",
+          "Session Lifecycle": "<detail_content>",
+          "Data Flow": "<detail_content>",
+          "Key Features": {
+            "Real-time Communication": "<detail_content>",
+            "Session State Management": "<detail_content>",
+            "Resource Management": "<detail_content>",
+            "Error Handling": "<detail_content>"
+          },
+          "Integration Points": {
+            "Dependencies on Other Modules": "<detail_content>",
+            "Configuration Integration": "<detail_content>"
+          },
+          "Usage Patterns": {
+            "Session Creation": "<detail_content>",
+            "Event Handling": "<detail_content>",
+            "Session Cleanup": "<detail_content>"
+          },
+          "Performance Considerations": {
+            "Asynchronous Operations": "<detail_content>",
+            "Resource Optimization": "<detail_content>",
+            "Scalability Features": "<detail_content>"
+          },
+          "Security Considerations": {
+            "Session Security": "<detail_content>",
+            "Data Protection": "<detail_content>"
+          },
+          "Monitoring and Observability": {
+            "Logging Integration": "<detail_content>",
+            "Health Monitoring": "<detail_content>"
+          },
+          "Error Handling Strategies": {
+            "Connection Management": "<detail_content>",
+            "Resource Recovery": "<detail_content>"
+          }
+        }
+      }
+    },
+    {
+      "title": "kubernetes_runtime",
+      "path": "[\"subpages\", 35]",
+      "content": {
+        "Kubernetes Runtime Module": {
+          "Overview": "<detail_content>",
+          "Architecture": "<detail_content>",
+          "Core Components": {
+            "KubernetesRuntime Class": "<detail_content>"
+          },
+          "Resource Management": {
+            "Kubernetes Resource Lifecycle": "<detail_content>",
+            "Resource Naming Convention": "<detail_content>"
+          },
+          "Network Configuration": {
+            "Port Management": "<detail_content>",
+            "Service Architecture": "<detail_content>"
+          },
+          "Data Persistence": {
+            "Workspace Management": "<detail_content>"
+          },
+          "Integration Points": {
+            "Runtime System Integration": "<detail_content>",
+            "Configuration Dependencies": "<detail_content>"
+          },
+          "Operational Features": {
+            "Health Monitoring": "<detail_content>",
+            "Development Support": "<detail_content>",
+            "Security Features": "<detail_content>"
+          },
+          "Error Handling": {
+            "Exception Management": "<detail_content>",
+            "Recovery Mechanisms": "<detail_content>"
+          },
+          "Performance Considerations": {
+            "Resource Optimization": "<detail_content>",
+            "Scalability Features": "<detail_content>"
+          },
+          "Usage Patterns": {
+            "Basic Runtime Creation": "<detail_content>",
+            "Development Workflow": "<detail_content>"
+          },
+          "Monitoring and Observability": {
+            "Logging Integration": "<detail_content>",
+            "Health Endpoints": "<detail_content>"
+          },
+          "Best Practices": {
+            "Configuration Management": "<detail_content>",
+            "Operational Guidelines": "<detail_content>"
+          },
+          "Related Documentation": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "core_llm_implementation",
+      "path": "[\"subpages\", 36]",
+      "content": {
+        "Core LLM Implementation": {
+          "Overview": "<detail_content>",
+          "Architecture": "<detail_content>",
+          "Component Relationships": "<detail_content>",
+          "Core Components": {
+            "LLM Class": "<detail_content>",
+            "AsyncLLM Class": "<detail_content>",
+            "StreamingLLM Class": "<detail_content>"
+          },
+          "Data Flow": "<detail_content>",
+          "Feature Detection and Capabilities": "<detail_content>",
+          "Function Calling Implementation": "<detail_content>",
+          "Integration Points": {
+            "With Core Agent System": "<detail_content>",
+            "With Router System": "<detail_content>",
+            "With Utility Mixins": "<detail_content>",
+            "With Events and Actions": "<detail_content>"
+          },
+          "Error Handling and Resilience": "<detail_content>",
+          "Performance and Monitoring": {
+            "Metrics Collection": "<detail_content>",
+            "Optimization Features": "<detail_content>"
+          },
+          "Configuration and Customization": "<detail_content>",
+          "Security Considerations": "<detail_content>",
+          "Usage Examples": {
+            "Basic Synchronous Usage": "<detail_content>",
+            "Asynchronous Usage": "<detail_content>",
+            "Streaming Usage": "<detail_content>"
+          },
+          "Future Enhancements": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "state_management",
+      "path": "[\"subpages\", 37]",
+      "content": {
+        "State Management Module": {
+          "Overview": "<detail_content>",
+          "Architecture": "<detail_content>",
+          "Core Components": {
+            "State Class": "<detail_content>",
+            "Control Flags System": {
+              "IterationControlFlag": "<detail_content>",
+              "BudgetControlFlag": "<detail_content>"
+            },
+            "TrafficControlState (Deprecated)": "<detail_content>"
+          },
+          "Data Flow": "<detail_content>",
+          "Integration Points": {
+            "Core Agent System Integration": "<detail_content>",
+            "Storage System Integration": "<detail_content>",
+            "Events and Actions Integration": "<detail_content>"
+          },
+          "State Lifecycle": "<detail_content>",
+          "Key Features": {
+            "Session Persistence": "<detail_content>",
+            "Multi-Agent Support": "<detail_content>",
+            "Resource Control": "<detail_content>",
+            "Memory and History Management": "<detail_content>"
+          },
+          "Usage Patterns": {
+            "Basic State Management": "<detail_content>",
+            "Session Persistence": "<detail_content>",
+            "Multi-Agent Delegation": "<detail_content>"
+          },
+          "Error Handling and Recovery": "<detail_content>",
+          "Performance Considerations": "<detail_content>",
+          "Future Enhancements": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "type_definitions",
+      "path": "[\"subpages\", 38]",
+      "content": {
+        "Type Definitions Module": {
+          "Overview": "<detail_content>",
+          "Core Components": {
+            "ActionType Enumeration": "<detail_content>",
+            "ObservationType Enumeration": "<detail_content>"
+          },
+          "Architecture Overview": "<detail_content>",
+          "ActionType Detailed Specification": {
+            "Communication Actions": "<detail_content>",
+            "Task Management Actions": "<detail_content>",
+            "File Operations": "<detail_content>",
+            "Code Execution": "<detail_content>",
+            "Web Interaction": "<detail_content>",
+            "Advanced Operations": "<detail_content>",
+            "Version Control": "<detail_content>",
+            "State Management": "<detail_content>"
+          },
+          "ObservationType Detailed Specification": {
+            "File Operation Results": "<detail_content>",
+            "Execution Results": "<detail_content>",
+            "Web Operation Results": "<detail_content>",
+            "Communication Results": "<detail_content>",
+            "Task Management Results": "<detail_content>",
+            "Advanced Operation Results": "<detail_content>",
+            "State and Control Results": "<detail_content>"
+          },
+          "Data Flow Architecture": "<detail_content>",
+          "Integration Patterns": {
+            "Type Safety Pattern": "<detail_content>",
+            "Event Processing Flow": "<detail_content>"
+          },
+          "Module Dependencies": {
+            "Upstream Dependencies": "<detail_content>",
+            "Downstream Dependencies": "<detail_content>"
+          },
+          "Usage Patterns": {
+            "Action Type Usage": "<detail_content>",
+            "Observation Type Usage": "<detail_content>"
+          },
+          "Extension Guidelines": {
+            "Adding New Action Types": "<detail_content>",
+            "Adding New Observation Types": "<detail_content>"
+          },
+          "Quality Assurance": {
+            "Type Safety Features": "<detail_content>",
+            "Consistency Guarantees": "<detail_content>"
+          },
+          "Related Documentation": "<detail_content>",
+          "Summary": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "llm_risk_analysis",
+      "path": "[\"subpages\", 39]",
+      "content": {
+        "LLM Risk Analysis Module": {
+          "Overview": "<detail_content>",
+          "Core Purpose": "<detail_content>",
+          "Architecture": "<detail_content>",
+          "Component Details": {
+            "LLMRiskAnalyzer": {
+              "Key Responsibilities": "<detail_content>",
+              "Risk Assessment Flow": "<detail_content>"
+            }
+          },
+          "Integration with Security System": {
+            "Security Analyzer Hierarchy": "<detail_content>",
+            "Risk Level Enumeration": "<detail_content>"
+          },
+          "Data Flow": "<detail_content>",
+          "API Interface": {
+            "Security Risk Assessment": "<detail_content>",
+            "API Request Handling": "<detail_content>"
+          },
+          "Error Handling and Logging": {
+            "Warning Scenarios": "<detail_content>",
+            "Logging Strategy": "<detail_content>"
+          },
+          "Dependencies": {
+            "Internal Dependencies": "<detail_content>",
+            "External Dependencies": "<detail_content>"
+          },
+          "Usage Patterns": {
+            "Basic Implementation": "<detail_content>",
+            "Integration with Security Pipeline": "<detail_content>"
+          },
+          "Configuration and Deployment": "<detail_content>",
+          "Future Considerations": {
+            "Potential Enhancements": "<detail_content>",
+            "Scalability Considerations": "<detail_content>"
+          },
+          "Related Documentation": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "builder_system",
+      "path": "[\"subpages\", 40]",
+      "content": {
+        "Builder System Documentation": {
+          "Overview": "<detail_content>",
+          "Core Architecture": {
+            "RuntimeBuilder Abstract Base Class": "<detail_content>",
+            "Key Methods": {
+              "build()": "<detail_content>",
+              "image_exists()": "<detail_content>"
+            }
+          },
+          "Integration with Runtime System": {
+            "Runtime Dependencies": "<detail_content>"
+          },
+          "Build Process Flow": "<detail_content>",
+          "Error Handling": {
+            "AgentRuntimeBuildError": "<detail_content>",
+            "Common Error Scenarios": "<detail_content>"
+          },
+          "Configuration Integration": "<detail_content>",
+          "Plugin Integration": {
+            "Plugin-Aware Building": "<detail_content>",
+            "Build-Time Plugin Setup": "<detail_content>"
+          },
+          "Security Considerations": {
+            "Build Security": "<detail_content>",
+            "Image Security": "<detail_content>"
+          },
+          "Performance Optimization": {
+            "Build Caching": "<detail_content>",
+            "Resource Management": "<detail_content>"
+          },
+          "Extension Points": {
+            "Custom Builder Implementation": "<detail_content>",
+            "Builder Factory Pattern": "<detail_content>"
+          },
+          "Monitoring and Observability": {
+            "Build Metrics": "<detail_content>",
+            "Logging and Debugging": "<detail_content>"
+          },
+          "Related Documentation": "<detail_content>",
+          "Future Enhancements": {
+            "Planned Features": "<detail_content>",
+            "Extensibility Roadmap": "<detail_content>"
+          }
+        }
+      }
+    },
+    {
+      "title": "api_services",
+      "path": "[\"subpages\", 41]",
+      "content": {
+        "API Services Module": {
+          "Overview": "<detail_content>",
+          "Architecture Overview": "<detail_content>",
+          "Core Components": {
+            "OpenHands Service": "<detail_content>",
+            "AuthService": "<detail_content>",
+            "GitService": "<detail_content>",
+            "UserService": "<detail_content>"
+          },
+          "Data Flow Architecture": "<detail_content>",
+          "Integration Points": {
+            "Server and API Integration": "<detail_content>",
+            "Storage System Integration": "<detail_content>",
+            "Git Integrations": "<detail_content>"
+          },
+          "Error Handling and Resilience": "<detail_content>",
+          "Security Considerations": {
+            "Authentication Security": "<detail_content>",
+            "Data Protection": "<detail_content>"
+          },
+          "Performance Optimizations": {
+            "Request Optimization": "<detail_content>",
+            "Caching Strategy": "<detail_content>"
+          },
+          "Usage Patterns": {
+            "Conversation Management": "<detail_content>",
+            "File Operations": "<detail_content>",
+            "Git Operations": "<detail_content>"
+          },
+          "Future Enhancements": {
+            "Planned Improvements": "<detail_content>",
+            "Scalability Considerations": "<detail_content>"
+          },
+          "Dependencies": {
+            "Internal Dependencies": "<detail_content>",
+            "External Dependencies": "<detail_content>"
+          },
+          "Conclusion": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "action_processing",
+      "path": "[\"subpages\", 42]",
+      "content": {
+        "Action Processing Module": {
+          "Overview": {
+            "Key Responsibilities": "<detail_content>"
+          },
+          "Architecture": "<detail_content>",
+          "Core Components": {
+            "ResponseParser (Abstract Base Class)": {
+              "Key Methods": "<detail_content>",
+              "Design Pattern": "<detail_content>"
+            },
+            "ActionParser (Abstract Base Class)": {
+              "Key Methods": "<detail_content>",
+              "Chain of Responsibility": "<detail_content>"
+            },
+            "ActionParseError": "<detail_content>"
+          },
+          "Data Flow": "<detail_content>",
+          "Integration with Core System": {
+            "Relationship with Agent Management": "<detail_content>",
+            "Relationship with Events and Actions": "<detail_content>",
+            "Relationship with State Management": "<detail_content>"
+          },
+          "Implementation Patterns": {
+            "Extensibility Pattern": "<detail_content>",
+            "Error Handling Pattern": "<detail_content>"
+          },
+          "Configuration and Customization": {
+            "Parser Registration": "<detail_content>",
+            "Response Format Support": "<detail_content>"
+          },
+          "Error Handling and Debugging": {
+            "Common Error Scenarios": "<detail_content>",
+            "Debugging Support": "<detail_content>"
+          },
+          "Performance Considerations": {
+            "Parser Efficiency": "<detail_content>",
+            "Memory Management": "<detail_content>"
+          },
+          "Future Extensions": {
+            "Potential Enhancements": "<detail_content>",
+            "Integration Opportunities": "<detail_content>"
+          },
+          "Related Documentation": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "provider_implementations",
+      "path": "[\"subpages\", 43]",
+      "content": {
+        "Provider Implementations Module": {
+          "Overview": "<detail_content>",
+          "Architecture": "<detail_content>",
+          "Core Components": {
+            "GitHubMixinBase": "<detail_content>",
+            "GitLabMixinBase": "<detail_content>",
+            "BitBucketMixinBase": "<detail_content>"
+          },
+          "Data Flow": {
+            "Request Processing Flow": "<detail_content>",
+            "User Information Retrieval": "<detail_content>"
+          },
+          "Component Interactions": {
+            "Provider Integration Pattern": "<detail_content>"
+          },
+          "Error Handling Strategy": {
+            "HTTP Error Processing": "<detail_content>"
+          },
+          "Integration Points": {
+            "Service Foundation Integration": "<detail_content>",
+            "Authentication Flow": "<detail_content>"
+          },
+          "Configuration and Setup": {
+            "Provider-Specific Configuration": "<detail_content>"
+          },
+          "Performance Considerations": {
+            "Request Optimization": "<detail_content>",
+            "Pagination Strategies": "<detail_content>"
+          },
+          "Security Features": {
+            "Token Management": "<detail_content>"
+          },
+          "Extension Points": {
+            "Adding New Providers": "<detail_content>",
+            "Custom Authentication": "<detail_content>"
+          },
+          "Dependencies": {
+            "Internal Dependencies": "<detail_content>",
+            "External Dependencies": "<detail_content>"
+          },
+          "Testing Strategy": {
+            "Provider Testing Pattern": "<detail_content>"
+          },
+          "Future Enhancements": {
+            "Planned Improvements": "<detail_content>",
+            "Extensibility Roadmap": "<detail_content>"
+          }
+        }
+      }
+    },
+    {
+      "title": "event_streaming",
+      "path": "[\"subpages\", 44]",
+      "content": {
+        "Event Streaming Module": {
+          "Overview": "<detail_content>",
+          "Architecture": "<detail_content>",
+          "Core Components": {
+            "EventStreamSubscriber": "<detail_content>",
+            "EventStoreABC": "<detail_content>",
+            "EventStream Implementation": "<detail_content>"
+          },
+          "Event Flow Architecture": "<detail_content>",
+          "Data Flow Patterns": "<detail_content>",
+          "Component Interactions": "<detail_content>",
+          "Key Features": {
+            "Thread-Safe Event Processing": "<detail_content>",
+            "Caching Strategy": "<detail_content>",
+            "Secret Management": "<detail_content>",
+            "Error Handling": "<detail_content>"
+          },
+          "Integration Points": {
+            "With Event Foundation": "<detail_content>",
+            "With Storage System": "<detail_content>",
+            "With Core Agent System": "<detail_content>",
+            "With Server and API": "<detail_content>"
+          },
+          "Usage Patterns": {
+            "Basic Subscription": "<detail_content>",
+            "Event Filtering and Search": "<detail_content>",
+            "Session Management": "<detail_content>"
+          },
+          "Performance Considerations": {
+            "Scalability Features": "<detail_content>",
+            "Memory Management": "<detail_content>"
+          },
+          "Configuration": "<detail_content>",
+          "Error Scenarios and Recovery": {
+            "Common Error Patterns": "<detail_content>",
+            "Recovery Mechanisms": "<detail_content>"
+          },
+          "Monitoring and Observability": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "security_infrastructure",
+      "path": "[\"subpages\", 45]",
+      "content": {
+        "Security Infrastructure Module": {
+          "Overview": "<detail_content>",
+          "Architecture": "<detail_content>",
+          "Core Components": {
+            "SetAuthCookieMiddleware": {
+              "Key Responsibilities": "<detail_content>",
+              "Authentication Flow": "<detail_content>"
+            }
+          },
+          "Security Policies": {
+            "Terms of Service Enforcement": "<detail_content>",
+            "Email Verification Requirements": "<detail_content>",
+            "Endpoint Protection Strategy": "<detail_content>"
+          },
+          "Integration Points": {
+            "Authentication System Integration": "<detail_content>",
+            "Server Infrastructure Integration": "<detail_content>",
+            "Configuration Management": "<detail_content>"
+          },
+          "Security Features": {
+            "Token Security": "<detail_content>",
+            "Error Handling and Logging": "<detail_content>"
+          },
+          "Configuration": {
+            "Environment Variables": "<detail_content>",
+            "Deployment Considerations": "<detail_content>"
+          },
+          "Monitoring and Observability": {
+            "Security Metrics": "<detail_content>",
+            "Audit Trail": "<detail_content>"
+          },
+          "Best Practices": {
+            "Security Hardening": "<detail_content>",
+            "Performance Optimization": "<detail_content>"
+          },
+          "Related Documentation": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "router_system",
+      "path": "[\"subpages\", 46]",
+      "content": {
+        "Router System Documentation": {
+          "Overview": "<detail_content>",
+          "Architecture": "<detail_content>",
+          "Core Components": {
+            "RouterLLM Base Class": "<detail_content>",
+            "MultimodalRouter Implementation": "<detail_content>"
+          },
+          "System Integration": "<detail_content>",
+          "Configuration System": {
+            "Model Routing Configuration": "<detail_content>",
+            "Integration with Agent Configuration": "<detail_content>"
+          },
+          "Routing Strategies": {
+            "Content-Based Routing": "<detail_content>",
+            "Performance Optimization": "<detail_content>"
+          },
+          "Metrics and Monitoring": "<detail_content>",
+          "Extension Points": {
+            "Custom Router Implementation": "<detail_content>",
+            "Configuration Extension": "<detail_content>"
+          },
+          "Error Handling and Resilience": "<detail_content>",
+          "Performance Considerations": {
+            "Optimization Strategies": "<detail_content>",
+            "Resource Management": "<detail_content>"
+          },
+          "Dependencies": "<detail_content>",
+          "Future Enhancements": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "kubernetes_configuration",
+      "path": "[\"subpages\", 47]",
+      "content": {
+        "Kubernetes Configuration Module": {
+          "Overview": "<detail_content>",
+          "Architecture": "<detail_content>",
+          "Core Components": {
+            "KubernetesConfig": {
+              "Resource Management": "<detail_content>",
+              "Networking Configuration": "<detail_content>",
+              "Security and Access Control": "<detail_content>",
+              "Namespace Management": "<detail_content>"
+            }
+          },
+          "Configuration Schema": "<detail_content>",
+          "Configuration Parameters": {
+            "Core Settings": "<detail_content>",
+            "Resource Configuration": "<detail_content>",
+            "Storage Configuration": "<detail_content>",
+            "Security Configuration": "<detail_content>",
+            "Scheduling Configuration": "<detail_content>"
+          },
+          "Integration with Runtime System": "<detail_content>",
+          "Configuration Loading": "<detail_content>",
+          "Error Handling and Validation": "<detail_content>",
+          "Dependencies": "<detail_content>",
+          "Usage Examples": {
+            "Basic Configuration": "<detail_content>",
+            "Advanced Configuration with Security": "<detail_content>",
+            "Loading from TOML": "<detail_content>"
+          },
+          "Best Practices": {
+            "Resource Planning": "<detail_content>",
+            "Security Considerations": "<detail_content>",
+            "Operational Excellence": "<detail_content>"
+          },
+          "Monitoring and Observability": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "agent_management",
+      "path": "[\"subpages\", 48]",
+      "content": {
+        "Agent Management Module": {
+          "Overview": "<detail_content>",
+          "Architecture": "<detail_content>",
+          "Core Components": {
+            "Agent Abstract Base Class": {
+              "Key Responsibilities": "<detail_content>",
+              "Core Methods": "<detail_content>"
+            }
+          },
+          "Agent Registry System": {
+            "Registry Operations": "<detail_content>"
+          },
+          "Integration with Other Modules": {
+            "LLM Integration": "<detail_content>",
+            "State Management": "<detail_content>",
+            "Event System": "<detail_content>"
+          },
+          "Agent Lifecycle": {
+            "Lifecycle Phases": "<detail_content>"
+          },
+          "Tool Management": {
+            "Tool Integration Process": "<detail_content>"
+          },
+          "Configuration": "<detail_content>",
+          "Error Handling": "<detail_content>",
+          "Usage Examples": {
+            "Registering a New Agent": "<detail_content>",
+            "Agent Execution": "<detail_content>"
+          },
+          "Related Modules": "<detail_content>",
+          "Best Practices": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "browsing_agents",
+      "path": "[\"subpages\", 49]",
+      "content": {
+        "Browsing Agents Module": {
+          "Overview": {
+            "Key Components": "<detail_content>"
+          },
+          "Architecture": "<detail_content>",
+          "Component Details": {
+            "BrowsingAgent": {
+              "Key Features": "<detail_content>",
+              "Configuration Options": "<detail_content>",
+              "Action Flow": "<detail_content>"
+            },
+            "VisualBrowsingAgent": {
+              "Enhanced Features": "<detail_content>",
+              "Visual Processing Pipeline": "<detail_content>"
+            }
+          },
+          "Integration Points": {
+            "Core Agent System Integration": "<detail_content>",
+            "Event System Integration": "<detail_content>",
+            "Runtime Integration": "<detail_content>"
+          },
+          "Data Flow": "<detail_content>",
+          "Configuration and Usage": {
+            "Basic Configuration": "<detail_content>",
+            "Action Space Configuration": "<detail_content>"
+          },
+          "Error Handling and Recovery": {
+            "Error Accumulation": "<detail_content>",
+            "Error Types": "<detail_content>"
+          },
+          "Performance Considerations": {
+            "BrowsingAgent Optimizations": "<detail_content>",
+            "VisualBrowsingAgent Considerations": "<detail_content>"
+          },
+          "Evaluation and Benchmarking": {
+            "Benchmark Support": "<detail_content>",
+            "Evaluation Features": "<detail_content>"
+          },
+          "Dependencies": {
+            "External Dependencies": "<detail_content>",
+            "Internal Dependencies": "<detail_content>"
+          },
+          "Future Enhancements": {
+            "Planned Improvements": "<detail_content>",
+            "Integration Opportunities": "<detail_content>"
+          },
+          "Related Documentation": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "security_configuration",
+      "path": "[\"subpages\", 50]",
+      "content": {
+        "Security Configuration Module": {
+          "Overview": "<detail_content>",
+          "Architecture": "<detail_content>",
+          "Core Components": {
+            "SecurityConfig": {
+              "Key Features": "<detail_content>",
+              "Configuration Fields": "<detail_content>"
+            }
+          },
+          "Configuration Flow": "<detail_content>",
+          "Integration with Security System": {
+            "Security Analyzer Integration": "<detail_content>",
+            "Supported Security Analyzers": "<detail_content>"
+          },
+          "Configuration Management": {
+            "TOML Configuration Loading": "<detail_content>",
+            "Configuration Validation": "<detail_content>"
+          },
+          "Usage Patterns": {
+            "Basic Configuration": "<detail_content>",
+            "TOML Integration": "<detail_content>"
+          },
+          "Security Considerations": {
+            "Confirmation Mode": "<detail_content>",
+            "Analyzer Selection": "<detail_content>"
+          },
+          "Dependencies": {
+            "Internal Dependencies": "<detail_content>",
+            "External Dependencies": "<detail_content>"
+          },
+          "Error Handling": {
+            "Common Error Scenarios": "<detail_content>"
+          },
+          "Best Practices": {
+            "Configuration Management": "<detail_content>",
+            "Security Settings": "<detail_content>"
+          },
+          "Future Enhancements": {
+            "Planned Features": "<detail_content>",
+            "Extension Points": "<detail_content>"
+          },
+          "Related Documentation": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "type_system",
+      "path": "[\"subpages\", 51]",
+      "content": {
+        "Type System Module": {
+          "Overview": "<detail_content>",
+          "Architecture": "<detail_content>",
+          "Core Components": {
+            "MicroagentType Enum": "<detail_content>",
+            "Metadata Models": {
+              "InputMetadata": "<detail_content>",
+              "MicroagentMetadata": "<detail_content>"
+            },
+            "Response Models": {
+              "MicroagentResponse": "<detail_content>",
+              "MicroagentContentResponse": "<detail_content>"
+            }
+          },
+          "Data Flow": "<detail_content>",
+          "Type Relationships": "<detail_content>",
+          "Integration Points": {
+            "Configuration System": "<detail_content>",
+            "Storage System": "<detail_content>",
+            "API Layer": "<detail_content>"
+          },
+          "Usage Patterns": {
+            "Microagent Registration": "<detail_content>",
+            "Task Microagent Definition": "<detail_content>",
+            "API Response Handling": "<detail_content>"
+          },
+          "Validation and Constraints": "<detail_content>",
+          "Error Handling": "<detail_content>",
+          "Future Considerations": "<detail_content>"
+        }
+      }
+    },
+    {
+      "title": "utility_mixins",
+      "path": "[\"subpages\", 52]",
+      "content": {
+        "Utility Mixins Module": {
+          "Overview": "<detail_content>",
+          "Architecture": "<detail_content>",
+          "Component Dependencies": "<detail_content>",
+          "Core Components": {
+            "RetryMixin": {
+              "Key Features": "<detail_content>",
+              "Retry Strategy": "<detail_content>",
+              "Configuration Parameters": "<detail_content>"
+            },
+            "DebugMixin": {
+              "Key Features": "<detail_content>",
+              "Logging Flow": "<detail_content>"
+            }
+          },
+          "Integration with LLM System": {
+            "Mixin Composition": "<detail_content>",
+            "Error Handling Integration": "<detail_content>"
+          },
+          "Error Handling Strategies": {
+            "Exception Types": "<detail_content>",
+            "Temperature Adjustment Logic": "<detail_content>"
+          },
+          "Logging and Observability": {
+            "Log Levels and Destinations": "<detail_content>",
+            "Message Formatting": "<detail_content>"
+          },
+          "Performance Considerations": {
+            "Conditional Logging": "<detail_content>",
+            "Memory Optimization": "<detail_content>"
+          },
+          "Configuration Integration": {
+            "Retry Configuration": "<detail_content>",
+            "Debug Configuration": "<detail_content>"
+          },
+          "Usage Patterns": {
+            "Basic Usage": "<detail_content>",
+            "Custom Retry Listeners": "<detail_content>"
+          },
+          "Related Documentation": "<detail_content>",
+          "Future Enhancements": {
+            "Planned Improvements": "<detail_content>",
+            "Extension Points": "<detail_content>"
+          }
+        }
+      }
+    },
+    {
+      "title": "cli_configuration",
+      "path": "[\"subpages\", 53]",
+      "content": {
+        "CLI Configuration Module": {
+          "Overview": "<detail_content>",
+          "Architecture": {
+            "Core Components": "<detail_content>",
+            "Module Structure": "<detail_content>"
+          },
+          "Core Component Details": {
+            "CLIConfig": "<detail_content>"
+          },
+          "Integration Patterns": {
+            "Configuration Hierarchy": "<detail_content>",
+            "Data Flow": "<detail_content>"
+          },
+          "Usage Examples": {
+            "Basic Configuration": "<detail_content>",
+            "Configuration Validation": "<detail_content>"
+          },
+          "Integration with Other Modules": {
+            "CLI Runtime Integration": "<detail_content>",
+            "Related Configuration Modules": "<detail_content>"
+          },
+          "Configuration Lifecycle": "<detail_content>",
+          "Best Practices": {
+            "Configuration Management": "<detail_content>",
+            "Error Handling": "<detail_content>"
+          },
+          "Extension Points": "<detail_content>",
+          "Dependencies": {
+            "External Dependencies": "<detail_content>",
+            "Internal Dependencies": "<detail_content>"
+          },
+          "Summary": "<detail_content>"
+        }
+      }
+    }
+  ]
+}
