@@ -1,3 +1,47 @@
+# CodeWikiBench
+
+## 📚 Dataset
+
+The benchmark dataset is available on HuggingFace:
+- **Dataset**: [anhnh2002/codewikibench](https://huggingface.co/datasets/anhnh2002/codewikibench)
+- **Paper**: [arXiv:2510.24428](https://arxiv.org/abs/2510.24428)
+
+### Dataset Overview
+
+The dataset contains benchmark data for 22 open-source repositories across multiple programming languages:
+- **JS/TS**: Chart.js, marktext, puppeteer, storybook, mermaid, svelte
+- **Python**: graphrag, rasa, OpenHands
+- **C**: qmk_firmware, libsql, sumatrapdf, wazuh
+- **C++**: electron, x64dbg, json
+- **C#**: FluentValidation, git-credential-manager, ml-agents
+- **Java**: logstash, material-components-android, trino
+
+Each repository includes:
+- **metadata**: Repository URL and commit ID
+- **docs_tree**: Original documentation tree structure
+- **structured_docs**: Parsed and structured documentation
+- **rubrics**: Evaluation rubrics for assessing documentation quality
+
+### Using the Dataset
+
+```python
+from datasets import load_dataset
+import json
+
+# Load the dataset
+dataset = load_dataset("anhnh2002/codewikibench")
+
+# Access a specific repository
+repo_data = dataset['train'][0]
+print(f"Repository: {repo_data['repo_name']}")
+print(f"Commit: {repo_data['commit_id']}")
+
+# Parse JSON fields
+docs_tree = json.loads(repo_data['docs_tree'])
+structured_docs = json.loads(repo_data['structured_docs'])
+rubrics = json.loads(repo_data['rubrics'])
+```
+
 ## Parsing Documentations
 ### Official Documemtation
 Pull docs folder from original repository ([example result](examples/OpenHands/original/docs))
@@ -73,4 +117,20 @@ python3 count_lines_of_code.py https://github.com/All-Hands-AI/OpenHands.git a1b
 
 # Show detailed file-by-file breakdown
 python3 count_lines_of_code.py https://github.com/All-Hands-AI/OpenHands.git 30604c40fc6e9ac914089376f41e118582954f22
+```
+
+## Citation
+
+If you use this dataset or codebase in your research, please cite:
+
+```bibtex
+@misc{hoang2025codewikievaluatingaisability,
+      title={CodeWiki: Evaluating AI's Ability to Generate Holistic Documentation for Large-Scale Codebases}, 
+      author={Anh Nguyen Hoang and Minh Le-Anh and Bach Le and Nghi D. Q. Bui},
+      year={2025},
+      eprint={2510.24428},
+      archivePrefix={arXiv},
+      primaryClass={cs.SE},
+      url={https://arxiv.org/abs/2510.24428},
+}
 ```
