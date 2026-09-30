@@ -285,12 +285,10 @@ def build_report(results: Any, max_score: float) -> Dict[str, Any]:
     leaves = collect_leaves(rubrics)
     # errored leaves are never a pass, whatever score an older judge recorded for them
     failed = [leaf for leaf in leaves if (leaf["score"] or 0) <= max_score or leaf["error"]]
-    if "overall_score" in meta:
-        overall = meta["overall_score"]
-    else:
-        tw = sum(r.get("weight", 1) for r in rubrics)
-        overall = sum(r.get("score", 0) * r.get("weight", 1) for r in rubrics) / tw if tw else 0.0
-    return {
+    # the scored tree is the source of truth; metadata can be stale if the tree was edited
+    tw = sum(r.get("weight", 1) for r in rubrics)
+    overall = sum(r.get("score", 0) * r.get("weight", 1) for r in rubrics) / tw if tw else 0.0
+    report = {
         "overall_score": overall,
         "num_leaves": len(leaves),
         "num_failed": len(failed),
@@ -303,6 +301,12 @@ def build_report(results: Any, max_score: float) -> Dict[str, Any]:
         ],
         "failed": failed,
     }
+    meta_score = meta.get("overall_score")
+    if meta_score is not None and abs(meta_score - overall) > 1e-6:
+        report["metadata_overall_score"] = meta_score
+        print(f"Warning: combination_metadata.overall_score ({meta_score:.4f}) disagrees with the "
+              f"scored tree ({overall:.4f}); reporting the tree value", file=sys.stderr)
+    return report
 
 
 def _one_line(text: Any, limit: int = 300) -> str:
