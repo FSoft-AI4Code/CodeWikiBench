@@ -327,7 +327,7 @@ def parse_docs_directory(path: str, project_name: str = None, output_dir: str = 
     return root_page, detailed_keys_tree
 
 if __name__ == "__main__":
-    import config
+    from codewikibench import config
     import argparse
     
     # Set up command line argument parsing

@@ -5,8 +5,8 @@ import glob
 from typing import List, Dict
 import statistics
 from collections import Counter
-import config
-from utils import run_llm_natively
+from codewikibench import config
+from codewikibench.utils import run_llm_natively
 from time import sleep
 import asyncio
 

@@ -4,7 +4,7 @@ from pydantic_ai.models.openai import OpenAIChatModel, OpenAIChatModelSettings
 from pydantic_ai.providers.openai import OpenAIProvider
 import tiktoken
 
-import config
+from codewikibench import config
 
 
 enc = tiktoken.encoding_for_model("gpt-4")

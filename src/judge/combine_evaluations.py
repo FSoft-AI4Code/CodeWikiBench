@@ -7,7 +7,7 @@ from typing import List, Dict, Any
 import statistics
 from collections import Counter
 import math
-import config
+from codewikibench import config
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Combine evaluation results from multiple LLMs")

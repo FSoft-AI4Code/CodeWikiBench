@@ -6,10 +6,10 @@ from pathlib import Path
 
 from pydantic_ai import Agent
 
-from utils import get_llm, run_llm_natively
-import config
-from tools import AgentDeps, docs_navigator_tool
-from rubrics_generator.visualize_rubrics import visualize_rubrics
+from codewikibench.utils import get_llm, run_llm_natively
+from codewikibench import config
+from codewikibench.tools import AgentDeps, docs_navigator_tool
+from codewikibench.rubrics_generator.visualize_rubrics import visualize_rubrics
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Generate hierarchical rubrics from documentation")

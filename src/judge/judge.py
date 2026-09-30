@@ -8,15 +8,15 @@ import traceback
 import logfire
 
 try:
-    logfire.configure()
+    logfire.configure(send_to_logfire="if-token-present")
     logfire.instrument_pydantic_ai()
 except Exception as e:
     print(f"Failed to configure logfire: {e}")
 
 from pydantic_ai import Agent
-from tools import AgentDeps, grep_docs_tool, read_section_tool
-from utils import get_llm, run_llm_natively
-import config
+from codewikibench.tools import AgentDeps, grep_docs_tool, read_section_tool
+from codewikibench.utils import get_llm, run_llm_natively
+from codewikibench import config
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Evaluate documentation against hierarchical rubrics")
@@ -494,7 +494,7 @@ async def run(args):
     if args.model and args.model.startswith("caw:"):
         # CLI coding agent judge (claude code / codex) via caw; lazy import so
         # non-caw runs don't need caw installed
-        from caw_backend import CawJudge, DocsJudgeToolKit, parse_caw_model
+        from codewikibench.judge.caw_backend import CawJudge, DocsJudgeToolKit, parse_caw_model
         caw_provider, caw_model = parse_caw_model(args.model)
         toolkit = DocsJudgeToolKit(deps.docs_grep) if args.use_tools else None
         caw_judge = CawJudge(

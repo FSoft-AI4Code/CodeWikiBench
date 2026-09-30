@@ -4,7 +4,7 @@ from typing import Any, Dict, List
 
 from pydantic_ai import RunContext, Tool
 
-from utils import truncate_tokens
+from codewikibench.utils import truncate_tokens
 
 
 class DocsGrep:

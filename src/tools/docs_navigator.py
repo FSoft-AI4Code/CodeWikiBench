@@ -5,7 +5,7 @@ from dataclasses import dataclass
 
 from pydantic_ai import RunContext, Tool
 
-from utils import truncate_tokens
+from codewikibench.utils import truncate_tokens
 
 
 class DocsNavigator:
@@ -246,7 +246,7 @@ class AgentDeps:
     docs_navigator: DocsNavigator
 
     def __init__(self, docs_path: str):
-        from tools.docs_grep import DocsGrep
+        from codewikibench.tools.docs_grep import DocsGrep
 
         tree_path = os.path.join(docs_path, "docs_tree.json")
         structured_path = os.path.join(docs_path, "structured_docs.json")
@@ -307,7 +307,7 @@ async def test_run_docs_navigator(docs_navigator: DocsNavigator, paths: List[Lis
 
 
 if __name__ == "__main__":
-    from utils import get_llm
+    from codewikibench.utils import get_llm
     import asyncio
     deps = AgentDeps(docs_path="../data/ragflow/deepwiki-agent")
     result = asyncio.run(test_run_docs_navigator(

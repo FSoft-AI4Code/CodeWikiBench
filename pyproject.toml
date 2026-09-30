@@ -1,0 +1,64 @@
+[build-system]
+requires = ["setuptools>=68.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "codewikibench"
+version = "0.1.0"
+description = "Benchmark for evaluating AI-generated repository documentation with hierarchical rubrics"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "CodeWikiBench Contributors"}
+]
+keywords = ["documentation", "benchmark", "llm", "evaluation", "rubrics"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Documentation",
+]
+
+dependencies = [
+    "pydantic>=2.7",
+    "pydantic-ai>=1.0.0",
+    "openai>=1.100.0",
+    "python-dotenv>=1.0.0",
+    "tqdm>=4.60",
+    "logfire>=4.0.0",
+    "mcp>=1.0.0",
+    "markdown-to-json>=2.1.0",
+    "PyYAML>=6.0",
+    "tiktoken>=0.7.0",
+    "networkx>=3.0",
+]
+
+[project.optional-dependencies]
+# CLI coding agents (claude code / codex) as rubric generators and judges.
+# NOTE: the dist name on this branch is "coding-agent-wrapper"; the import name is "caw".
+caw = [
+    "coding-agent-wrapper @ git+https://github.com/anhnh2002/caw@fix/codex-exec-robustness",
+]
+# Rubric quality assessment (rubrics_generator/assess_rubrics.py)
+assess = [
+    "numpy>=1.24",
+    "scikit-learn>=1.3",
+]
+
+[project.scripts]
+codewikibench = "codewikibench.cli:main"
+
+[project.urls]
+Repository = "https://github.com/FSoft-AI4Code/CodeWikiBench"
+
+[tool.setuptools]
+package-dir = {"codewikibench" = "src"}
+packages = [
+    "codewikibench",
+    "codewikibench.docs_parser",
+    "codewikibench.rubrics_generator",
+    "codewikibench.judge",
+    "codewikibench.tools",
+]
+
+[tool.setuptools.package-data]
+codewikibench = ["*.sh"]

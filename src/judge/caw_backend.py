@@ -12,7 +12,7 @@ from typing import List, Optional, Tuple
 
 from caw import Agent as CawAgent, ToolGroup, ToolKit, tool
 
-from tools.docs_grep import DocsGrep, format_grep_results, format_read_sections
+from codewikibench.tools.docs_grep import DocsGrep, format_grep_results, format_read_sections
 
 CAW_PREFIX = "caw:"
 CAW_PROVIDERS = ("claude_code", "codex")

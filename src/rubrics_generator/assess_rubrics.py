@@ -7,8 +7,8 @@ import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from collections import Counter
 
-import config
-from utils import get_embeddings
+from codewikibench import config
+from codewikibench.utils import get_embeddings
 
 
 class RubricReliabilityAssessor:
