@@ -7,3 +7,7 @@ data/
 deepwiki-mcp/
 src-for-static-rubric/
 src-for-static-rubric/user_data/
+# packaging
+*.egg-info/
+build/
+dist/

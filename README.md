@@ -42,6 +42,51 @@ structured_docs = json.loads(repo_data['structured_docs'])
 rubrics = json.loads(repo_data['rubrics'])
 ```
 
+## Installation
+
+Install the package first (Python >= 3.10). The `[caw]` extra enables CLI coding agents
+(Claude Code / Codex, model strings `caw:<claude_code|codex>:<model>`) as rubric generators and judges:
+
+```bash
+pip install -e .[caw]          # or: uv pip install -e '.[caw]'
+pip install -e .[caw,assess]   # + numpy/scikit-learn for rubrics_generator/assess_rubrics.py
+```
+
+API models are called through an OpenAI-compatible endpoint configured by `BASE_URL`, `API_KEY`
+and `MODEL` (read from the environment or a `.env` file found from the current directory upwards).
+
+The legacy `--repo-name` scripts read/write `data/<repo>/...`. The data dir resolves to
+`$CWB_DATA_DIR` if set, else `<repo root>/data` for a source checkout (editable install),
+else `./data` relative to the current directory.
+
+## `codewikibench` CLI
+
+All subcommands take explicit paths:
+
+```bash
+# 1. parse CodeWiki (or DeepWiki) markdown output -> docs_tree.json + structured_docs.json
+codewikibench parse --docs-dir path/to/codewiki/docs --out work/parsed [--project-name X]
+
+# 2. rubrics from reference docs (one set per --model, then combined; language-agnostic prompt by default)
+codewikibench rubrics --docs work/reference_parsed --out work/rubrics.json \
+    --model caw:claude_code:sonnet [--model gpt-oss-120b] [--use-tools] [--no-language-agnostic] [--force]
+
+# 3. judge docs against rubrics (per-model results next to --out as <stem>.<model>.json)
+codewikibench judge --rubrics work/rubrics.json --docs work/parsed --out work/results.json \
+    --model caw:claude_code:haiku [--model M2] [--batch-size 4] [--use-tools] [--enable-retry] [--method average] [--force]
+
+# 4. list failed leaves (score <= --max-score, or evaluation errors)
+codewikibench report --results work/results.json [--format json|markdown|summary] [--max-score 0.99]
+```
+
+Existing outputs are reused (with a message) unless `--force` is given. A leaf whose evaluation raised
+an error is scored 0 with `evaluation.error: true` and `[EVALUATION ERROR]` in its reasoning;
+`--enable-retry` re-judges such leaves.
+
+The individual scripts below are also runnable as modules, e.g.
+`python -m codewikibench.judge.judge --repo-name OpenHands --reference codewiki --model ...`
+(run the shell pipelines from `src/`).
+
 ## Parsing Documentations
 ### Official Documemtation
 Pull docs folder from original repository ([example result](examples/OpenHands/original/docs))
@@ -50,22 +95,22 @@ bash ./download_github_folder.sh --github_repo_url https://github.com/All-Hands-
 ```
 Parse official docs ([example result](examples/OpenHands/original))
 ```bash
-python docs_parser/parse_official_docs.py --repo_name OpenHands
+python -m codewikibench.docs_parser.parse_official_docs --repo_name OpenHands
 ```
 
 Crawl deepwiki docs ([example result](examples/OpenHands/deepwiki/docs))
 ```bash
-python docs_parser/crawl_deepwiki_docs.py --url https://deepwiki.com/AnhMinh-Le/OpenHands --output-dir ../data/OpenHands/deepwiki/docs
+python -m codewikibench.docs_parser.crawl_deepwiki_docs --url https://deepwiki.com/AnhMinh-Le/OpenHands --output-dir ../data/OpenHands/deepwiki/docs
 ```
 
 Parse deepwiki docs ([example result](examples/OpenHands/deepwiki))
 ```bash
-python docs_parser/parse_generated_docs.py --input-dir ../data/OpenHands/deepwiki/docs --output-dir ../data/OpenHands/deepwiki
+python -m codewikibench.docs_parser.parse_generated_docs --input-dir ../data/OpenHands/deepwiki/docs --output-dir ../data/OpenHands/deepwiki
 ```
 
 Parse codewiki docs ([example example](examples/OpenHands/codewiki))
 ```bash
-python docs_parser/parse_generated_docs.py --input-dir /home/anhnh/CodeWiki/output/docs/All-Hands-AI--OpenHands --output-dir ../data/OpenHands/codewiki
+python -m codewikibench.docs_parser.parse_generated_docs --input-dir /home/anhnh/CodeWiki/output/docs/All-Hands-AI--OpenHands --output-dir ../data/OpenHands/codewiki
 ```
 
 [NOTE] To evaluate any other types of documentation, you need to parse it into structured_docs.json and its backbone docs_tree.json (see [parsed example](examples/OpenHands/codewiki))
@@ -92,19 +137,19 @@ bash ./run_evaluation_pipeline.sh --repo-name OpenHands --reference deepwiki --v
 
 # Manual visualization of specific results
 # Summary view
-python judge/visualize_evaluation.py --repo-name OpenHands --reference deepwiki --format summary
+python -m codewikibench.judge.visualize_evaluation --repo-name OpenHands --reference deepwiki --format summary
 
 # Detailed view with all requirements  
-python judge/visualize_evaluation.py --repo-name OpenHands --reference deepwiki --format detailed
+python -m codewikibench.judge.visualize_evaluation --repo-name OpenHands --reference deepwiki --format detailed
 
 # Show only poorly documented requirements (score < 0.5)
-python judge/visualize_evaluation.py --repo-name OpenHands --reference deepwiki --format detailed --max-score 0.5
+python -m codewikibench.judge.visualize_evaluation --repo-name OpenHands --reference deepwiki --format detailed --max-score 0.5
 
 # Export to CSV for analysis
-python judge/visualize_evaluation.py --repo-name OpenHands --reference deepwiki --format csv
+python -m codewikibench.judge.visualize_evaluation --repo-name OpenHands --reference deepwiki --format csv
 
 # Export to Markdown report
-python judge/visualize_evaluation.py --repo-name OpenHands --reference deepwiki --format markdown
+python -m codewikibench.judge.visualize_evaluation --repo-name OpenHands --reference deepwiki --format markdown
 ```
 
 ## Lines of Code

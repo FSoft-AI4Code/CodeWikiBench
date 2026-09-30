@@ -143,7 +143,7 @@ fi
 # Get the script directory and project root
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
-DATA_DIR="$PROJECT_ROOT/data/$REPO_NAME"
+DATA_DIR="${CWB_DATA_DIR:-$PROJECT_ROOT/data}/$REPO_NAME"
 if [[ ! -d "$DATA_DIR" ]]; then
     print_error "Data directory not found: $DATA_DIR"
     exit 1
@@ -189,7 +189,7 @@ if [[ "$SKIP_GENERATION" == false ]]; then
         print_status "Generating rubrics with $model..."
         
         # Build generation command
-        gen_cmd="python rubrics_generator/generate_rubrics.py --repo-name \"$REPO_NAME\" --model \"$model\""
+        gen_cmd="python -m codewikibench.rubrics_generator.generate_rubrics --repo-name \"$REPO_NAME\" --model \"$model\""
         
         # Add optional flags
         if [[ "$USE_TOOLS" == true ]]; then 
@@ -218,7 +218,7 @@ if [[ "$SKIP_COMBINATION" == false ]]; then
     print_step "Step 2: Combining rubrics"
     
     # Build combination command
-    combine_cmd="python rubrics_generator/combine_rubrics.py --repo-name \"$REPO_NAME\""
+    combine_cmd="python -m codewikibench.rubrics_generator.combine_rubrics --repo-name \"$REPO_NAME\""
 
     if [[ -n "$TEMPERATURE" ]]; then
         combine_cmd="$combine_cmd --temperature \"$TEMPERATURE\""
@@ -248,7 +248,7 @@ if [[ "$VISUALIZE" == true ]]; then
     # Check if visualization script exists and combined rubrics exists
     COMBINED_RUBRICS="$DATA_DIR/rubrics/combined_rubrics.json"
     if [[ -f "rubrics_generator/visualize_rubrics.py" ]] && [[ -f "$COMBINED_RUBRICS" ]]; then
-        python rubrics_generator/visualize_rubrics.py --rubrics-path "$COMBINED_RUBRICS"
+        python -m codewikibench.rubrics_generator.visualize_rubrics --rubrics-path "$COMBINED_RUBRICS"
         if [[ $? -eq 0 ]]; then
             print_status "✓ Visualization completed"
         else

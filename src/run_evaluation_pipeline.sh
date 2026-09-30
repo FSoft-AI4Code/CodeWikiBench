@@ -178,7 +178,7 @@ fi
 # Get the script directory and project root
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
-DATA_DIR="$PROJECT_ROOT/data/$REPO_NAME"
+DATA_DIR="${CWB_DATA_DIR:-$PROJECT_ROOT/data}/$REPO_NAME"
 if [[ ! -d "$DATA_DIR" ]]; then
     print_error "Data directory not found: $DATA_DIR"
     exit 1
@@ -225,7 +225,7 @@ if [[ "$SKIP_EVALUATION" == false ]]; then
         print_status "Running evaluation with $model..."
         
         # Build evaluation command
-        eval_cmd="python judge/judge.py --repo-name \"$REPO_NAME\" --model \"$model\" --batch-size $BATCH_SIZE --max-retries $MAX_RETRIES --reference \"$REFERENCE\""
+        eval_cmd="python -m codewikibench.judge.judge --repo-name \"$REPO_NAME\" --model \"$model\" --batch-size $BATCH_SIZE --max-retries $MAX_RETRIES --reference \"$REFERENCE\""
         
         # Add optional flags
         if [[ "$USE_TOOLS" == true ]]; then
@@ -270,7 +270,7 @@ if [[ "$SKIP_COMBINATION" == false ]] && [[ $model_count -gt 1 ]]; then
     print_step "Step 2: Combining evaluation results"
     
     # Build combination command
-    combine_cmd="python judge/combine_evaluations.py --repo-name \"$REPO_NAME\" --method \"$COMBINATION_METHOD\" --reference \"$REFERENCE\""
+    combine_cmd="python -m codewikibench.judge.combine_evaluations --repo-name \"$REPO_NAME\" --method \"$COMBINATION_METHOD\" --reference \"$REFERENCE\""
     
     # Add weights if specified
     if [[ -n "$WEIGHTS" ]]; then
@@ -298,7 +298,7 @@ if [[ "$VISUALIZE" == true ]]; then
     
     # Check if visualization script exists
     if [[ -f "judge/visualize_evaluation.py" ]]; then
-        python judge/visualize_evaluation.py --repo-name "$REPO_NAME" --reference "$REFERENCE"
+        python -m codewikibench.judge.visualize_evaluation --repo-name "$REPO_NAME" --reference "$REFERENCE"
         if [[ $? -eq 0 ]]; then
             print_status "✓ Visualization completed"
         else
