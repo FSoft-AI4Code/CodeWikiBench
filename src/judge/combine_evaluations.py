@@ -162,8 +162,13 @@ def combine_leaf_evaluations(all_leaf_evaluations: List[Dict], method: str, weig
         std_deviation = calculate_std(scores)
         
         # Combine reasoning and evidence
-        combined_reasoning = f"Combined from {len(scores)} LLMs ({method}): " + " | ".join(reasonings)
-        combined_evidence = " | ".join(evidences)
+        if len(scores) == 1:
+            # single judge: keep its reasoning verbatim (e.g. the [EVALUATION ERROR] prefix)
+            combined_reasoning = reasonings[0]
+            combined_evidence = evidences[0]
+        else:
+            combined_reasoning = f"Combined from {len(scores)} LLMs ({method}): " + " | ".join(reasonings)
+            combined_evidence = " | ".join(evidences)
         
         combined_evaluations[path] = {
             "score": combined_score,
