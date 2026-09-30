@@ -14,7 +14,7 @@ import argparse
 import os
 from pathlib import Path
 from typing import Dict, List, Any
-import config
+from codewikibench import config
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Visualize rubric evaluation results")

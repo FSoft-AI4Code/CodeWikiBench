@@ -5,8 +5,8 @@ import glob
 from typing import List, Dict
 import statistics
 from collections import Counter
-import config
-from utils import run_llm_natively
+from codewikibench import config
+from codewikibench.utils import run_text_completion
 from time import sleep
 import asyncio
 
@@ -16,10 +16,11 @@ def parse_args():
     parser.add_argument("--output-file", help="Output file name (default: combined_rubrics.json)")
     parser.add_argument("--temperature", type=float, default=0.1, help="Temperature for LLM inference (default: 0.1)")
     parser.add_argument("--max-retries", type=int, default=3, help="Maximum number of retries for API calls (default: 3)")
+    parser.add_argument("--model", help="Model used to combine (default: config.MODEL); caw:<provider>:<model> supported")
     return parser.parse_args()
 
 
-async def semantic_combine_rubrics(all_rubrics: List[List[Dict]], llm_type: str = "anthropic", model: str = None, temperature: float = 0.1, max_retries: int = 3) -> List[Dict]:
+async def semantic_combine_rubrics(all_rubrics: List[List[Dict]], llm_type: str = "anthropic", model: str = None, temperature: float = 0.1, max_retries: int = 3, language_agnostic: bool = False) -> List[Dict]:
     """Use Anthropic LLM to semantically combine rubrics from multiple sources"""
     
     if not all_rubrics:
@@ -92,13 +93,17 @@ Guidelines:
 - Merge similar requirements that overlap significantly (>70% semantic similarity)
 - Keep distinct requirements separate even if they're related
 - Sub_tasks should be specific, measurable criteria that contribute to the parent requirement
+- If a leaf item has a "reference" list, keep it on the combined leaf (union the references of merged leaves)
 """.strip()
+    if language_agnostic:
+        prompt += """
+- Keep every requirement LANGUAGE-AGNOSTIC: describe features, capabilities and behaviour (WHAT the system does), not language-specific constructs or syntax, so the rubric can be judged fairly against an implementation in a different language"""
 
     for attempt in range(max_retries):
         try:
-            print(f"Making API call to Anthropic (attempt {attempt + 1}/{max_retries})...")
+            print(f"Making combine call to {model} (attempt {attempt + 1}/{max_retries})...")
             
-            response_text = await run_llm_natively(model, prompt)
+            response_text = await run_text_completion(model, prompt)
             
             
             # Try to parse the JSON response
@@ -163,7 +168,7 @@ def fallback_simple_merge(all_rubrics: List[List[Dict]]) -> List[Dict]:
     processed_names = set()
     
     for item in all_items:
-        name = item.get("name", "").lower().strip()
+        name = (item.get("requirements") or item.get("name") or "").lower().strip()
         if name not in processed_names:
             merged.append(item)
             processed_names.add(name)
@@ -260,7 +265,7 @@ async def main():
         combined_rubrics = await semantic_combine_rubrics(
             all_rubrics, 
             llm_type="anthropic", 
-            model=config.MODEL, 
+            model=args.model or config.MODEL, 
             temperature=args.temperature,
             max_retries=args.max_retries
         )
@@ -271,7 +276,7 @@ async def main():
     # Add metadata about the combination
     combination_metadata = {
         "combination_method": "semantic_llm",
-        "llm_model": config.MODEL,
+        "llm_model": args.model or config.MODEL,
         "temperature": args.temperature,
         "num_rubrics_combined": len(all_rubrics),
         "max_retries": args.max_retries,
@@ -292,7 +297,7 @@ async def main():
     # Display summary statistics
     print("-" * 100)
     print("COMBINATION SUMMARY:")
-    print(f"Method used: Semantic LLM Analysis ({config.MODEL})")
+    print(f"Method used: Semantic LLM Analysis ({args.model or config.MODEL})")
     print(f"Temperature: {args.temperature}")
     print(f"Number of rubrics combined: {len(all_rubrics)}")
     print(f"Total rubric items: {stats['total_items']}")
