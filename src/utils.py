@@ -60,6 +60,21 @@ async def run_llm_natively(model: str = None, prompt: str = None, messages: list
 
     return response.choices[0].message.content
 
+async def run_text_completion(model: str = None, prompt: str = None, system_prompt: str = None) -> str:
+    """Plain text completion that also supports caw models ("caw:<provider>:<model>")."""
+    if model and model.startswith("caw:"):
+        # lazy import: caw is an optional dependency
+        from codewikibench.judge.caw_backend import CawRunner, parse_caw_model
+        provider, caw_model = parse_caw_model(model)
+        runner = CawRunner(provider=provider, model=caw_model, system_prompt=system_prompt or None)
+        text, _, _ = await runner.run(prompt)
+        return text
+    messages = []
+    if system_prompt:
+        messages.append({"role": "system", "content": system_prompt})
+    messages.append({"role": "user", "content": prompt})
+    return await run_llm_natively(model, messages=messages)
+
 if __name__ == "__main__":
     result = asyncio.run(run_llm_natively(model="gpt-oss-120b", messages=[{"role": "system", "content": "You are a helpful assistant."}, {"role": "user", "content": "Hello, world!"}]))
     print(result)

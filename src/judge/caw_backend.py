@@ -8,11 +8,14 @@ exactly the way API judges do.
 
 import asyncio
 from dataclasses import dataclass
-from typing import List, Optional, Tuple
+import json
+from typing import Any, List, Optional, Tuple, Union
 
 from caw import Agent as CawAgent, ToolGroup, ToolKit, tool
 
 from codewikibench.tools.docs_grep import DocsGrep, format_grep_results, format_read_sections
+from codewikibench.tools.docs_navigator import DocsNavigator
+from codewikibench.utils import truncate_tokens
 
 CAW_PREFIX = "caw:"
 CAW_PROVIDERS = ("claude_code", "codex")
@@ -66,6 +69,35 @@ class DocsJudgeToolKit(ToolKit, server_name="docs_judge", display_name="Docs Jud
         return format_read_sections(self.docs_grep, section_ids)
 
 
+class DocsNavigatorToolKit(ToolKit, server_name="docs_navigator", display_name="Docs Navigator Tools"):
+    """The docs_navigator tool used by the pydantic-ai rubric generator, over MCP."""
+
+    def __init__(self, docs_navigator: DocsNavigator):
+        self.docs_navigator = docs_navigator
+
+    @tool(
+        name="docs_navigator",
+        description=(
+            "Navigate the documentation tree and return the content at the given paths. "
+            "`paths` is a list of paths; each path is a list of keys/indices from the docs "
+            "tree, e.g. [['subpages', 2, 'subpages', 0, 'content', 'Getting Started']]."
+        ),
+    )
+    def docs_navigator_tool(self, paths: List[List[Union[str, int]]]) -> str:
+        formatted_results = ""
+        for path in paths:
+            try:
+                result = self.docs_navigator.get_content(path)
+                content = result.get("content") if isinstance(result, dict) else result
+            except Exception as e:  # surface bad paths to the agent instead of failing the call
+                content = f"[error navigating {path}: {e}]"
+            formatted_results += "--------------------------------\n"
+            formatted_results += f"Path: {path}\n"
+            formatted_results += f"Content: \n{json.dumps(content, indent=2)}\n"
+            formatted_results += "--------------------------------\n"
+        return truncate_tokens(formatted_results)
+
+
 @dataclass
 class CawJudge:
     """Per-run judge config. A fresh CawAgent is built for every completion:
@@ -76,7 +108,7 @@ class CawJudge:
     provider: str
     model: str
     system_prompt: str
-    toolkit: Optional[DocsJudgeToolKit] = None
+    toolkit: Optional[ToolKit] = None  # any caw ToolKit (DocsJudgeToolKit, DocsNavigatorToolKit, ...)
 
     def _completion_sync(self, prompt: str):
         kwargs = dict(
@@ -99,3 +131,7 @@ class CawJudge:
             )
         usage = traj.usage
         return traj.result or "", usage.input_tokens, usage.output_tokens
+
+
+# Generic name: the same runner is used for rubric generation / combination.
+CawRunner = CawJudge
