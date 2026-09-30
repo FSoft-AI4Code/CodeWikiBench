@@ -55,6 +55,10 @@ REQUIRED:
 
 OPTIONAL:
   --models LIST             Comma-separated list of models (optional, uses defaults)
+                           CLI-agent judges via caw: caw:<provider>:<model> with provider
+                           claude_code or codex, e.g. caw:codex:gpt-5.3-codex
+                           (use --batch-size 1 or 2 for caw judges: each item spawns a
+                           full CLI subprocess and subscriptions rate-limit in parallel)
   --batch-size N            Batch size for evaluation (default: 5)
   --combination-method M    Method to combine results (default: average)
                            Options: average, majority_vote, weighted_average, max, min
@@ -131,6 +135,10 @@ while [[ $# -gt 0 ]]; do
             ;;
         --no-tools)
             USE_TOOLS=false
+            shift
+            ;;
+        --use-tools)
+            USE_TOOLS=true
             shift
             ;;
         --no-retry)

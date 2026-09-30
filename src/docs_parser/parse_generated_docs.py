@@ -312,12 +312,30 @@ def parse_deepwiki(path: str, project_name: str, output_dir: str = None):
     return root_page, detailed_keys_tree
 
 if __name__ == "__main__":
+    import sys
+
     parser = argparse.ArgumentParser()
     parser.add_argument("--input-dir", type=str, required=True)
     parser.add_argument("--output-dir", type=str)
+    parser.add_argument("--project-name", type=str,
+                        help="Project name for the root page. Defaults to the "
+                             "input dir's basename (or its parent if the dir is "
+                             "named 'docs').")
     args = parser.parse_args()
 
-    input_dir = args.input_dir
+    input_dir = os.path.normpath(args.input_dir)
     output_dir = args.output_dir
-    project_name = input_dir.split("/")[-2]
+
+    if not os.path.isdir(input_dir):
+        sys.exit(f"Error: input dir does not exist: {input_dir}")
+    md_files = [f for f in os.listdir(input_dir) if f.endswith(".md")]
+    if not md_files:
+        sys.exit(f"Error: no .md files found in {input_dir}")
+
+    project_name = args.project_name
+    if not project_name:
+        base = os.path.basename(input_dir)
+        project_name = os.path.basename(os.path.dirname(input_dir)) if base == "docs" else base
+
+    print(f"Parsing {len(md_files)} md files from {input_dir} as project '{project_name}'")
     parse_deepwiki(input_dir, project_name, output_dir)

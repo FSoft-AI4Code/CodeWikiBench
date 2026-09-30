@@ -14,7 +14,7 @@ except Exception as e:
     print(f"Failed to configure logfire: {e}")
 
 from pydantic_ai import Agent
-from tools import AgentDeps, docs_navigator_tool
+from tools import AgentDeps, grep_docs_tool, read_section_tool
 from utils import get_llm, run_llm_natively
 import config
 
@@ -44,10 +44,13 @@ For each leaf-level criteria provided, determine if the documentation adequately
 - **0 (Not Documented)**: The criteria is not mentioned or missing from the documentation
 
 # EVALUATION PROCESS
-1. Analyze the provided documentation tree structure and content
-2. For each criteria, SEARCH through the documentation to find relevant coverage
-3. Make a binary decision: Does the documentation mention this criteria? Consider both direct explanations and implicit coverage.
-4. Provide brief reasoning for your decision
+1. Extract the key concepts from the criteria (component names, algorithm names, feature names).
+2. Use the `grep_docs` tool to search the FULL documentation text for those concepts. The documentation tree you are given shows only titles — section bodies are hidden, so NEVER decide from the tree alone.
+3. Try multiple search variants before concluding something is missing: exact names ("GhostTrainer"), abbreviations ("ELO"), synonyms ("rating", "opponent"), and partial words ("determinis" matches deterministic/determinism). A concept can be documented under a different name.
+4. Use the `read_section` tool to read the full text around promising matches and confirm the coverage is real, not a passing keyword hit.
+5. Make a binary decision: Does the documentation mention this criteria? Consider both direct explanations and implicit coverage.
+6. Only assign 0 after several different grep_docs searches (at least 3 distinct patterns) come back empty or clearly irrelevant.
+7. Provide brief reasoning for your decision
 
 # OUTPUT FORMAT
 For each criteria evaluated, respond with:
@@ -94,6 +97,7 @@ async def re_evaluate_error_leaves(
     max_retries=2,
     model: str = None,
     system_prompt: str = None,
+    caw_judge=None,
     ):
     """Re-evaluate leaf requirements that had errors during initial evaluation"""
     error_leaves = []
@@ -148,17 +152,21 @@ IMPORTANT: You must respond with valid JSON in exactly this format:
   "evidence": "Specific documentation sections or content that support the score"
 }}
 
-First, you need to find the relevant documentation section that covers this criteria through `docs_navigator` tool.
-Then, you need to evaluate if the criteria is mentioned.
+First, search the full documentation text with the `grep_docs` tool (try several keyword variants — the tree above shows titles only, the bodies are hidden). Read promising sections with `read_section` to confirm.
+Then, evaluate if the criteria is mentioned.
 """.strip()
-            if agent is None:
+            if caw_judge is not None:
+                final_output, input_tokens, output_tokens = await caw_judge.run(prompt)
+            elif agent is None:
                 final_output = await run_llm_natively(model, messages=[{"role": "system", "content": system_prompt}, {"role": "user", "content": prompt}])
+                input_tokens = 0  # Token counting would need to be implemented separately
+                output_tokens = 0
             else:
                 result = await agent.run(prompt, deps=deps)
                 final_output = result.output
-            input_tokens = 0  # Token counting would need to be implemented separately
-            output_tokens = 0
-            
+                input_tokens = 0  # Token counting would need to be implemented separately
+                output_tokens = 0
+
             # More robust JSON parsing
             try:
                 # Try to extract JSON more carefully
@@ -249,6 +257,7 @@ async def evaluate_leaf_requirements(
     max_retries=2,
     model: str = None,
     system_prompt: str = None,
+    caw_judge=None,
 ):
     """Evaluate all leaf requirements against the documentation using batch processing"""
     evaluations = {}
@@ -266,18 +275,22 @@ Documentation tree:
 {json.dumps(docs_tree, indent=2)}
 ```
 
-First, you need to find the relevant documentation section that covers this criteria through `docs_navigator` tool.
-Then, you need to evaluate if the criteria is mentioned. Respond with the exact JSON format specified.
+First, search the full documentation text with the `grep_docs` tool (try several keyword variants — the tree above shows titles only, the bodies are hidden). Read promising sections with `read_section` to confirm.
+Then, evaluate if the criteria is mentioned. Respond with the exact JSON format specified.
 """.strip()
             
-            if agent is None:
+            if caw_judge is not None:
+                final_output, input_tokens, output_tokens = await caw_judge.run(prompt)
+            elif agent is None:
                 final_output = await run_llm_natively(model, messages=[{"role": "system", "content": system_prompt}, {"role": "user", "content": prompt}])
+                input_tokens = 0  # Token counting would need to be implemented separately
+                output_tokens = 0
             else:
                 result = await agent.run(prompt, deps=deps)
                 final_output = result.output
-            input_tokens = 0  # Token counting would need to be implemented separately
-            output_tokens = 0
-            
+                input_tokens = 0  # Token counting would need to be implemented separately
+                output_tokens = 0
+
             # Parse evaluation result
             try:
                 # Add debug logging
@@ -375,6 +388,7 @@ Then, you need to evaluate if the criteria is mentioned. Respond with the exact 
             max_retries,
             model,
             system_prompt,
+            caw_judge=caw_judge,
         )
         
         # Update evaluations with successful re-evaluations
@@ -465,8 +479,8 @@ async def run(args):
     evaluation_folder = os.path.join(output_dir, args.reference, "evaluation_results")
     if not os.path.exists(evaluation_folder):
         os.makedirs(evaluation_folder)
-    # Sanitize model name to avoid path issues with forward slashes
-    sanitized_model = args.model.replace("/", "_") if args.model else "default"
+    # Sanitize model name to avoid path issues with forward slashes and colons
+    sanitized_model = args.model.replace("/", "_").replace(":", "_") if args.model else "default"
     evaluation_file = os.path.join(evaluation_folder, f"{sanitized_model}.json")
     
     if os.path.exists(evaluation_file):
@@ -475,21 +489,36 @@ async def run(args):
 
     # Setup evaluation agent
     deps = AgentDeps(docs_path)
-    
-    if args.use_tools:
-        tools = [docs_navigator_tool]
+    caw_judge = None
+
+    if args.model and args.model.startswith("caw:"):
+        # CLI coding agent judge (claude code / codex) via caw; lazy import so
+        # non-caw runs don't need caw installed
+        from caw_backend import CawJudge, DocsJudgeToolKit, parse_caw_model
+        caw_provider, caw_model = parse_caw_model(args.model)
+        toolkit = DocsJudgeToolKit(deps.docs_grep) if args.use_tools else None
+        caw_judge = CawJudge(
+            provider=caw_provider,
+            model=caw_model,
+            system_prompt=EVALUATION_SYSTEM_PROMPT,
+            toolkit=toolkit,
+        )
+        agent = None
+
+    elif args.use_tools:
+        tools = [grep_docs_tool, read_section_tool]
         agent = Agent(
             model=get_llm(args.model),
             deps_type=AgentDeps,
             system_prompt=EVALUATION_SYSTEM_PROMPT,
             tools=tools
         )
-    
+
     else:
         tools = []
         agent = None
-    
-    
+
+
     # Collect all leaf requirements
     leaf_requirements = collect_leaf_requirements(rubrics)
     print(f"Found {len(leaf_requirements)} leaf requirements to evaluate")
@@ -506,6 +535,7 @@ async def run(args):
         args.max_retries,
         args.model,
         EVALUATION_SYSTEM_PROMPT,
+        caw_judge=caw_judge,
     )
 
     # Calculate scores bottom-up

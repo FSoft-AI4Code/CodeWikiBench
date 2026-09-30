@@ -37,7 +37,6 @@ def get_llm(model: str = None) -> OpenAIChatModel:
             api_key=config.API_KEY
         ),
         settings=OpenAIChatModelSettings(
-            temperature=0.0,
             max_tokens=36000,
             timeout=300
         )

@@ -246,16 +246,18 @@ class AgentDeps:
     docs_navigator: DocsNavigator
 
     def __init__(self, docs_path: str):
+        from tools.docs_grep import DocsGrep
 
         tree_path = os.path.join(docs_path, "docs_tree.json")
         structured_path = os.path.join(docs_path, "structured_docs.json")
-        
+
         if not os.path.exists(tree_path):
             raise FileNotFoundError(f"docs_tree.json not found at {tree_path}")
         if not os.path.exists(structured_path):
             raise FileNotFoundError(f"structured_docs.json not found at {structured_path}")
-        
+
         self.docs_navigator = DocsNavigator(tree_path, structured_path)
+        self.docs_grep = DocsGrep(structured_path)
 
 
 async def run_docs_navigator(ctx: RunContext[AgentDeps], paths: List[List[Any]]) -> str:

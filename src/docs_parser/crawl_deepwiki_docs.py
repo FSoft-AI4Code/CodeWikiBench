@@ -6,7 +6,7 @@ from pydantic import BaseModel, Field
 from typing import Dict, List, Optional, Any
 
 from mcp import ClientSession
-from mcp.client.sse import sse_client
+from mcp.client.streamable_http import streamablehttp_client
 from mcp.types import CallToolResult, Tool as MCPTool
 
 
@@ -58,7 +58,7 @@ class MCPClient(BaseModel):
         print('Connecting to MCP server')
 
         try:
-            async with sse_client(**self.server_params) as (read, write):
+            async with streamablehttp_client(**self.server_params) as (read, write, _):
                 async with ClientSession(read, write) as session:
                     self.session = session
                     await self._initialize_and_list_tools()
@@ -120,7 +120,7 @@ class MCPClient(BaseModel):
             await self.close_session()
 
     async def execute_call_tool(self, tool_name: str, args: Dict) -> CallToolResult:
-        async with sse_client(**self.server_params) as (read, write):
+        async with streamablehttp_client(**self.server_params) as (read, write, _):
             async with ClientSession(read, write) as session:
                 self.session = session
                 if not self.session:
@@ -290,7 +290,7 @@ class GitHubRepoProcessor:
 
 async def pull_content_and_save(url: str, output_dir: str):
     client = MCPClient(
-        server_url="https://mcp.deepwiki.com/sse",
+        server_url="https://mcp.deepwiki.com/mcp",
         timeout=30,
         read_timeout=60,
     )
@@ -307,11 +307,20 @@ async def pull_content_and_save(url: str, output_dir: str):
         headers[i] = header
 
     read_wiki_contents_result = await client.call_tool("read_wiki_contents", {"repoName": repo_name})
-    # print(f"read_wiki_contents_result: {read_wiki_contents_result}")
-    # save the result to a md file
-    for i, content in enumerate(read_wiki_contents_result.content):
+    # Newer MCP server returns all pages in one content item, delimited by
+    # "# Page: <title>" headings; the old SSE server returned one item per page.
+    contents = [c.text.strip() for c in read_wiki_contents_result.content]
+    if len(contents) == 1 and len(headers) > 1:
+        import re
+        contents = [p.strip() for p in re.split(r'\n(?=# Page: )', contents[0]) if p.strip()]
+
+    if len(contents) != len(headers):
+        print(f"WARNING: {len(headers)} headers but {len(contents)} pages for {repo_name}")
+
+    for i, content in enumerate(contents):
+        header = headers[i] if i < len(headers) else f"page-{i}"
         with open(os.path.join(output_dir, f"content_{i}.md"), "w") as f:
-            f.write(headers[i] + "\n\n" + content.text.strip())
+            f.write(header + "\n\n" + content)
 
     await client.disconnect()
 
