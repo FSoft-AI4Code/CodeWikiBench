@@ -122,6 +122,7 @@ def combine_leaf_evaluations(all_leaf_evaluations: List[Dict], method: str, weig
         reasonings = []
         evidences = []
         all_tokens = {"input": 0, "output": 0}
+        num_errors = 0
         
         for leaf_evals in all_leaf_evaluations:
             if path in leaf_evals:
@@ -129,6 +130,8 @@ def combine_leaf_evaluations(all_leaf_evaluations: List[Dict], method: str, weig
                 scores.append(eval_data.get("score", 0))
                 reasonings.append(eval_data.get("reasoning", ""))
                 evidences.append(str(eval_data.get("evidence", "")))
+                if eval_data.get("error"):
+                    num_errors += 1
                 
                 tokens = eval_data.get("tokens", {})
                 all_tokens["input"] += tokens.get("input", 0)
@@ -172,6 +175,9 @@ def combine_leaf_evaluations(all_leaf_evaluations: List[Dict], method: str, weig
             "combination_method": method,
             "num_llms": len(scores)
         }
+        if num_errors:
+            combined_evaluations[path]["error"] = True
+            combined_evaluations[path]["num_errors"] = num_errors
     
     return combined_evaluations
 
@@ -241,6 +247,87 @@ def load_evaluation_files(repo_name: str, reference: str) -> List[Dict]:
     
     return evaluations
 
+def combine_evaluation_results(evaluations: List[Any], method: str = "average", weights: List[float] = None,
+                               confidence_threshold: float = 0.0) -> Dict[str, Any]:
+    """Combine one or more per-model scored rubric trees into
+    {"rubrics": [...], "combination_metadata": {...}} (also valid for a single evaluation)."""
+    # Extract leaf evaluations from all evaluations
+    all_leaf_evaluations = []
+    for evaluation in evaluations:
+        leaf_evals = extract_leaf_evaluations(evaluation)
+        all_leaf_evaluations.append(leaf_evals)
+        print(f"Extracted {len(leaf_evals)} leaf evaluations")
+    
+    # Combine leaf evaluations
+    print("Combining leaf evaluations...")
+    combined_leaf_evaluations = combine_leaf_evaluations(all_leaf_evaluations, method, weights)
+    
+    # Use the first evaluation as template and update with combined scores
+    combined_rubrics = json.loads(json.dumps(evaluations[0]))  # Deep copy
+    
+    # Calculate combined scores bottom-up
+    print("Calculating combined scores...")
+    combined_rubrics = calculate_scores_bottom_up(combined_rubrics, combined_leaf_evaluations)
+    
+    # Calculate overall statistics for metadata
+    overall_score = 0
+    total_weight = 0
+    top_level_stds = []
+    top_level_weights = []
+    
+    if isinstance(combined_rubrics, list):
+        rubrics_list = combined_rubrics
+    else:
+        rubrics_list = combined_rubrics.get("rubrics", combined_rubrics)
+    
+    if isinstance(rubrics_list, list):
+        for item in rubrics_list:
+            weight = item.get("weight", 1)
+            overall_score += item.get("score", 0) * weight
+            total_weight += weight
+            top_level_stds.append(item.get("std", 0))
+            top_level_weights.append(weight)
+    
+    overall_score = overall_score / total_weight if total_weight > 0 else 0
+    overall_std = combine_std_weighted(top_level_stds, top_level_weights)
+    num_error_leaves = sum(1 for e in combined_leaf_evaluations.values() if e.get("error"))
+    
+    # Add metadata about the combination
+    combination_metadata = {
+        "combination_method": method,
+        "num_evaluations_combined": len(evaluations),
+        "weights": weights,
+        "confidence_threshold": confidence_threshold,
+        "overall_score": overall_score,
+        "overall_std": overall_std,
+        "overall_score_range": [overall_score - overall_std, 
+                               overall_score + overall_std],
+        "num_leaves": len(combined_leaf_evaluations),
+        "num_error_leaves": num_error_leaves,
+    }
+    
+    # Add metadata to the combined results
+    if isinstance(combined_rubrics, list):
+        result = {
+            "rubrics": combined_rubrics,
+            "combination_metadata": combination_metadata
+        }
+    else:
+        result = combined_rubrics
+        result["combination_metadata"] = combination_metadata
+
+    print("-" * 100)
+    print("COMBINATION SUMMARY:")
+    print(f"Method used: {method}")
+    print(f"Number of evaluations combined: {len(evaluations)}")
+    print(f"Total leaf evaluations: {len(combined_leaf_evaluations)}")
+    print(f"Leaves with evaluation errors: {num_error_leaves}")
+    print(f"Overall combined score: {overall_score:.4f} ± {overall_std:.4f}")
+    print(f"Overall score range: [{overall_score - overall_std:.4f}, {overall_score + overall_std:.4f}]")
+    print("-" * 100)
+    return result
+
+
 def main():
     args = parse_args()
     
@@ -265,111 +352,18 @@ def main():
         except Exception as e:
             print(f"Error parsing weights: {e}")
             weights = None
-    
-    # Extract leaf evaluations from all evaluations
-    all_leaf_evaluations = []
-    for evaluation in evaluations:
-        leaf_evals = extract_leaf_evaluations(evaluation)
-        all_leaf_evaluations.append(leaf_evals)
-        print(f"Extracted {len(leaf_evals)} leaf evaluations")
-    
-    # Combine leaf evaluations
-    print("Combining leaf evaluations...")
-    combined_leaf_evaluations = combine_leaf_evaluations(all_leaf_evaluations, args.method, weights)
-    
-    # Use the first evaluation as template and update with combined scores
-    combined_rubrics = json.loads(json.dumps(evaluations[0]))  # Deep copy
-    
-    # Calculate combined scores bottom-up
-    print("Calculating combined scores...")
-    combined_rubrics = calculate_scores_bottom_up(combined_rubrics, combined_leaf_evaluations)
-    
-    # Calculate overall statistics for metadata
-    overall_score_for_metadata = 0
-    overall_std_for_metadata = 0
-    total_weight_for_metadata = 0
-    top_level_stds_for_metadata = []
-    top_level_weights_for_metadata = []
-    
-    if isinstance(combined_rubrics, list):
-        rubrics_list_for_metadata = combined_rubrics
-    else:
-        rubrics_list_for_metadata = combined_rubrics.get("rubrics", combined_rubrics)
-    
-    if isinstance(rubrics_list_for_metadata, list):
-        for item in rubrics_list_for_metadata:
-            weight = item.get("weight", 1)
-            overall_score_for_metadata += item.get("score", 0) * weight
-            total_weight_for_metadata += weight
-            top_level_stds_for_metadata.append(item.get("std", 0))
-            top_level_weights_for_metadata.append(weight)
-    
-    overall_score_for_metadata = overall_score_for_metadata / total_weight_for_metadata if total_weight_for_metadata > 0 else 0
-    overall_std_for_metadata = combine_std_weighted(top_level_stds_for_metadata, top_level_weights_for_metadata)
-    
-    # Add metadata about the combination
-    combination_metadata = {
-        "combination_method": args.method,
-        "num_evaluations_combined": len(evaluations),
-        "weights": weights,
-        "confidence_threshold": args.confidence_threshold,
-        "overall_score": overall_score_for_metadata,
-        "overall_std": overall_std_for_metadata,
-        "overall_score_range": [overall_score_for_metadata - overall_std_for_metadata, 
-                               overall_score_for_metadata + overall_std_for_metadata]
-    }
+
+    result = combine_evaluation_results(evaluations, args.method, weights, args.confidence_threshold)
     
     # Save combined results
     base_path = config.get_data_path(args.repo_name, args.reference, "evaluation_results")
     output_file = args.output_file or "combined_evaluation_results.json"
     output_path = os.path.join(base_path, output_file)
     
-    # Add metadata to the combined results
-    if isinstance(combined_rubrics, list):
-        result = {
-            "rubrics": combined_rubrics,
-            "combination_metadata": combination_metadata
-        }
-    else:
-        result = combined_rubrics
-        result["combination_metadata"] = combination_metadata
-    
     with open(output_path, "w") as f:
         json.dump(result, f, indent=2)
     
     print(f"Combined evaluation results saved to: {output_path}")
-    
-    # Calculate and display summary statistics
-    overall_score = 0
-    overall_std = 0
-    total_weight = 0
-    top_level_stds = []
-    top_level_weights = []
-    
-    if isinstance(combined_rubrics, list):
-        rubrics_list = combined_rubrics
-    else:
-        rubrics_list = combined_rubrics.get("rubrics", combined_rubrics)
-    
-    if isinstance(rubrics_list, list):
-        for item in rubrics_list:
-            weight = item.get("weight", 1)
-            overall_score += item.get("score", 0) * weight
-            total_weight += weight
-            top_level_stds.append(item.get("std", 0))
-            top_level_weights.append(weight)
-    
-    overall_score = overall_score / total_weight if total_weight > 0 else 0
-    overall_std = combine_std_weighted(top_level_stds, top_level_weights)
-    
-    print("-" * 100)
-    print("COMBINATION SUMMARY:")
-    print(f"Method used: {args.method}")
-    print(f"Number of evaluations combined: {len(evaluations)}")
-    print(f"Total leaf evaluations: {len(combined_leaf_evaluations)}")
-    print(f"Overall combined score: {overall_score:.4f} ± {overall_std:.4f}")
-    print(f"Overall score range: [{overall_score - overall_std:.4f}, {overall_score + overall_std:.4f}]")
-    print("-" * 100)
 
 if __name__ == "__main__":
     main() 
